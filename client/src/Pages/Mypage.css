@@ -1,0 +1,52 @@
+.My-Profile {
+    position:absolute;
+    left: 50px;
+    top: 120px;
+    bottom: 50px;
+    background-color: greenyellow;
+    width: 310px;
+    text-align: center;
+}
+
+.My-Filter{
+    position:absolute;
+    left: 405px;
+    top: 160px;
+    right: 50px;
+    background-color: yellow;
+}
+
+.My-search-createword{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    left: 435px;
+    top: 265px;
+    right: 100px;
+    background-color: blue;
+}
+
+.WordGrid{
+    position:absolute;
+    left: 405px;
+    top: 355px;
+    right: 150px;
+    height: 200px;
+    border: 1px solid #5D4037;
+    border-radius: 20px;
+}
+
+.Consonant{
+    position:absolute;
+    right: 50px;
+    top: 355px;
+    bottom: 50px;
+    border: 1px solid #5D4037;
+}
+
+.filter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
