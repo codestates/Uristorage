@@ -8,11 +8,11 @@ import axios from "axios";
 import "./App.css";
 
 export default function App () {
-    return (
-        <div>
-            <Routes>
-                <Route exact path="/" element={<Homepage />} />
-            </Routes>
-        </div>
-    )
+  return (
+    <div>
+      <Routes>
+        <Route exact path="/" element={<Homepage />} />
+      </Routes>
+    </div>
+  )
 }
