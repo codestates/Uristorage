@@ -3,11 +3,26 @@
   justify-content: space-between;
   align-items: center;
   padding: 0px 20px;
-  height: 100px;
-  font-size: 32px;
-  border-bottom: 1px solid #3E2723;
+  height: 70px;
+  color: #3E2723;
+
+  border-bottom: 5px double #3E2723;
 }
 
-.navigation::after {
-  border-bottom: 1px solid #3E2723;
+.navigation_othercolor {
+  color: #BCAAA4;
+}
+
+.navigation_left {
+  font-size: 20px;
+}
+
+.navigation_center {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0px 0px 0px 70px;
+}
+
+.navigation_right {
+  font-size: 20px;
 }
