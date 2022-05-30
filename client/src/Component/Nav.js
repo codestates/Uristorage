@@ -8,11 +8,16 @@ function Nav () {
         <Link to='/'>Home</Link> 
       </div>
       <div className="navigation_center">
-        UriStorage
+        Uri<span className="navigation_othercolor">Storage</span>
       </div>
       <div className="navigation_right">
-        <span>회원가입</span>
-        <span>로그인</span>
+        <span>
+          <Link to='/'> 회원가입 </ Link>
+        </span>
+        <span> / </span> 
+        <span>
+          <Link to='/'> 로그인 </ Link>
+        </span>
       </div>
     </div>
   )
