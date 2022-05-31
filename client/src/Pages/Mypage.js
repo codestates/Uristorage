@@ -8,13 +8,13 @@ function Mypage() {
   return (
     <div>
       <Nav />
-      <div className="My-Profile">
+      <div className="My_Profile">
         <Profile />
       </div>
-      <div className="My-Filter">
+      <div className="My_Filter">
         <TypeFilter />
       </div>
-      <div className="My-search-createword">
+      <div className="My_search_createword">
         <div>검색창</div>
         <div>
           <Link to="/CreateWord">단어등록</Link>{" "}

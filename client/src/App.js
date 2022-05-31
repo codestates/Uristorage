@@ -60,7 +60,6 @@ export default function App() {
         <Route path="/Signup" element={<Signuppage />} />
         <Route path="/CreateWord" element={<CreateWord />} />
         <Route path="/Search" element={<Search />} />
-
       </Routes>
     </div>
   );

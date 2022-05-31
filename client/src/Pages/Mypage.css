@@ -1,4 +1,4 @@
-.My-Profile {
+.My_Profile {
     position:absolute;
     left: 50px;
     top: 120px;
@@ -6,9 +6,10 @@
     background-color: greenyellow;
     width: 310px;
     text-align: center;
+    padding-top: 50px;
 }
 
-.My-Filter{
+.My_Filter{
     position:absolute;
     left: 405px;
     top: 160px;
@@ -16,7 +17,7 @@
     background-color: yellow;
 }
 
-.My-search-createword{
+.My_search_createword{
     display: flex;
     justify-content: space-between;
     align-items: center;
