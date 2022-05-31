@@ -6,6 +6,7 @@ import Homepage from "./Pages/Homepage";
 import Mypage from "./Pages/Mypage";
 import CreateWord from "./Pages/CreateWord";
 import Search from "./Pages/Search";
+import Words from "./Pages/Words";
 import Loginpage from "./Pages/Loginpage";
 import Signuppage from "./Pages/Signuppage";
 
@@ -54,10 +55,12 @@ export default function App() {
       <Routes>
         <Route exact path="/" element={<Homepage />} />
         <Route path="/Mypage" element={<Mypage />} />
+        <Route path="/Words" element={<Words />} />
         <Route path="/Login" element={<Loginpage />} />
         <Route path="/Signup" element={<Signuppage />} />
         <Route path="/CreateWord" element={<CreateWord />} />
         <Route path="/Search" element={<Search />} />
+
       </Routes>
     </div>
   );
