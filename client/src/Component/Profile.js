@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import "./Component.css"
 
-function Profile () {
+function Profile ({ userInfo }) {
+
+  const [ myGroup, seMyGroup ] = useState([]);
+
+
     return (
       <div className="information">
         <img className="profile-image" style={{ width: "250px", height: "250px" }}

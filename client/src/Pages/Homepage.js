@@ -2,11 +2,9 @@ import Nav from "../Component/Nav"
 import { Link } from "react-router-dom"
 import "./Homepage.css"
 
-import words from ".././Component/sampleword.json"
+// import words from ".././Component/sampleword.json"
 
 function Homepage () {
-
-  console.log(words.words[0].words)
   return (
     <div>
       <Nav />
@@ -22,7 +20,7 @@ function Homepage () {
           </Link>
         </div>
         <div className="home_randomwords">
-          <button type="submit" className="randombutton">{words.words[0].words}</button>
+          <button type="submit" className="randombutton">{}</button>
         </div>
       </div>
     </div>
