@@ -4,4 +4,5 @@ module.exports = {
   logout: require("./users/logout"),
   getInfo: require("./users/getInfo"),
   getwords: require("./words/getwords"),
+  userGroup: require("./groups/userGroup"),
 };
