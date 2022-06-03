@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Component.css"
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
 import "./Component.css";
 
-function Profile() {
+function Profile () {
+  const [ myGroup, seMyGroup ] = useState([]);
   const userInfo = useSelector((state) => state.userInfo);
   const id = userInfo.id;
   const [Content, setContent] = useState(); //select버튼 value값을 받아 단어그리드로 넘겨줘야함profile=>wordgrid(redux이용해야할듯)
