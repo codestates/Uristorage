@@ -12,7 +12,7 @@ function Nav() {
   const handleLogout = () => {
     axios
       .post(
-        "http://localhost:4000/users/logout",
+        `${process.env.REACT_APP_URL}/users/logout`,
         null,
         {
           headers: { authorization: `Bearer ${token}` },

@@ -47,7 +47,7 @@ function SignupPage() {
       nickname: nickname,
     };
 
-    axios.post("http://localhost:4000/users/signup", body).then((res) => {
+    axios.post(`${process.env.REACT_APP_URL}/users/signup`, body).then((res) => {
       if (res.data.success) {
         //회원가입 성공
         navigate("/Login");
@@ -55,6 +55,7 @@ function SignupPage() {
         alert(res.data.message);
       }
     });
+    // .catch((err) => alert(err.response.data.message));
     // dispatch(signupUser(body)).then((res) => {
     //   if (res.payload.success) {
     //     navigate("/login");

@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "users_Id",
         targetKey: "id",
         onDelete: "CASCADE",
-      });
+      }),
+        user.belongsToMany(models.group, { through: "user_group", foreignKey: "users_id", targetKey: "id" });
     }
   }
   user.init(

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-function LoginPage(props) {
-  const dispatch = useDispatch();
+function LoginPage() {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -26,7 +24,7 @@ function LoginPage(props) {
     };
 
     axios
-      .post("http://localhost:4000/users/login", body, {
+      .post(`${process.env.REACT_APP_URL}/users/login`, body, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -37,9 +35,10 @@ function LoginPage(props) {
           localStorage.setItem("Token", res.data.token);
           navigate("/Mypage");
         } else {
-          alert("잘못된 정보를 입력");
+          alert(res.data.message);
         }
       });
+    // .catch((error) => alert(error.response.data.message));
 
     // dispatch(loginUser(body)).then((res) => {
     //   if (res.payload) {
