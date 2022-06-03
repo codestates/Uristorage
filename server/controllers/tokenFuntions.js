@@ -12,13 +12,10 @@ module.exports = {
   },
 
   removeAccessToken: (res) => {
-    console.log("remove");
-    return res.status(200).clearCookie().json({ message: "로그아웃 성공" });
+    return res.status(200).clearCookie().send({ message: "로그아웃 성공" });
   },
 
   isAuthorized: (req) => {
-    console.log("________________________");
-    console.log(req.headers.authorization);
     const Authorization = req.headers.authorization;
     if (!Authorization) {
       return null;

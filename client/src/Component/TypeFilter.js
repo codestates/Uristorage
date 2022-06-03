@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "../Pages/Mypage.css";
 
 import words from "./sampleword.json"
-
 
 function TypeFilter ({ data }) {
 /*  const [worddatatype, setWorddatatype] = useState([]);
