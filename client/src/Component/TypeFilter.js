@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../Pages/Mypage.css";
-import { useState, useEffect } from "react";
-
 import words from "./sampleword.json";
 
 function TypeFilter({ data }) {
