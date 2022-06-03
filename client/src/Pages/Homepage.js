@@ -1,21 +1,46 @@
-
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import Nav from "../Component/Nav"
 import "./Homepage.css"
 
-// import words from ".././Component/sampleword.json"
+import words from ".././Component/sampleword.json"
 
 
 function Homepage () {
 
-  const [searchWord, SetSearchWord] = useState({
+  let wordsArray = []
+  for (let i = 0; i < words.words.length; i++) {
+    wordsArray.push(words.words[i].words)
+  }
+  const wordsArrayFiltered = wordsArray.filter((x, i) => wordsArray.indexOf(x) === i)
+  const [shuffled, setSearchShuffled] = useState(false)
+  const [shuffledArray, setShuffledArray] = useState([])
+
+  
+  function shuffle(arr) {
+    arr.sort(() => Math.random() - 0.5);
+    setSearchShuffled(true)
+    setShuffledArray(arr)
+  }
+  if (shuffled === false) {
+    shuffle(wordsArrayFiltered)
+  } else {
+  }
+
+  const [searchWord, setSearchWord] = useState({
     searchword: ""
   })
 
+  const wordClickHandler = () => {
+    setSearchWord({
+      searchword: shuffledArray[0]
+    })
+  }
+
   const handleInputValue = (key) => (e) => {
-    SetSearchWord({ ...searchWord, [key]: e.target.value });
+    setSearchWord({ ...searchWord, [key]: e.target.value });
   };
+  // console.log(searchWord)
 
   const navigate = useNavigate()
   const onKeyPress = (e) => {
@@ -23,11 +48,6 @@ function Homepage () {
       navigate("/Search")
     }
   };
-
-  const selectNum = (min, max) => {
-    let randomNum = Math.floor(Math.random() * (max - min + 1)) + min
-    return randomNum
-  }
 
   return (
     <div>
@@ -47,19 +67,28 @@ function Homepage () {
           </button>
           </Link>
         </div>
-        <div className="home_randomwords_firstline">
-        <Link to="/Search" state={{data: words.words[selectNum(0, words.words.length - 1)].words}}>
-          <button type="submit" className="randombutton">{words.words[selectNum(0, words.words.length - 1)].words}</button>
-          <button type="submit" className="randombutton">{words.words[selectNum(0, words.words.length - 1)].words}</button>
-          <button type="submit" className="randombutton">{words.words[selectNum(0, words.words.length - 1)].words}</button>
-        </Link>
+        <div className="home_randomwords_firstline" onClick={wordClickHandler}>
+          <Link to="/Search" state={{data: searchWord}}>
+            <button type="submit" className="randombutton" onClick={wordClickHandler}>{shuffledArray[0]}</button>
+          </Link>
+          <Link to="/Search" state={{data: searchWord}}>
+            <button type="submit" className="randombutton" onClick={wordClickHandler}>{shuffledArray[1]}</button>
+          </Link>
+          <Link to="/Search" state={{data: searchWord}}>
+            <button type="submit" className="randombutton" onClick={wordClickHandler}>{shuffledArray[2]}</button>
+          </Link>
+          
         </div>
-        <div className="home_randomwords_secondline">
-        <Link to="/Search" state={{data: words.words[selectNum(0, words.words.length - 1)].words}}>
-          <button type="submit" className="randombutton">{words.words[selectNum(0, words.words.length - 1)].words}</button>
-          <button type="submit" className="randombutton">{words.words[selectNum(0, words.words.length - 1)].words}</button>
-          <button type="submit" className="randombutton">{words.words[selectNum(0, words.words.length - 1)].words}</button>
-        </Link>
+        <div className="home_randomwords_secondline" onClick={wordClickHandler}>
+          <Link to="/Search" state={{data: searchWord}}>
+            <button type="submit" className="randombutton" onClick={wordClickHandler}>{shuffledArray[3]}</button>
+          </Link>
+          <Link to="/Search" state={{data: searchWord}}>
+            <button type="submit" className="randombutton" onClick={wordClickHandler}>{shuffledArray[4]}</button>
+          </Link>
+          <Link to="/Search" state={{data: searchWord}}>
+            <button type="submit" className="randombutton" onClick={wordClickHandler}>{shuffledArray[5]}</button>
+          </Link>
         </div> 
       </div>
     </div>

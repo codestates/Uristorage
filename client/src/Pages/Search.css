@@ -56,3 +56,11 @@ a:link {
 .title_inbox {
   margin: 0px 0px 0px 50px;
 }
+
+.searched_none {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin: 150px 0px 0px 0px;
+  color: #3E2723;
+}

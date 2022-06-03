@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import "./Component.css"
-
-function Profile ({ userInfo }) {
-
-  const [ myGroup, seMyGroup ] = useState([]);
-
 import { useSelector, useDispatch } from "react-redux";
 
-function Profile() {
+function Profile () {
+  const [ myGroup, seMyGroup ] = useState([]);
   const userInfo = useSelector((state) => state.userInfo);
 
   return (
@@ -24,4 +20,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default Profile
