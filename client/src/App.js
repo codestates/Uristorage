@@ -22,7 +22,7 @@ export default function App() {
   const getUserInfo = () => {
     try {
       axios
-        .get("http://localhost:4000/users", {
+        .get(`${process.env.REACT_APP_URL}/users`, {
           headers: { authorization: `Bearer ${token}` },
           withCredentials: true,
         })
@@ -48,7 +48,7 @@ export default function App() {
       type: "auth/isLogin",
       payload: localStorage.getItem("Token"),
     });
-  }, [navigate]); //????멀까????
+  }, [navigate]);
 
   return (
     <div>

@@ -1,27 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "../Component/Nav"
 import axios from "axios";
 
 function CreateWord ({ userInfo, word }) {
 
-  const [ Wordcreate, setWordcreate ] = useState({
-    // user_id: userInfo.id,
-    Word: '',
-    Summary: '',
-    Content: ''
-    // image, map, calendar
-  });
+  const [ Wordcreate, setWordcreate ] = useState({});
 
   const handleInputValue = (key) => (e) => {
     setWordcreate({ ...Wordcreate, [key]: e.target.value })
   }
 
   const handleCreateword = () => {
-    const { Word, Summary, Content } = Wordcreate
-    if ( Word === '' || Summary === '' || Content === '') {
+    const { Word, Summary, Content, Public } = Wordcreate
+    if ( Word === '' || Summary === '' || Content === '' || Public === '') {
     } else {
         axios.post('http://localhost:4000/Uristorage/words',
-        { Word, Summary, Content },
+        { Word, Summary, Content, Public },
         //{withCredentials: true}
         )
         .then((res) => word(res))
@@ -48,6 +42,10 @@ function CreateWord ({ userInfo, word }) {
           <div>
             <span>구분</span>
           </div>
+          <div className="public">
+            <input type="radio" name="open" value={true} onChange={handleInputValue('public')}/>공개
+            <input type="radio" name="open" value={false} onChange={handleInputValue('public')}/>비공개
+          </div>
           <div>
             <span>내용</span>
             <input className="input_content" type='text' onChange={handleInputValue('content')} />
@@ -63,3 +61,15 @@ function CreateWord ({ userInfo, word }) {
   }
   
 export default CreateWord
+
+/*
+const [state, setState] = useState([])
+
+  const handlechange = (e) => {
+    console.log(e.target.value);
+    setState(e.target.value)
+  };
+
+<input type="radio" value="false" checked={state === "false"} onChange={handlechange}/>비공개
+
+            */

@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "users_id",
         targetKey: "id",
         onDelete: "cascade",
-      });
+      }),
+        word.belongsToMany(models.group, { through: "word_group", foreignKey: "words_id", targetKey: "id" });
     }
   }
   word.init(

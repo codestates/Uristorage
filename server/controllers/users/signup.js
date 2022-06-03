@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
   const { userId, email, password, nickname } = req.body;
 
   if (!userId || !password || !email || !nickname) {
-    return res.status(422).send({ message: "필수 항목을 입력하세요", success: false });
+    return res.send({ message: "필수 항목을 입력하세요", success: false });
   }
   try {
     const sinupUserId = await user.findOne({ where: { userId } });

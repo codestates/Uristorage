@@ -5,7 +5,6 @@ module.exports = (req, res) => {
 
   try {
     if (userInfo) {
-      console.log("logout");
       removeAccessToken(res);
     } else {
       return res.json({ message: "이미 로그아웃 된 상태입니다." });

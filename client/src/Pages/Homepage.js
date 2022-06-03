@@ -42,10 +42,10 @@ function Homepage () {
   };
   // console.log(searchWord)
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const onKeyPress = (e) => {
     if (e.key === "Enter") {
-      navigate("/Search")
+      navigate("/Search");
     }
   };
 
@@ -61,10 +61,10 @@ function Homepage () {
         </div>
         <div className="home_searchbar">
           <input className="searchbar" type="text" placeholder="단어를 입력해주세요" onChange={handleInputValue("searchword")} onKeyPress={onKeyPress} />
-          <Link to="/Search" state={{data: searchWord}}>
-          <button type="submit" className="searchbutton" >
-            <img className="searchicon" src="https://cdn-icons-png.flaticon.com/512/149/149852.png" />
-          </button>
+          <Link to="/Search" state={{ data: searchWord }}>
+            <button type="submit" className="searchbutton">
+              <img className="searchicon" src="https://cdn-icons-png.flaticon.com/512/149/149852.png" />
+            </button>
           </Link>
         </div>
         <div className="home_randomwords_firstline" onClick={wordClickHandler}>
