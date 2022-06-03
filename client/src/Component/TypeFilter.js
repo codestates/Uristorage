@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import "../Pages/Mypage.css";
 
 import words from "./sampleword.json"
