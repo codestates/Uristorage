@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import Nav from "../Component/Nav"
 import "./Homepage.css"
 
-// import words from ".././Component/sampleword.json"
+import words from ".././Component/sampleword.json"
 
 
 function Homepage () {

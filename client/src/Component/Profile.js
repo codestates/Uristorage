@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import "./Component.css"
-
-function Profile ({ userInfo }) {
-
-  const [ myGroup, seMyGroup ] = useState([]);
-
 import { useSelector, useDispatch } from "react-redux";
 
 function Profile() {
   const userInfo = useSelector((state) => state.userInfo);
+  const [ myGroup, seMyGroup ] = useState([]);
 
   return (
     <div className="information">
