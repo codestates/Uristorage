@@ -1,10 +1,11 @@
 import React from "react";
 import "../Pages/Mypage.css";
+import { useState, useEffect } from "react";
 
-import words from "./sampleword.json"
+import words from "./sampleword.json";
 
-function TypeFilter ({ data }) {
-/*  const [worddatatype, setWorddatatype] = useState([]);
+function TypeFilter({ data }) {
+  /*  const [worddatatype, setWorddatatype] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -53,11 +54,11 @@ function TypeFilter ({ data }) {
     }
   };
 
-  console.log(wordType.contents)
+  console.log(wordType.contents);
 
-    return (
-      <div className="filter">
-        {wordType &&
+  return (
+    <div className="filter">
+      {wordType &&
         wordType.map((type, idx) => (
           <div key={idx}>
             <input
@@ -73,9 +74,9 @@ function TypeFilter ({ data }) {
               {/* {checkData.area} */}
             </label>
             {/* </div> */}
-            </div>
+          </div>
         ))}
-      </div>
-    )
-  }
-  export default TypeFilter;
+    </div>
+  );
+}
+export default TypeFilter;

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./Component.css"
+import React, { useState, useEffect } from "react";
+import "./Component.css";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
