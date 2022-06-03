@@ -1,28 +1,81 @@
 import React from "react";
 import "../Pages/Mypage.css";
 
-function TypeFilter() {
-  // const wordtype = ["인물", "장소", "날짜"]
-  // const filter = [
-  //   {Word: "권순규", Summary: "인물", Content: "가나다라마바", Type: "person"},
-  //   {Word: "노트북", Summary: "사물이며", Content: "나다라마", Type:"none"},
-  //   {Word: "광교", Summary: "장소ㅇ", Content: "용인", Type:"장소"},
-  //   {Word: "기념일", Summary: "날짜로", Content: "5월31일", Type:"날짜"}
-  // ]
-  // wordlist.filter(word => {
-  //   if (filter === undefined || filter.length === 0){
-  //     return true
-  //   }
-  //   return filter.includes(word.Type)
-  // })
-  //   return (
-  //     <div className="filter">
-  //       <button onClick={this.all}>전체</button>
-  //       <div> 인물 </div>
-  //       <div> 장소 </div>
-  //       <div> 날짜 </div>
-  //     </div>
-  //   )
-}
+import words from "./sampleword.json"
 
-export default TypeFilter;
+function TypeFilter ({ data }) {
+/*  const [worddatatype, setWorddatatype] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      // const res = await axios.get("http://localhost:4000/uristorage/words/:id").then((res) => setWordData(res.data));
+      // words/user/:userid / words/group/:groupid
+      // state 값, Redux
+      const typelist = words.words.map((type) => ({
+        id: type.id,
+        words: type.words,
+        summary: type.title,
+        content: type.content,
+        info: type.info,
+        contents: type.contents
+      }));
+      setWorddatatype(worddatatype.concat(typelist));
+    }
+    fetchData();
+  }, []);
+
+  console.log("타입", worddatatype);
+*/
+  const [wordType, setWordtype] = useState([
+    { contents: "전체", checked: false, info: "type" },
+    { contents: "인물", checked: false, info: "type" },
+    { contents: "장소", checked: false, info: "type" },
+    { contents: "날짜", checked: false, info: "type" },
+  ]);
+
+  useEffect(() => {
+    let findtype = wordType.findIndex((index) => index.checked === true);
+    if (findtype === -1) findtype = 0;
+  }, []);
+
+  const handleChange = (data) => {
+    if (data.info === "type") {
+      const copyProducts = [...wordType];
+      const modifiedProducts = copyProducts.map((type) => {
+        if (data.contents === type.contents) {
+          type.checked = !type.checked;
+        } else {
+          type.checked = false;
+        }
+        return type;
+      });
+      setWordtype(modifiedProducts);
+    }
+  };
+
+  console.log(wordType.contents)
+
+    return (
+      <div className="filter">
+        {wordType &&
+        wordType.map((type, idx) => (
+          <div key={idx}>
+            <input
+              type="checkbox"
+              className="check_typefilter"
+              checked={type.checked}
+              onChange={() => {
+                handleChange(type);
+              }}
+            />
+            <label className="label_typefilter">
+              {type.contents}
+              {/* {checkData.area} */}
+            </label>
+            {/* </div> */}
+            </div>
+        ))}
+      </div>
+    )
+  }
+  export default TypeFilter;

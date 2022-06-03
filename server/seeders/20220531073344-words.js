@@ -5,7 +5,7 @@ module.exports = {
     await queryInterface.bulkInsert(
       "words",
       [
-        {
+       /* {
           users_id: 8, //외부키
           word: "여사친",
           summary: "사랑보다 먼",
@@ -14,6 +14,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        */
         {
           users_id: 1,
           word: "여사친",

@@ -3,7 +3,10 @@
         {"id": "1",
         "words": "우정",
         "title": "타이틀00",
-        "content": "우정은 우정"},
+        "content": "우정은 우정",
+        "info": "type",
+        "contents":"인물"
+        },
         {"id": "2",
         "words": "사랑",
         "title": "타이틀11",
