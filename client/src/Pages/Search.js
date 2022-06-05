@@ -9,6 +9,11 @@ import "./Search.css"
 import words from "../Component/sampleword.json"
 
 function Search () {
+  let wordsArray = []
+  for (let i = 0; i < words.words.length; i++) {
+    wordsArray.push(words.words[i].words)
+  }
+
   const location = useLocation()
   const searched = location.state.data.searchword
 
@@ -18,9 +23,6 @@ function Search () {
   
   const wordData = words.words
   const filteredWordData = wordData.filter (x => x.words === searched)
-
-  console.log(searched)
-  console.log(wordData)
 
   const handleInputValue = (key) => (e) => {
     SetSearchWord({ ...searchWord, [key]: e.target.value });
@@ -41,9 +43,10 @@ function Search () {
         <TypeFilter />
       </div>
       <div className="searched_word">
-        {filteredWordData.map((word) => {
+        {!wordsArray.includes(searched) ? <div className="searched_none">일치하는 단어가 없습니다</div> :
+          filteredWordData.map((word) => {
           return (
-            <Link to="/Words">
+            <Link to="/Words" state={{data: word}}>
             <div className="word_box" id={word.id} key={word.id}>
               <div className="word_inbox"> {word.words}</div>
               <div className="title_inbox"> {word.title}</div>
