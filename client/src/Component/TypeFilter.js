@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import "../Pages/Mypage.css";
 
 import words from "./sampleword.json"
@@ -28,10 +27,10 @@ function TypeFilter ({ data }) {
   console.log("타입", worddatatype);
 */
   const [wordType, setWordtype] = useState([
-    { contents: "전체", checked: false, info: "type" },
-    { contents: "인물", checked: false, info: "type" },
-    { contents: "장소", checked: false, info: "type" },
-    { contents: "날짜", checked: false, info: "type" },
+    { contents: "All", checked: false, info: "type" },
+    { contents: "person", checked: false, info: "type" },
+    { contents: "place", checked: false, info: "type" },
+    { contents: "date", checked: false, info: "type" },
   ]);
 
   useEffect(() => {
