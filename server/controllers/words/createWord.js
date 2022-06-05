@@ -19,11 +19,11 @@ module.exports = async (req, res) => {
       map,
       calendar,
     });
-    // word_group.create({
-    //   words_id: 1,
-    //   groups_id: 1,
-    // });
-
+    /*  word_group.create({
+      words_id: 1,
+      groups_id: 1,
+    });
+  */
     return res.status(201).json({ message: createWord + ":" + summary });
   } catch (err) {
     return res.status(500).json({ message: "서버 에러" });

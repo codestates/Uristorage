@@ -26,10 +26,10 @@ function TypeFilter({ data }) {
   console.log("타입", worddatatype);
 */
   const [wordType, setWordtype] = useState([
-    { contents: "전체", checked: false, info: "type" },
-    { contents: "인물", checked: false, info: "type" },
-    { contents: "장소", checked: false, info: "type" },
-    { contents: "날짜", checked: false, info: "type" },
+    { contents: "All", checked: false, info: "type" },
+    { contents: "person", checked: false, info: "type" },
+    { contents: "place", checked: false, info: "type" },
+    { contents: "date", checked: false, info: "type" },
   ]);
 
   useEffect(() => {
@@ -52,7 +52,11 @@ function TypeFilter({ data }) {
     }
   };
 
+<<<<<<< HEAD
   console.log(wordType.contents);
+=======
+  // console.log(wordType.contents)
+>>>>>>> e06b63b0bbb8aa2fffad9751a6cbef43b6128437
 
   return (
     <div className="filter">

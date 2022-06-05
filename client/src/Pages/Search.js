@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"
-import { useLocation } from "react-router";
 
 import Nav from "../Component/Nav"
 import TypeFilter from "../Component/TypeFilter";
@@ -8,19 +7,23 @@ import "./Search.css"
 
 import words from "../Component/sampleword.json"
 
-function Search () {
+function Search ({ searchedWord }) {
   let wordsArray = []
   for (let i = 0; i < words.words.length; i++) {
     wordsArray.push(words.words[i].words)
   }
 
-  const location = useLocation()
-  const searched = location.state.data.searchword
+  const [searchWord, SetSearchWord] = useState(searchedWord)
+  console.log(searchWord)
 
-  const [searchWord, SetSearchWord] = useState({
-    searchword: ""
-  })
-  
+  let searched = ''
+  if (typeof(searchWord) === 'string') {
+    searched = searchWord
+  } else {
+    searched = searchWord.searchword
+  }
+  console.log(searched)
+
   const wordData = words.words
   const filteredWordData = wordData.filter (x => x.words === searched)
 
@@ -33,7 +36,7 @@ function Search () {
       <Nav />
       <div>
         <div className="home_searchbar">
-          <input className="searchbar" type="text" placeholder={searched} onChange={handleInputValue("searchword")} />
+          <input className="searchbar" type="text" placeholder='단어를 입력해주세요' onChange={handleInputValue("searchword")} />
           <Link to="/Search" state={{data: searchWord}}>
           <button type="submit" className="searchbutton">
             <img className="searchicon" src="https://cdn-icons-png.flaticon.com/512/149/149852.png" />

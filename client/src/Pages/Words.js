@@ -45,7 +45,7 @@ function Words () {
             {clicked.content}
             </div>
         </div>
-          <img className="words_clickedimage" style={{ width: "400px", height: "400px" }} src="https://t1.daumcdn.net/cfile/tistory/251A563C5854122C07" />
+          <img className="words_clickedimage" style={{ width: "300px", height: "300px" }} src="https://t1.daumcdn.net/cfile/tistory/251A563C5854122C07" />
       </div>
     </div>
   )
