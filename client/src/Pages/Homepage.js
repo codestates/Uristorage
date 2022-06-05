@@ -6,7 +6,7 @@ import "./Homepage.css"
 import words from ".././Component/sampleword.json"
 
 
-function Homepage () {
+function Homepage ({ searchHandler }) {
 
   let wordsArray = []
   for (let i = 0; i < words.words.length; i++) {
@@ -27,24 +27,46 @@ function Homepage () {
   } else {
   }
 
-  const [searchWord, setSearchWord] = useState({
-    searchword: ""
-  })
+  const [searchWord, setSearchWord] = useState('')
 
-  const wordClickHandler = () => {
-    setSearchWord({
-      searchword: shuffledArray[0]
-    })
+  const navigate = useNavigate();
+
+  const wordClickHandler0 = () => {
+    searchHandler(searchWord);
+    navigate('/Search')
+  }
+  const wordClickHandler1 = () => {
+    searchHandler(shuffledArray[0]);
+    navigate('/Search')
+  }
+  const wordClickHandler2 = () => {
+    searchHandler(shuffledArray[1]);
+    navigate('/Search')
+  }
+  const wordClickHandler3 = () => {
+    searchHandler(shuffledArray[2]);
+    navigate('/Search')
+  }
+  const wordClickHandler4 = () => {
+    searchHandler(shuffledArray[3]);
+    navigate('/Search')
+  }
+  const wordClickHandler5 = () => {
+    searchHandler(shuffledArray[4]);
+    navigate('/Search')
+  }
+  const wordClickHandler6 = () => {
+    searchHandler(shuffledArray[5]);
+    navigate('/Search')
   }
 
   const handleInputValue = (key) => (e) => {
     setSearchWord({ ...searchWord, [key]: e.target.value });
   };
   // console.log(searchWord)
-
-  const navigate = useNavigate();
   const onKeyPress = (e) => {
     if (e.key === "Enter") {
+      wordClickHandler0()
       navigate("/Search");
     }
   };
@@ -61,34 +83,19 @@ function Homepage () {
         </div>
         <div className="home_searchbar">
           <input className="searchbar" type="text" placeholder="단어를 입력해주세요" onChange={handleInputValue("searchword")} onKeyPress={onKeyPress} />
-          <Link to="/Search" state={{ data: searchWord }}>
-            <button type="submit" className="searchbutton">
+            <button type="submit" className="searchbutton" onClick={wordClickHandler0}>
               <img className="searchicon" src="https://cdn-icons-png.flaticon.com/512/149/149852.png" />
             </button>
-          </Link>
         </div>
-        <div className="home_randomwords_firstline" onClick={wordClickHandler}>
-          <Link to="/Search" state={{data: searchWord}}>
-            <button type="submit" className="randombutton" onClick={wordClickHandler}>{shuffledArray[0]}</button>
-          </Link>
-          <Link to="/Search" state={{data: searchWord}}>
-            <button type="submit" className="randombutton" onClick={wordClickHandler}>{shuffledArray[1]}</button>
-          </Link>
-          <Link to="/Search" state={{data: searchWord}}>
-            <button type="submit" className="randombutton" onClick={wordClickHandler}>{shuffledArray[2]}</button>
-          </Link>
-          
+        <div className="home_randomwords_firstline">
+            <button type="submit" className="randombutton" onClick={wordClickHandler1}>{shuffledArray[0]}</button>
+            <button type="submit" className="randombutton" onClick={wordClickHandler2}>{shuffledArray[1]}</button>
+            <button type="submit" className="randombutton" onClick={wordClickHandler3}>{shuffledArray[2]}</button>
         </div>
-        <div className="home_randomwords_secondline" onClick={wordClickHandler}>
-          <Link to="/Search" state={{data: searchWord}}>
-            <button type="submit" className="randombutton" onClick={wordClickHandler}>{shuffledArray[3]}</button>
-          </Link>
-          <Link to="/Search" state={{data: searchWord}}>
-            <button type="submit" className="randombutton" onClick={wordClickHandler}>{shuffledArray[4]}</button>
-          </Link>
-          <Link to="/Search" state={{data: searchWord}}>
-            <button type="submit" className="randombutton" onClick={wordClickHandler}>{shuffledArray[5]}</button>
-          </Link>
+        <div className="home_randomwords_secondline">
+            <button type="submit" className="randombutton" onClick={wordClickHandler4}>{shuffledArray[3]}</button>
+            <button type="submit" className="randombutton" onClick={wordClickHandler5}>{shuffledArray[4]}</button>
+            <button type="submit" className="randombutton" onClick={wordClickHandler6}>{shuffledArray[5]}</button>
         </div> 
       </div>
     </div>
