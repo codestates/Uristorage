@@ -2,9 +2,9 @@ const { word, word_group } = require("../../models");
 
 module.exports = async (req, res) => {
   const createWord = req.body.word; //word테이블명 겹침
-  const { users_id, groups_id, summary, content, image, public, type, map, calendar } = req.body;
+  const { users_id, groups_id, summary, content, image, pub, type, map, calendar } = req.body;
 
-  if (!users_id || !createWord || !summary || !content || !public || !type) {
+  if (!users_id || !createWord || !summary || !content || !pub || !type) {
     return res.send({ message: "필수 항목을 입력하세요", success: false });
   }
   try {
@@ -14,15 +14,15 @@ module.exports = async (req, res) => {
       summary,
       content,
       image,
-      public,
+      public: pub,
       type,
       map,
       calendar,
     });
-    word_group.create({
-      words_id: 1,
-      groups_id: 1,
-    });
+    // word_group.create({
+    //   words_id: 1,
+    //   groups_id: 1,
+    // });
 
     return res.status(201).json({ message: createWord + ":" + summary });
   } catch (err) {
