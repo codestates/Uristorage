@@ -19,6 +19,14 @@ export default function App() {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
 
+  const [searchedWord, setSearchedWord] = useState('')
+
+  const searchHandler = (element) => {
+    setSearchedWord(element)
+  }
+
+  console.log(searchedWord)
+
   const getUserInfo = () => {
     try {
       axios
@@ -53,13 +61,13 @@ export default function App() {
   return (
     <div>
       <Routes>
-        <Route exact path="/" element={<Homepage />} />
+        <Route exact path="/" element={<Homepage searchHandler={searchHandler} />} />
         <Route path="/Mypage" element={<Mypage />} />
         <Route path="/Words" element={<Words />} />
         <Route path="/Login" element={<Loginpage />} />
         <Route path="/Signup" element={<Signuppage />} />
         <Route path="/CreateWord" element={<CreateWord />} />
-        <Route path="/Search" element={<Search />} />
+        <Route path="/Search" element={<Search searchedWord={searchedWord} />} />
       </Routes>
     </div>
   );

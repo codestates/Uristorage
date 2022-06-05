@@ -5,29 +5,6 @@
   margin: 30px 0px 30px 5px;
 }
 
-.searchbar {
-  border: 2px solid #3E2723;
-  height: 36px;
-  width: 610px;
-  padding: 5px;
-  border-radius: 5px 0px 0px 5px;
-  font-size: 20px;
-}
-    
-.searchbutton {
-  border: 2px solid #3E2723;
-  height: 50px;
-  width: 50px;
-  border-radius: 0px 5px 5px 0px;
-  background-color: #BCAAA4;
-}
-    
-.searchicon {
-  max-width: 30px;
-  max-height: 30px;
-  color: white;
-}
-  
 .words_information {
   display: flex;
   flex-direction: column;
@@ -64,6 +41,6 @@
 .words_clickedimage {
   display: flex;
   position: relative;
-  bottom: 500px;
-  left: 650px;
+  bottom: 450px;
+  left: 740px;
 }
