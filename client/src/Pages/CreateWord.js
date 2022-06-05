@@ -1,27 +1,45 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../Component/Nav"
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-function CreateWord ({ userInfo, word }) {
-
-  const [ Wordcreate, setWordcreate ] = useState({});
+function CreateWord () {
+  const userInfo = useSelector((state) => state.userInfo);
+  const id = userInfo.id;
+  
+  const navigate = useNavigate();
+  const [ Wordcreate, setWordcreate ] = useState({
+    users_id: id,
+    word: "",
+    summary: "",
+    content: "",
+    pub: true,
+    type: "All"
+  });
 
   const handleInputValue = (key) => (e) => {
     setWordcreate({ ...Wordcreate, [key]: e.target.value })
   }
 
   const handleCreateword = () => {
-    const { Word, Summary, Content, Public } = Wordcreate
-    if ( Word === '' || Summary === '' || Content === '' || Public === '') {
+    const { users_id, word, summary, content, pub, type } = Wordcreate
+    if ( word === "" || summary === "" || content === "" || pub === "" || !type) {
     } else {
-        axios.post('http://localhost:4000/Uristorage/words',
-        { Word, Summary, Content, Public },
-        //{withCredentials: true}
+        axios.post(`${process.env.REACT_APP_URL}/words`,
+        { users_id, word, summary, content, pub, type },
+        {withCredentials: true}
         )
-        .then((res) => word(res))
-    }
+        .then((res) => {
+          //if (res.data.success){
+          console.log("res", res);
+          navigate("/Mypage")
+          //}
+        //  navigate("/Mypage")
+        });
+      }
   }
-
+  console.log("id값", id);
   console.log(Wordcreate);
 
     return (
@@ -30,7 +48,7 @@ function CreateWord ({ userInfo, word }) {
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="Word_Create">
             <span>단어</span>
-            <input className="input_word" type='text' onChange={handleInputValue('Word')} />
+            <input className="input_word" type='text' onChange={handleInputValue('word')} />
           </div>
           <div>
             <span>요약</span>
@@ -41,10 +59,14 @@ function CreateWord ({ userInfo, word }) {
           </div>
           <div>
             <span>구분</span>
+            <input type="radio" name="type" value={"All"} onChange={handleInputValue('type')}/>전체
+            <input type="radio" name="type" value={"person"} onChange={handleInputValue('type')}/>인물
+            <input type="radio" name="type" value={"place"} onChange={handleInputValue('type')}/>장소
+            <input type="radio" name="type" value={"date"} onChange={handleInputValue('type')}/>날짜
           </div>
-          <div className="public">
-            <input type="radio" name="open" value={true} onChange={handleInputValue('public')}/>공개
-            <input type="radio" name="open" value={false} onChange={handleInputValue('public')}/>비공개
+          <div className="pub">
+            <input type="radio" name="open" value={true} onChange={handleInputValue('pub')}/>공개
+            <input type="radio" name="open" value={false} onChange={handleInputValue('pub')}/>비공개
           </div>
           <div>
             <span>내용</span>
