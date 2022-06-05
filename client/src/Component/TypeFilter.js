@@ -52,11 +52,7 @@ function TypeFilter({ data }) {
     }
   };
 
-<<<<<<< HEAD
   console.log(wordType.contents);
-=======
-  // console.log(wordType.contents)
->>>>>>> e06b63b0bbb8aa2fffad9751a6cbef43b6128437
 
   return (
     <div className="filter">
