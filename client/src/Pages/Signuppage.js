@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 // import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignupPage() {
   //   const dispatch = useDispatch();
@@ -66,34 +66,49 @@ function SignupPage() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "100vh",
-      }}
-    >
-      <form style={{ display: "flex", flexDirection: "column" }} onSubmit={onSubmitHandler}>
-        <label>아이디</label>
-        <input type="text" value={userId} onChange={onUserIdHandler} />
+    <div>
+      <Link
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "90%",
+          height: "10vh",
+        }}
+        to="/"
+        className="navigation_center"
+      >
+        Uri<span className="navigation_othercolor">Storage</span>
+      </Link>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "70vh",
+        }}
+      >
+        <form style={{ display: "flex", flexDirection: "column" }} onSubmit={onSubmitHandler}>
+          <label>아이디</label>
+          <input type="text" value={userId} onChange={onUserIdHandler} />
 
-        <label>Password</label>
-        <input type="password" value={password} onChange={onPasswordHandler} />
+          <label>Password</label>
+          <input type="password" value={password} onChange={onPasswordHandler} />
 
-        <label>Password 확인</label>
-        <input type="password" value={confirmPassword} onChange={onConfirmPasswordHandler} />
+          <label>Password 확인</label>
+          <input type="password" value={confirmPassword} onChange={onConfirmPasswordHandler} />
 
-        <label>닉네임</label>
-        <input type="text" value={nickname} onChange={onNickNameHandler} />
+          <label>닉네임</label>
+          <input type="text" value={nickname} onChange={onNickNameHandler} />
 
-        <label>Email</label>
-        <input type="email" value={email} onChange={onEmailHandler} />
+          <label>Email</label>
+          <input type="email" value={email} onChange={onEmailHandler} />
 
-        <br />
-        <button type="submit">회원 가입</button>
-      </form>
+          <br />
+          <button type="submit">회원 가입</button>
+        </form>
+      </div>
     </div>
   );
 }
