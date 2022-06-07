@@ -6,10 +6,11 @@ import "./Component.css"
 
 export default function GridCars(props) {
   return (
-    <Col lg={24} md={1} xs={24}>
-      <div className="gridwords">
-        <Link to="/Words">{props.words}</Link>
-          <div >summary={props.summary} content={props.content}</div>
+    <Col lg={24} md={2} xs={24}>
+      <div className="gridcards">
+        <div className="gridword"><Link to="/Words">{props.words}</Link></div>
+          <div className="gridsummary">{props.summary}</div>
+          <img className="gridimage"/><span>여기는 이미지</span>
       </div>
     </Col>
   );

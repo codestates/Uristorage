@@ -3,6 +3,10 @@ a:link {
   color: #3E2723;
 }
 
+a:visited{
+  color: #3E2723;
+}
+
 .navigation {
   display: flex;
   justify-content: space-between;
