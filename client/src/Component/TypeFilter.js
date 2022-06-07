@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../Pages/Mypage.css";
-import words from "./sampleword.json";
 
-function TypeFilter({ data }) {
-  /*  const [worddatatype, setWorddatatype] = useState([]);
+import words from "./sampleword.json"
+
+function TypeFilter ({ data }) {
+/*  const [worddatatype, setWorddatatype] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -52,13 +53,13 @@ function TypeFilter({ data }) {
     }
   };
 
-  console.log(wordType.contents);
+  // console.log(wordType.contents)
 
-  return (
-    <div className="filter">
-      {wordType &&
+    return (
+      <div className="filter">
+        {wordType &&
         wordType.map((type, idx) => (
-          <div key={idx}>
+          <div className="filter_box" key={idx}>
             <input
               type="checkbox"
               className="check_typefilter"
@@ -66,15 +67,15 @@ function TypeFilter({ data }) {
               onChange={() => {
                 handleChange(type);
               }}
-            />
+            />&nbsp;
             <label className="label_typefilter">
               {type.contents}
               {/* {checkData.area} */}
             </label>
             {/* </div> */}
-          </div>
+            </div>
         ))}
-    </div>
-  );
-}
-export default TypeFilter;
+      </div>
+    )
+  }
+  export default TypeFilter;
