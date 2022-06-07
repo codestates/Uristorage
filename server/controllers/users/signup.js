@@ -8,13 +8,13 @@ module.exports = async (req, res) => {
     return res.send({ message: "필수 항목을 입력하세요", success: false });
   }
   try {
-    const sinupUserId = await user.findOne({ where: { userId } });
-    const sinupEmail = await user.findOne({ where: { email } });
+    const signupUserId = await user.findOne({ where: { userId } });
+    const signupEmail = await user.findOne({ where: { email } });
     const hashed = await bcrypt.hash(password, 10);
 
-    if (sinupUserId) {
+    if (signupUserId) {
       return res.json({ message: "이미 가입된 아이디입니다.", success: false });
-    } else if (sinupEmail) {
+    } else if (signupEmail) {
       return res.json({ message: "이미 가입된 이메일입니다.", success: false });
     } else {
       user.create({
