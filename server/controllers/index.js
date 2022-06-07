@@ -3,6 +3,7 @@ module.exports = {
   login: require("./users/login"),
   logout: require("./users/logout"),
   getInfo: require("./users/getInfo"),
+  modifyUser: require("./users/modifyUser"),
   createWord: require("./words/createWord"),
   groupWords: require("./words/groupWords"),
   publicWords: require("./words/publicWords"),

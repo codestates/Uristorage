@@ -9,6 +9,9 @@ import Search from "./Pages/Search";
 import Words from "./Pages/Words";
 import Loginpage from "./Pages/Loginpage";
 import Signuppage from "./Pages/Signuppage";
+import AddGroupPage from "./Pages/AddGroupPage";
+import ModifyUserPage from "./Pages/ModifyUserPage";
+import ModifyGroupPage from "./Pages/ModifyGroupPage";
 
 import axios from "axios";
 
@@ -19,13 +22,13 @@ export default function App() {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
 
-  const [searchedWord, setSearchedWord] = useState('')
+  const [searchedWord, setSearchedWord] = useState("");
 
   const searchHandler = (element) => {
-    setSearchedWord(element)
-  }
+    setSearchedWord(element);
+  };
 
-  console.log(searchedWord)
+  console.log(searchedWord);
 
   const getUserInfo = () => {
     try {
@@ -49,7 +52,7 @@ export default function App() {
     if (token) {
       getUserInfo();
     }
-  }, [token]);
+  }, [token, navigate]);
 
   useEffect(() => {
     dispatch({
@@ -67,6 +70,9 @@ export default function App() {
         <Route path="/Login" element={<Loginpage />} />
         <Route path="/Signup" element={<Signuppage />} />
         <Route path="/CreateWord" element={<CreateWord />} />
+        <Route path="/ModifyUser" element={<ModifyUserPage />} />
+        <Route path="/AddGroup" element={<AddGroupPage />} />
+        <Route path="/ModifyGroup" element={<ModifyGroupPage />} />
         <Route path="/Search" element={<Search searchedWord={searchedWord} />} />
       </Routes>
     </div>

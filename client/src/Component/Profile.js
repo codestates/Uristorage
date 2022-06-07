@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./Component.css";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
+import "../Pages/ModifyUserPage";
 import "./Component.css";
 
 function Profile() {
@@ -37,6 +39,10 @@ function Profile() {
   };
 
   useEffect(() => {
+    userInfo;
+  }, []);
+
+  useEffect(() => {
     getUserGroups(); //새로고침하면 사라짐
   }, [userInfo]);
 
@@ -53,9 +59,11 @@ function Profile() {
           ))}
         </select>
       </div>
-      <div> Link 회원정보변경 </div>
-      <div> Link 그룹정보변경 </div>
-      <div> Link 그룹추가 </div>
+      <Link to="/ModifyUser"> 회원정보변경 </Link>
+      <div>
+        <Link to="/ModifyGroup"> 그룹정보변경 </Link>
+      </div>
+      <Link to="/AddGroup"> 그룹추가 </Link>
     </div>
   );
 }

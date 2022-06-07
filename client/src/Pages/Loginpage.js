@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [userId, setUserId] = useState("");
@@ -50,23 +50,38 @@ function LoginPage() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "100vh",
-      }}
-    >
-      <form style={{ display: "flex", flexDirection: "column" }} onSubmit={onSubmitHandler}>
-        <label>Id</label>
-        <input type="userId" value={userId} onChange={onUserIdHandler} />
-        <label>Password</label>
-        <input type="password" value={password} onChange={onPasswordHandler} />
-        <br />
-        <button type="submit">Login</button>
-      </form>
+    <div>
+      <Link
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "90%",
+          height: "10vh",
+        }}
+        to="/"
+        className="navigation_center"
+      >
+        Uri<span className="navigation_othercolor">Storage</span>
+      </Link>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "70vh",
+        }}
+      >
+        <form style={{ display: "flex", flexDirection: "column" }} onSubmit={onSubmitHandler}>
+          <label>Id</label>
+          <input type="userId" value={userId} onChange={onUserIdHandler} />
+          <label>Password</label>
+          <input type="password" value={password} onChange={onPasswordHandler} />
+          <br />
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </div>
   );
 }
