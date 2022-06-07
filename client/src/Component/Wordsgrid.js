@@ -2,17 +2,20 @@ import React, { useEffect, useState } from 'react'
 import GridCars from './GridCards';
 import { Row } from 'antd';
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 //import words from "./sampleword.json"
 
 function Wordsgrid() {
-
+  
+  const userInfo = useSelector((state) => state.userInfo);
+  const users_id = userInfo.id;
   const [worddata, setWorddata] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const res = await axios
-        .get(`${process.env.REACT_APP_URL}/words/user/2`)
+        .get(`${process.env.REACT_APP_URL}/words/user/${users_id}`)
         //users_id 리덕스 스토어로 가져오기....
       .then((res) => {
       console.log("res", res),
@@ -30,7 +33,7 @@ function Wordsgrid() {
     fetchData();
   }, []);
 
-  console.log("배열", worddata);
+  // console.log("배열", worddata);
 
   //id값 같을 때 해당 words 출력 추가
 

@@ -24,7 +24,7 @@ function Words () {
       <Nav />
       <div>
         <div className="words_searchbar">
-          <input className="searchbar" type="text" placeholder="단어를 입력해주세요" onChange={handleInputValue("searchword")} />
+          <input className="searchbar" type="text" placeholder="단어를 입력해주세요" onChange={handleInputValue("searchword")} onKeyPress={onKeyPress} />
           <Link to="/Search" state={{data: searchWord}}>
           <button type="submit" className="searchbutton" >
             <img className="searchicon" src="https://cdn-icons-png.flaticon.com/512/149/149852.png" />
