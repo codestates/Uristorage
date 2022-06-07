@@ -1,0 +1,36 @@
+a:link {
+    text-decoration: none;
+  }
+
+.word_box {
+  display: flex;
+  border: 2px solid #3E2723;
+  border-radius: 5%;
+  padding: 10px;
+  margin: 15px;
+  color: #3E2723;
+  text-decoration: none;
+
+  font-size: 20px;
+}
+
+.word_box:hover {
+  background-color: red;
+}
+
+.word_inbox {
+  border: 1.5px solid;
+  border-radius: 20%;
+}
+
+.title_inbox {
+  margin: 0px 0px 0px 50px;
+}
+
+.searched_none {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin: 150px 0px 0px 0px;
+  color: #3E2723;
+}
