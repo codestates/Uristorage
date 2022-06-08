@@ -13,6 +13,7 @@ function Profile() {
   const id = userInfo.id;
   const [Content, setContent] = useState(); //select버튼 value값을 받아 단어그리드로 넘겨줘야함profile=>wordgrid(redux이용해야할듯)
   const [Options, setOptions] = useState([{ key: 0, value: "mywords" }]);
+
   //console.log(id); //새로고침하면 null로 시작한 후 값을 가짐
   //console.log(Content);
 
@@ -37,10 +38,6 @@ function Profile() {
       console.log(err);
     }
   };
-
-  useEffect(() => {
-    userInfo;
-  }, []);
 
   useEffect(() => {
     getUserGroups(); //새로고침하면 사라짐

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../Pages/Mypage.css";
-
-import words from "./sampleword.json"
+import { useNavigate } from "react-router-dom";
 
 function TypeFilter ({ data }) {
 /*  const [worddatatype, setWorddatatype] = useState([]);
@@ -33,10 +32,21 @@ function TypeFilter ({ data }) {
     { contents: "date", checked: false, info: "type" },
   ]);
 
+  // const navigate = useNavigate()
+  // console.log(wordType[2].checked)
+  //   useEffect (() => { 
+  //   if (wordType[2].checked === true) {
+  //     navigate('/Location')
+  //   } else (
+  //     navigate('/Mypage')
+  //   )
+  //   }, [])
+
   useEffect(() => {
     let findtype = wordType.findIndex((index) => index.checked === true);
     if (findtype === -1) findtype = 0;
   }, []);
+
 
   const handleChange = (data) => {
     if (data.info === "type") {

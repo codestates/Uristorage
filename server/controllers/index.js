@@ -9,4 +9,5 @@ module.exports = {
   publicWords: require("./words/publicWords"),
   userWords: require("./words/userWords"),
   userGroup: require("./groups/userGroup"),
+  createGroup: require("./groups/createGroup"),
 };
