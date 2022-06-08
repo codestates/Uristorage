@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Nav from "../Component/Nav";
 import Profile from "../Component/Profile";
-import CreateGroup from "../Component/AddGroup";
+import AddGroup from "../Component/AddGroup";
 import "./ModifyUserPage.css";
 
 function AddGroupPage() {
@@ -12,7 +12,7 @@ function AddGroupPage() {
         <Profile />
       </div>
       <div className="ModifyUser">
-        <CreateGroup />
+        <AddGroup />
       </div>
     </div>
   );

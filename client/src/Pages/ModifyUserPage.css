@@ -3,10 +3,11 @@
   left: 50px;
   top: 120px;
   bottom: 50px;
-  background-color: greenyellow;
+  border-right: solid 3px #3e2723;
   width: 310px;
   text-align: center;
   padding-top: 50px;
+  line-height: 50px;
 }
 
 .ModifyUser {

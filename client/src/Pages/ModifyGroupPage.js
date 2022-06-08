@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Nav from "../Component/Nav";
 import Profile from "../Component/Profile";
 import ModifyGroup from "../Component/ModifyGroup";
-import "./ModifyUserPage.css";
 
 function AddGroupPage() {
   return (
