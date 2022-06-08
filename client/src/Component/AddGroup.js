@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function AddGroup() {
   const userInfo = useSelector((state) => state.userInfo);
-  const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
+  const [member, setMember] = useState("");
+  const [members, setMembers] = useState([userInfo.nickname]);
 
   const onNameHandler = (event) => {
     setName(event.currentTarget.value);
@@ -19,18 +20,27 @@ function AddGroup() {
     setImage(event.currentTarget.value);
   };
 
+  const handleInputValue = (event) => {
+    setMember(event.currentTarget.value);
+  };
+
+  const onMemberAdd = () => {
+    setMembers([...members, member]);
+  };
+
+  // useEffect(() => {
+  //   setMember(userInfo.nickname);
+  // }, [userInfo.nickname]);
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
-
-    if (password !== confirmPassword) {
-      return alert("변경하실 비밀번호와 비밀번호 확인은 같아야 합니다.");
-    }
-
     let body = {
-      name: image,
+      name: name,
+      image: image,
+      members: members,
     };
 
-    axios.put(`${process.env.REACT_APP_URL}/users`, body, { headers: { authorization: `Bearer ${token}` } }, { withCredentials: true }).then((res) => {
+    axios.post(`${process.env.REACT_APP_URL}/groups`, body, { withCredentials: true }).then((res) => {
       if (res.data.success) {
         alert(res.data.message);
         navigate("/Mypage");
@@ -50,19 +60,21 @@ function AddGroup() {
         height: "10vh",
       }}
     >
-      <form style={{ display: "flex", flexDirection: "column" }} onSubmit={onSubmitHandler}>
+      <div style={{ display: "flex", flexDirection: "column" }}>
         <label>그룹 이름</label>
         <input type="text" value={name} onChange={onNameHandler} />
 
-        <label>그룹원 초대</label>
-        <div>{["yonggar", "test1", "test2"]}</div>
+        <label>그룹원 목록</label>
+        <div>{members}</div>
+        <input type="text" value={member} onChange={handleInputValue} />
+        <button onClick={onMemberAdd}>추가</button>
 
         <label>이미지</label>
         <input type="file" value={image} onChange={onImageHandler} />
 
         <br />
-        <button type="submit">그룹 추가</button>
-      </form>
+        <button onClick={onSubmitHandler}>그룹 추가</button>
+      </div>
     </div>
   );
 }

@@ -39,10 +39,6 @@ function Profile() {
   };
 
   useEffect(() => {
-    userInfo;
-  }, []);
-
-  useEffect(() => {
     getUserGroups(); //새로고침하면 사라짐
   }, [userInfo]);
 

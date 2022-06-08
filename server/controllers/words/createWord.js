@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
           });
         }
       });
-    return res.status(201).json({ message: `${createWord}` + ":" + `${summary}` });
+    return res.status(201).json({ message: `${createWord}` + ":" + `${summary}`, success: true });
   } catch (err) {
     return res.status(500).json({ message: "서버 에러" });
   }

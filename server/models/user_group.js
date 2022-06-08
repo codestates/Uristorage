@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
       freezeTableName: true,
       sequelize,
-      modelName: "word_group",
+      modelName: "user_group",
     }
   );
   return user_group;
