@@ -53,7 +53,7 @@ function TypeFilter ({ data }) {
     }
   };
 
-  // console.log(wordType.contents)
+  console.log(wordType.contents)
 
     return (
       <div className="filter">

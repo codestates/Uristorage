@@ -75,3 +75,12 @@
     align-items: center;
     line-height: 50px;
 }
+
+/* Canlendar 페이지 */
+
+.My_Calendar{
+    position:absolute;
+    left: 405px;
+    top: 355px;
+    right: 150px;
+}

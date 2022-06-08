@@ -6,21 +6,27 @@ import Nav from "../Component/Nav"
 import Profile from "../Component/Profile"
 import TypeFilter from "../Component/TypeFilter"
 import Wordsgrid from "../Component/Wordsgrid"
+import { useSelector } from "react-redux";
 import "./Mypage.css"
 
 function Mypage () {
+  //const data = useSelector((state) => state.data);
+  //const wordarr = data;
   const [wordcreate, setWordcreate] = useState("");
   //const location = useLocation();
-  const data = () => {
-    const { state } = useLocation();
-    console.log("state", state);
+  //const data = () => {
+  //  const { state } = useLocation();
+  //  console.log("state", state);
+  //}
+  const getdata = (wordcreate) => {
+    setWordcreate(wordcreate);
   }
 
   useEffect(() => {
     console.log(location);
     //return() => {
    // }
-  }, [data()]);
+  });
 
   return (
     <div>
@@ -41,7 +47,7 @@ function Mypage () {
         <div className="my_createword"><Link to='/CreateWord'>단어등록</Link> </div>
       </div>
       <div className="WordGrid">
-        <Wordsgrid /*data={props}*//>
+        <Wordsgrid wordcreate={wordcreate} getdata={getdata}/>
       </div>
       <div className="Consonant">
         <div>자음 필터</div>

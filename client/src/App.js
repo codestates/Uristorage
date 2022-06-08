@@ -13,6 +13,7 @@ import Location from "./Pages/Location";
 import AddGroupPage from "./Pages/AddGroupPage";
 import ModifyUserPage from "./Pages/ModifyUserPage";
 import ModifyGroupPage from "./Pages/ModifyGroupPage";
+import Calendar from "./Pages/Calendarpage"
 
 import axios from "axios";
 
@@ -72,6 +73,7 @@ export default function App() {
         <Route path="/Login" element={<Loginpage />} />
         <Route path="/Signup" element={<Signuppage />} />
         <Route path="/CreateWord" element={<CreateWord />} />
+        <Route path="/Calendar" element={<Calendar />} />
         <Route path="/ModifyUser" element={<ModifyUserPage />} />
         <Route path="/AddGroup" element={<AddGroupPage />} />
         <Route path="/ModifyGroup" element={<ModifyGroupPage />} />

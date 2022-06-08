@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 
 function Searchbar ({ searchHandler }) {
   const [searchWord, setSearchWord] = useState('')
-  console.log(searchWord)
+  //console.log(searchWord)
   const navigate = useNavigate();
 
   const wordClickHandler0 = () => {
