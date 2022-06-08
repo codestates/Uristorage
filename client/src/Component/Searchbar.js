@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 function Searchbar ({ searchHandler }) {
   const [searchWord, setSearchWord] = useState('')
+  //console.log(searchWord)
+
   const navigate = useNavigate();
   // console.log(searchWord)
 
