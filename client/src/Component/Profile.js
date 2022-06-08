@@ -13,8 +13,8 @@ function Profile() {
   const id = userInfo.id;
   const [Content, setContent] = useState(); //select버튼 value값을 받아 단어그리드로 넘겨줘야함profile=>wordgrid(redux이용해야할듯)
   const [Options, setOptions] = useState([{ key: 0, value: "mywords" }]);
-  console.log(id); //새로고침하면 null로 시작한 후 값을 가짐
-  console.log(Content);
+  // console.log(id); //새로고침하면 null로 시작한 후 값을 가짐
+  // console.log(Content);
 
   const onChangeHandler = (e) => {
     setContent(e.currentTarget.value);

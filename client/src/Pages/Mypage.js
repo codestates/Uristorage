@@ -46,6 +46,9 @@ function Mypage () {
       <div className="Consonant">
         <div>자음 필터</div>
       </div>
+      <div>
+        <Link to='/Location'>지도로가기</Link>
+      </div>
     </div>
   )
 }

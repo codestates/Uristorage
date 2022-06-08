@@ -30,7 +30,7 @@ function Wordsgrid() {
     fetchData();
   }, []);
 
-  console.log("배열", worddata);
+  // console.log("배열", worddata);
 
   //id값 같을 때 해당 words 출력 추가
 
