@@ -17,7 +17,6 @@ function Search ({ searchHandler, searchedWord }) {
     getRandomWords()
   }, [])
 
-
   let wordsArray = []
   for (let i = 0; i < publicWords.length; i++) {
     wordsArray.push(publicWords[i].word)
@@ -26,6 +25,9 @@ function Search ({ searchHandler, searchedWord }) {
 
   const [searchWord, setSearchWord] = useState(searchedWord)
   console.log(searchWord)
+  const handleInputValue = (key) => (e) => {
+     setSearchWord({ ...searchWord, [key]: e.target.value });
+  };
 
   let searched = ''
   if (typeof(searchWord) === 'string') {

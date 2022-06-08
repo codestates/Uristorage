@@ -10,6 +10,7 @@ import Words from "./Pages/Words";
 import Loginpage from "./Pages/Loginpage";
 import Signuppage from "./Pages/Signuppage";
 import Location from "./Pages/Location";
+import LocationDetail from "./Pages/LocationDetail";
 import AddGroupPage from "./Pages/AddGroupPage";
 import ModifyUserPage from "./Pages/ModifyUserPage";
 import ModifyGroupPage from "./Pages/ModifyGroupPage";
@@ -68,7 +69,8 @@ export default function App() {
         <Route exact path="/" element={<Homepage searchHandler={searchHandler} />} />
         <Route path="/Mypage" element={<Mypage />} />
         <Route path="/Location" element={<Location />} />
-        <Route path="/Words" element={<Words />} />
+        <Route path="/LocationDetail" element={<LocationDetail />} />
+        <Route path="/Words" element={<Words searchHandler={searchHandler}/>} />
         <Route path="/Login" element={<Loginpage />} />
         <Route path="/Signup" element={<Signuppage />} />
         <Route path="/CreateWord" element={<CreateWord />} />

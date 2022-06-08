@@ -1,0 +1,48 @@
+
+.WordGrid_location {
+  position: absolute;
+  left: 950px;
+  top: 240px;
+  right: 50px;
+  height: 200px;
+}
+
+.words_information_detail{
+  position: absolute;
+  left: 380px;
+  top: 240px;
+
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.words_clickedwords_detail {
+  border: 2px solid #3E2723;
+  flex-basis: 100px;
+  width: 500px;
+  padding: 10px;
+  margin: 30px;
+}
+
+.words_clickedtitle_detail {
+  border: 2px solid #3E2723;
+  flex-basis: 100px;
+  width: 500px;
+  padding: 10px;
+  margin: 30px;
+}
+
+.words_clickedcontent_detail {
+  border: 2px solid #3E2723;
+  flex-basis: 100px;
+  width: 500px;
+  padding: 10px;
+  margin: 30px;
+}
+
+.words_clickedimage_detail {
+  position: absolute;
+  left: 1050px;
+  top: 270px;
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import Nav from "../Component/Nav"
 import Searchbar from "../Component/Searchbar";
 import "./Homepage.css"
@@ -74,7 +74,7 @@ function Homepage ({ searchHandler }) {
         <div className="home_uristoragekr">
           우리<span className="home_othercolor">스토리</span>지
         </div>
-        <Searchbar searchHandler={searchHandler} />
+          <Searchbar searchHandler={searchHandler} />
         <div className="home_randomwords_firstline">
             <button type="submit" className="randombutton" onClick={wordClickHandler1}>{shuffledArray[0]}</button>
             <button type="submit" className="randombutton" onClick={wordClickHandler2}>{shuffledArray[1]}</button>
