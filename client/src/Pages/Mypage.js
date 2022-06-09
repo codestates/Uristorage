@@ -1,16 +1,15 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom"
-import Nav from "../Component/Nav"
-import Profile from "../Component/Profile"
-import TypeFilter from "../Component/TypeFilter"
-import Wordsgrid from "../Component/Wordsgrid"
+import { Link } from "react-router-dom";
+import Nav from "../Component/Nav";
+import Profile from "../Component/Profile";
+import TypeFilter from "../Component/TypeFilter";
+import Wordsgrid from "../Component/Wordsgrid";
 import { useSelector } from "react-redux";
-import "./Mypage.css"
+import "./Mypage.css";
 
-function Mypage () {
-  //const data = useSelector((state) => state.data);
+function Mypage() {
   //const wordarr = data;
   const [wordcreate, setWordcreate] = useState("");
   //const location = useLocation();
@@ -20,12 +19,12 @@ function Mypage () {
   //}
   const getdata = (wordcreate) => {
     setWordcreate(wordcreate);
-  }
+  };
 
   useEffect(() => {
     console.log(location);
     //return() => {
-   // }
+    // }
   });
 
   const [searchWord, setSearchWord] = useState('')
@@ -73,10 +72,10 @@ function Mypage () {
         <div>자음 필터</div>
       </div>
       <div>
-        <Link to='/Location'>지도로가기</Link>
+        <Link to="/Location">지도로가기</Link>
       </div>
     </div>
-  )
+  );
 }
 
-export default Mypage
+export default Mypage;

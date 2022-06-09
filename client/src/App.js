@@ -14,7 +14,7 @@ import Detail from "./Pages/Detail";
 import AddGroupPage from "./Pages/AddGroupPage";
 import ModifyUserPage from "./Pages/ModifyUserPage";
 import ModifyGroupPage from "./Pages/ModifyGroupPage";
-import Calendar from "./Pages/Calendarpage"
+import Calendar from "./Pages/Calendarpage";
 
 import axios from "axios";
 
@@ -25,6 +25,8 @@ export default function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
+  const userInfo = useSelector((state) => state.userInfo);
+  const id = userInfo.id;
 
   const [searchedWord, setSearchedWord] = useState("");
 
@@ -58,12 +60,24 @@ export default function App() {
     }
   }, [token, navigate]);
 
+  // useEffect(() => {
+  //   if (id) {
+  //     getUserGroups();
+  //   }
+  // }, [id]);
+
   useEffect(() => {
     dispatch({
       type: "auth/isLogin",
       payload: localStorage.getItem("Token"),
     });
   }, [navigate]);
+
+  useEffect(() => {
+    dispatch({
+      type: "wordInfo/setWordInfo",
+    });
+  });
 
   return (
     <div>

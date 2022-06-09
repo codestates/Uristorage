@@ -10,9 +10,11 @@ import { RenderAfterNavermapsLoaded, NaverMap, Marker } from "react-naver-maps";
 
 function CreateWord() {
   const userInfo = useSelector((state) => state.userInfo);
+  const userGroups = useSelector((state) => state.userGroups);
   const id = userInfo.id;
 
   const navigate = useNavigate();
+  const [checkedGroups, setCheckedGroups] = useState([]);
   const [Wordcreate, setWordcreate] = useState({
     users_id: id,
     word: "",
@@ -22,25 +24,32 @@ function CreateWord() {
     type: "",
   });
 
+  console.log(checkedGroups);
+
+  const checkHandle = (checked, id) => {
+    if (checked) {
+      setCheckedGroups([...checkedGroups, id]);
+    } else {
+      setCheckedGroups(checkedGroups.filter((el) => el !== id));
+    }
+  };
+
   const handleInputValue = (key) => (e) => {
     setWordcreate({ ...Wordcreate, [key]: e.target.value });
   };
 
   const handleCreateword = () => {
     const { users_id, word, summary, content, pub, type } = Wordcreate;
-    if (word === "" || summary === "" || content === "" || pub === "" || !type) {
-    } else {
-      axios.post(`${process.env.REACT_APP_URL}/words`, { users_id, word, summary, content, pub, type }, { withCredentials: true }).then((data) => {
-        console.log("data", data);
-        navigate("/Mypage", { state: data.data });
-        // if (res.data.success) {
-        //   alert(res.data.message);
-        //   navigate("/Mypage");
-        // } else {
-        //   alert(res.data.message);
-        // }
-      });
-    }
+    const groups_id = checkedGroups;
+    axios.post(`${process.env.REACT_APP_URL}/words`, { users_id, word, summary, content, pub, type, groups_id }, { withCredentials: true }).then((res) => {
+      console.log(res);
+      if (res.data.success) {
+        alert(res.data.message);
+        navigate("/Mypage", { state: res.data });
+      } else {
+        alert(res.data.message);
+      }
+    });
   };
 
   const [mark, setMark] = useState({});
@@ -74,7 +83,20 @@ function CreateWord() {
             <input className="input_summary" type="text" onChange={handleInputValue("summary")} />
           </div>
           <div>
-            <span>그룹 설정</span>&emsp;
+            <span>그룹 선택</span>&emsp;
+            {userGroups.map((el) => (
+              <label key={el.group_id}>
+                <input
+                  id={el.group_id}
+                  type="checkbox"
+                  onChange={(e) => {
+                    checkHandle(e.currentTarget.checked, el.group_id);
+                  }}
+                  checked={checkedGroups.includes(el.group_id) ? true : false}
+                />
+                {el.name}
+              </label>
+            ))}
           </div>
           <div className="Type_Create">
             <span>구분</span>&emsp;
