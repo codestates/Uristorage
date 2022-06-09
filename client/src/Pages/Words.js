@@ -25,7 +25,7 @@ function Words ({ searchHandler }) {
         </div>
         <div className="words_information">
           <div className="words_clickedwords">
-            {clicked.words}
+            {clicked.word}
             <div> 김준환님의 단어</div>
           </div>
           <div className="words_clickedtitle">

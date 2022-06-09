@@ -4,7 +4,7 @@ import { Row } from "antd";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-function Wordsgrid({ buttonClicked }) {
+function LocationGrid() {
   const userInfo = useSelector((state) => state.userInfo);
   const users_id = userInfo.id;
   const [worddata, setWorddata] = useState([]);
@@ -32,41 +32,19 @@ function Wordsgrid({ buttonClicked }) {
     fetchData();
   }, [users_id]);
 
+  const filteredWordData = []
+  for (let i = 0; i < worddata.length; i++) {
+    if (worddata[i].type === 'place') {
+      filteredWordData.push(worddata[i])
+    }
+  }
+
   // console.log("배열", worddata);
 
   //id값 같을 때 해당 words 출력 추가
-  const searchedWord = buttonClicked.searchword
-  
-  let filteredWordData = []
-  if (searchedWord) {
-    for (let i = 0; i < worddata.length; i++) {
-      if (worddata[i].word === searchedWord ) {
-        filteredWordData.push(worddata[i])
-      }
-    }
-  } else {
-    filteredWordData = worddata
-  }
-
-  // console.log(worddata)
-  // console.log(searchedWord)
-  // console.log(filteredWordData)
-  
 
   return (
-    <div>
-    {!searchedWord ?
       <div className="wordgrid">
-      <Row gutter={[16, 16]}>
-        {worddata &&
-          worddata.map((word, index) => (
-            <React.Fragment key={index}>
-              <GridCars words={word.word} summary={word.summary} content={word.content} />
-            </React.Fragment>
-          ))}
-      </Row>
-    </div> :
-    <div className="wordgrid">
       <Row gutter={[16, 16]}>
         {filteredWordData &&
           filteredWordData.map((word, index) => (
@@ -75,9 +53,8 @@ function Wordsgrid({ buttonClicked }) {
             </React.Fragment>
           ))}
       </Row>
-      </div>}
     </div>
   );
 }
 
-export default Wordsgrid;
+export default LocationGrid;

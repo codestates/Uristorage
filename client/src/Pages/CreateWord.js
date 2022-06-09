@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../Component/Nav";
+import Locationmap from "../Component/Locationmap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./Mypage.css";
+
+import { RenderAfterNavermapsLoaded, NaverMap, Marker } from "react-naver-maps";
 
 function CreateWord() {
   const userInfo = useSelector((state) => state.userInfo);
@@ -39,6 +42,23 @@ function CreateWord() {
       });
     }
   };
+
+  const [mark, setMark] = useState({});
+  const ClickLocationHandler = (e) => {
+    const { _lat, _lng } = e.latlng;
+    setMark({lat: _lat, lng: _lng});
+    setWordcreate({
+      users_id: Wordcreate.users_id,
+      word: Wordcreate.word,
+      summary: Wordcreate.summary,
+      content: Wordcreate.content,
+      pub: Wordcreate.pub,
+      type: Wordcreate.type,
+      map: {lat: _lat, lng: _lng}
+    })
+  }
+   console.log(mark)
+   console.log(Wordcreate)
 
   return (
     <div>
@@ -81,6 +101,21 @@ function CreateWord() {
             <span>내용</span>&emsp;
             <input className="input_content" type="text" onChange={handleInputValue("content")} />
           </div>
+          {Wordcreate.type === "place" ?
+          <RenderAfterNavermapsLoaded
+          ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
+          <NaverMap
+            className='CreateWord_Map' mapDivId={"naver-map"}
+            defaultCenter={{ lat: 37.3595704, lng: 127.105399 }}
+            defaultZoom={16} zoomControl={true} draggable={true}
+            onClick={ClickLocationHandler}
+          >
+          <Marker 
+            position={mark}
+          />
+          </NaverMap>
+          </RenderAfterNavermapsLoaded>
+          : null}
           <div className="Create_Button">
             <button className="btn" type="button" onClick={handleCreateword}>
               단어 등록하기

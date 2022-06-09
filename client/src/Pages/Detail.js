@@ -5,7 +5,7 @@ import Nav from "../Component/Nav"
 import Profile from "../Component/Profile"
 import TypeFilter from "../Component/TypeFilter";
 
-function LocationDetail () {
+function Detail () {
 
     // const userInfo = useSelector((state) => state.userInfo);
     // const users_id = userInfo.id;
@@ -50,4 +50,4 @@ function LocationDetail () {
     )
   }
   
-  export default LocationDetail;
+  export default Detail;
