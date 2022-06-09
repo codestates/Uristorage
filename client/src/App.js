@@ -73,6 +73,12 @@ export default function App() {
     });
   }, [navigate]);
 
+  useEffect(() => {
+    dispatch({
+      type: "wordInfo/setWordInfo",
+    });
+  });
+
   return (
     <div>
       <Routes>
