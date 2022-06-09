@@ -8,7 +8,7 @@ export default function GridCars(props) {
   return (
     <Col lg={24} md={2} xs={24}>
       <div className="gridcards">
-        <div className="gridword"><Link to="/LocationDetail" state={{data: props}}>{props.words}</Link></div>
+        <div className="gridword"><Link to="/Detail" state={{data: props}}>{props.words}</Link></div>
           <div className="gridsummary">{props.summary}</div>
           <img className="gridimage"/><span>여기는 이미지</span>
       </div>

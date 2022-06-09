@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
 
 function Searchbar ({ searchHandler }) {
   const [searchWord, setSearchWord] = useState('')
@@ -9,6 +8,7 @@ function Searchbar ({ searchHandler }) {
   const navigate = useNavigate();
   // console.log(searchWord)
 
+  
   const wordClickHandler0 = () => {
     searchHandler(searchWord);
     navigate('/Search')

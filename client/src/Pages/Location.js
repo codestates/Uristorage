@@ -5,7 +5,7 @@ import Nav from "../Component/Nav"
 import Profile from "../Component/Profile"
 import TypeFilter from "../Component/TypeFilter";
 import Locationmap from "../Component/Locationmap";
-import Wordsgrid from "../Component/Wordsgrid";
+import LocationGrid from "../Component/LocationGrid";
 import "./Mypage.css"
 
 import axios from "axios";
@@ -36,7 +36,7 @@ function Location () {
         <Locationmap />
       </div>
       <div className="WordGrid_location">
-        <Wordsgrid />
+        <LocationGrid />
       </div>
     </div>
   )

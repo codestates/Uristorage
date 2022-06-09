@@ -1,7 +1,32 @@
-import React from "react";
-import { RenderAfterNavermapsLoaded, NaverMap } from "react-naver-maps";
+import React, { useState, useEffect } from "react";
+import { RenderAfterNavermapsLoaded, NaverMap, Marker } from "react-naver-maps";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 function Locationmap () {
+  const userInfo = useSelector((state) => state.userInfo);
+  const users_id = userInfo.id;
+
+  const [locationWord, setLocationWord] = useState([])
+  useEffect(() => {
+    async function getLocationWords() {
+      await axios.get(`${process.env.REACT_APP_URL}/words/user/${users_id}`)
+    .then ((res) => setLocationWord(res.data))}
+    getLocationWords()
+  }, [])
+  const MarkerInfo = []
+  for (let i = 0; i < locationWord.length; i++) {
+    if (locationWord[i].type === 'place') {
+      MarkerInfo.push(locationWord[i].map)
+    }
+  }
+  console.log(MarkerInfo)
+  console.log(locationWord)
+
+  //const navermaps = window.naver.maps;
+  //console.log(window.naver.maps)
+  const [mark, setMark] = useState();
+
   return (
     <div>
       <RenderAfterNavermapsLoaded
@@ -9,20 +34,19 @@ function Locationmap () {
       error={<p>Maps Load Error</p>}
       loading={<p>Maps Loading...</p>}
       >
-      <div className="naver_map">
         <NaverMap
+        className='Location_map'
         mapDivId={"naver-map"}
-        style={{
-          left: '400px',
-          top: '170px',
-          width: '35%',
-          height: '350px',
-        }}
-        defaultCenter={{ lat: 37.49988, lng: 127.03856 }}
+        defaultCenter={{ lat: 37.3595704, lng: 127.105399 }}
         defaultZoom={16}
         zoomControl={true} // 지도 zoom 허용
+        draggable={true}
+        >
+        <Marker 
+          position={mark}
+          //animation={navermaps.Animation.DROP}
         />
-      </div>
+        </NaverMap>
       </RenderAfterNavermapsLoaded>
     </div>
   )

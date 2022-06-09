@@ -63,9 +63,6 @@ function TypeFilter ({ data }) {
     }
   };
 
-  console.log(wordType.contents)
-  console.log("chekcked", wordType.checked)
-
     return (
       <div className="filter">
         {wordType &&
