@@ -12,6 +12,8 @@ function AddGroup() {
   const [member, setMember] = useState("");
   const [members, setMembers] = useState([userInfo.nickname]);
 
+  console.log(members);
+
   const onNameHandler = (event) => {
     setName(event.currentTarget.value);
   };
@@ -28,9 +30,13 @@ function AddGroup() {
     setMembers([...members, member]);
   };
 
-  // useEffect(() => {
-  //   setMember(userInfo.nickname);
-  // }, [userInfo.nickname]);
+  const onMemberDelete = (e) => {
+    setMembers(members.filter((el) => el !== e.currentTarget.value));
+  };
+
+  useEffect(() => {
+    setMembers([userInfo.nickname]);
+  }, [userInfo]);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -65,7 +71,22 @@ function AddGroup() {
         <input type="text" value={name} onChange={onNameHandler} />
 
         <label>그룹원 목록</label>
-        <div>{members}</div>
+        <div>
+          {members.map((el, index) => (
+            <div key={index}>
+              {index === 0 ? (
+                <div>{el}</div>
+              ) : (
+                <div>
+                  {el}
+                  <button value={el} onClick={onMemberDelete}>
+                    삭제
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
         <input type="text" value={member} onChange={handleInputValue} />
         <button onClick={onMemberAdd}>추가</button>
 

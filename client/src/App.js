@@ -14,7 +14,7 @@ import LocationDetail from "./Pages/LocationDetail";
 import AddGroupPage from "./Pages/AddGroupPage";
 import ModifyUserPage from "./Pages/ModifyUserPage";
 import ModifyGroupPage from "./Pages/ModifyGroupPage";
-import Calendar from "./Pages/Calendarpage"
+import Calendar from "./Pages/Calendarpage";
 
 import axios from "axios";
 
@@ -25,6 +25,8 @@ export default function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
+  const userInfo = useSelector((state) => state.userInfo);
+  const id = userInfo.id;
 
   const [searchedWord, setSearchedWord] = useState("");
 
@@ -58,6 +60,12 @@ export default function App() {
     }
   }, [token, navigate]);
 
+  // useEffect(() => {
+  //   if (id) {
+  //     getUserGroups();
+  //   }
+  // }, [id]);
+
   useEffect(() => {
     dispatch({
       type: "auth/isLogin",
@@ -78,7 +86,7 @@ export default function App() {
         <Route path="/Mypage" element={<Mypage />} />
         <Route path="/Location" element={<Location />} />
         <Route path="/LocationDetail" element={<LocationDetail />} />
-        <Route path="/Words" element={<Words searchHandler={searchHandler}/>} />
+        <Route path="/Words" element={<Words searchHandler={searchHandler} />} />
         <Route path="/Login" element={<Loginpage />} />
         <Route path="/Signup" element={<Signuppage />} />
         <Route path="/CreateWord" element={<CreateWord />} />
