@@ -1,27 +1,27 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router";
 
-import Nav from "../Component/Nav"
+import Nav from "../Component/Nav";
 import Searchbar from "../Component/Searchbar";
-import "./Words.css"
+import "./Words.css";
 
-function Words ({ searchHandler }) {
-  const location = useLocation()
-  const [clicked, setClicked] = useState(location.state.data)
+function Words({ searchHandler }) {
+  const location = useLocation();
+  const [clicked, setClicked] = useState(location.state.data);
 
-  console.log(clicked)
+  console.log(clicked);
 
   const [searchWord, setSearchWord] = useState({
-      searchword: ""
-  })
+    searchword: "",
+  });
 
   return (
     <div>
       <Nav />
       <div>
         <div>
-        <Searchbar searchHandler={searchHandler} />
+          <Searchbar searchHandler={searchHandler} />
         </div>
         <div className="words_information">
           <div className="words_clickedwords">
@@ -35,12 +35,12 @@ function Words ({ searchHandler }) {
           <div className="words_clickedcontent">
             <div>내용:</div>
             {clicked.content}
-            </div>
+          </div>
         </div>
-          <img className="words_clickedimage" style={{ width: "300px", height: "300px" }} src="https://t1.daumcdn.net/cfile/tistory/251A563C5854122C07" />
+        <img className="words_clickedimage" style={{ width: "300px", height: "300px" }} src="https://t1.daumcdn.net/cfile/tistory/251A563C5854122C07" />
       </div>
     </div>
-  )
+  );
 }
 
 export default Words;

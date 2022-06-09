@@ -63,8 +63,6 @@ function TypeFilter ({ data }) {
     }
   };
 
-  // console.log(wordType.contents)
-
     return (
       <div className="filter">
         {wordType &&

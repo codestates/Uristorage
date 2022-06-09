@@ -8,17 +8,17 @@ import "../Pages/ModifyUserPage";
 import "./Component.css";
 
 function Profile() {
-  const [myGroup, seMyGroup] = useState([]);
+  const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.userInfo);
-  const id = userInfo.id;
-  const [Content, setContent] = useState(); //select버튼 value값을 받아 단어그리드로 넘겨줘야함profile=>wordgrid(redux이용해야할듯)
-  const [Options, setOptions] = useState([{ key: 0, value: "mywords" }]);
+  const userGroups = useSelector((state) => state.userGroups);
+  const { token } = useSelector((state) => state.auth);
 
-  //console.log(id); //새로고침하면 null로 시작한 후 값을 가짐
-  //console.log(Content);
+  const id = userInfo.id;
+  const [Content, setContent] = useState(0); //select버튼 value값을 받아 단어그리드로 넘겨줘야함profile=>wordgrid(redux이용해야할듯)
+  const groupList = [{ name: "내 단어", image: "", group_id: 0 }, ...userGroups];
 
   const onChangeHandler = (e) => {
-    setContent(e.currentTarget.value);
+    setContent(e.target.value);
   };
 
   const getUserGroups = () => {
@@ -26,13 +26,13 @@ function Profile() {
       axios
         .get(`${process.env.REACT_APP_URL}/groups/${id}`, {
           withCredentials: true,
+          headers: { authorization: `Bearer ${token}` },
         })
         .then((res) => {
-          console.log(res);
-          const result = res.data.userGroups.map((el, index) => {
-            return { key: el.user_group.groups_id, value: el.name };
+          dispatch({
+            type: "userGroups/setUpdateUserGroups",
+            payload: res.data,
           });
-          setOptions([...Options, ...result]);
         });
     } catch (err) {
       console.log(err);
@@ -40,18 +40,26 @@ function Profile() {
   };
 
   useEffect(() => {
-    getUserGroups(); //새로고침하면 사라짐
-  }, [userInfo]);
+    if (id) {
+      getUserGroups();
+    }
+  }, [id]);
 
+  useEffect(() => {
+    dispatch({
+      type: "groupfilter/setgroupIdFilter",
+      payload: Content,
+    });
+  }, [Content]);
   return (
     <div className="information">
       <img className="profile-image" style={{ width: "250px", height: "250px" }} src="https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2" />
       <div>
         <span> {userInfo.nickname} </span>
         <select onChange={onChangeHandler} value={Content}>
-          {Options.map((item) => (
-            <option key={item.key} value={item.key}>
-              {item.value}
+          {groupList.map((item) => (
+            <option key={item.group_id} value={item.group_id}>
+              {item.name}
             </option>
           ))}
         </select>
