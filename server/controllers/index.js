@@ -1,13 +1,17 @@
 module.exports = {
   signup: require("./users/signup"),
+  deleteUser: require("./users/deleteUser"),
   login: require("./users/login"),
   logout: require("./users/logout"),
   getInfo: require("./users/getInfo"),
   modifyUser: require("./users/modifyUser"),
   createWord: require("./words/createWord"),
+  deleteWord: require("./words/deleteWord"),
   groupWords: require("./words/groupWords"),
   publicWords: require("./words/publicWords"),
   userWords: require("./words/userWords"),
+  groupInfo: require("./groups/groupInfo"),
   userGroup: require("./groups/userGroup"),
   createGroup: require("./groups/createGroup"),
+  deleteGroup: require("./groups/deleteGroup"),
 };

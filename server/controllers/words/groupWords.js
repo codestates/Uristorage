@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
   });
   try {
     if (getWords.length === 0) {
-      return res.json({ message: "그룹에 속한 단어가 없습니다." });
+      return res.json({ groupWords: [], message: "그룹에 속한 단어가 없습니다." });
     } else {
       return res.status(200).json({ groupWords: getWords[0].wordgroup });
     }

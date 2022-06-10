@@ -14,7 +14,7 @@ function Pagination({ pages = 10, setCurrentPage }) {
       const wordpage = [...pagesNum]
       setArrOfCurrButtons(wordpage)
       setCurrentPage(currentButton)
-  })
+  },[currentButton])
 
   //console.log("button", currentButton)
   //console.log("arrbutton", arrOfCurrButtons)
