@@ -16,6 +16,7 @@ function Pagination({ pages = 10, setCurrentPage }) {
       setCurrentPage(currentButton)
   },[currentButton])
 
+
   //console.log("button", currentButton)
   //console.log("arrbutton", arrOfCurrButtons)
 
