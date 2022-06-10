@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router";
+import axios from "axios";
 
 import Nav from "../Component/Nav";
 import Searchbar from "../Component/Searchbar";
@@ -11,10 +12,32 @@ function Words({ searchHandler }) {
   const [clicked, setClicked] = useState(location.state.data);
 
   console.log(clicked);
+  
+  const id = clicked.users_id
+  // const getWordUser = () => {
+  //   try {
+  //     axios
+  //       .get(`${process.env.REACT_APP_URL}/groups/user/${id}`, {
+  //         withCredentials: true
+  //       })
+  //       .then((res) => {
+  //         dispatch({
+  //           type: "userGroups/setUpdateUserGroups",
+  //           payload: res.data,
+  //         });
+  //       });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
-  const [searchWord, setSearchWord] = useState({
-    searchword: "",
-  });
+  // useEffect(() => {
+  //   if (id) {
+  //     getWordUser();
+  //   }
+  // }, [id]);
+
+  console.log(clicked.users_id)
 
   return (
     <div>
@@ -26,7 +49,7 @@ function Words({ searchHandler }) {
         <div className="words_information">
           <div className="words_clickedwords">
             {clicked.word}
-            <div> 김준환님의 단어</div>
+            <div> {clicked.users_id}님의 단어</div>
           </div>
           <div className="words_clickedtitle">
             <div>요약:</div>

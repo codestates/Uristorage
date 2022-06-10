@@ -61,7 +61,7 @@ function CreateWord() {
   const ClickLocationHandler = (e) => {
     const { _lat, _lng } = e.latlng;
     setMark({lat: _lat, lng: _lng});
-    setStringifyMark(String(mark.lat)+'a'+String(mark.lng))
+    setStringifyMark(String(mark.lat) + ',' + String(mark.lng))
     setWordcreate({
       users_id: Wordcreate.users_id,
       word: Wordcreate.word,
@@ -93,8 +93,8 @@ function CreateWord() {
     })
    }
 
-console.log("날짜", wordDate)
-console.log(Wordcreate)
+// console.log("날짜", wordDate)
+// console.log(Wordcreate)
   return (
     <div>
       <Nav />
@@ -135,6 +135,21 @@ console.log(Wordcreate)
             <input type="radio" name="type" value={"date"} onChange={handleInputValue("type")} />
             날짜
           </div>
+          {Wordcreate.type === "place" ?
+            <RenderAfterNavermapsLoaded
+              ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
+            <NaverMap
+              className='CreateWord_Map' mapDivId={"naver-map"}
+              defaultCenter={{ lat: 37.3595704, lng: 127.105399 }}
+              defaultZoom={16} zoomControl={true} draggable={true}
+              onClick={ClickLocationHandler}
+            >
+            <Marker 
+              position={mark}
+            />
+            </NaverMap>
+            </RenderAfterNavermapsLoaded>
+            : null}
           {Wordcreate.type === "date" ?
             <DatePicker
               dateFormat="yyyy-MM-dd"
@@ -145,6 +160,7 @@ console.log(Wordcreate)
             />
           : null}
           <div className="Pub_Create">
+            <span> 공개 여부 </span> 
             <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
             공개
             <input type="radio" name="open" value={false} onChange={handleInputValue("pub")} />
@@ -158,21 +174,6 @@ console.log(Wordcreate)
             <span>내용</span>&emsp;
             <input className="input_content" type="text" onChange={handleInputValue("content")} />
           </div>
-          {Wordcreate.type === "place" ?
-          <RenderAfterNavermapsLoaded
-          ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
-          <NaverMap
-            className='CreateWord_Map' mapDivId={"naver-map"}
-            defaultCenter={{ lat: 37.3595704, lng: 127.105399 }}
-            defaultZoom={16} zoomControl={true} draggable={true}
-            onClick={ClickLocationHandler}
-          >
-          <Marker 
-            position={mark}
-          />
-          </NaverMap>
-          </RenderAfterNavermapsLoaded>
-          : null}
           <div className="Create_Button">
             <button className="btn" type="button" onClick={handleCreateword}>
               단어 등록하기

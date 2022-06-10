@@ -20,16 +20,18 @@ function Locationmap () {
       markerInfo.push(locationWord[i].map)
     }
   }
-  console.log(markerInfo)
-  console.log(locationWord)
+  // console.log(markerInfo)
+  // console.log(locationWord)
 
   const decodeMarkerInfo = []
   for (let i = 0; i < markerInfo.length; i++) {
      if (decodeMarkerInfo[i] !== 0 || decodeMarkerInfo[i] !== '') {
-     let el = markerInfo[i].split('a')
+     let el = markerInfo[i].split(',')
      decodeMarkerInfo.push({ lat: el[0], lng: el[1] })
     }
   }
+
+
   console.log(decodeMarkerInfo)
 
   //const navermaps = window.naver.maps;
