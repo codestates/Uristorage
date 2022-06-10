@@ -25,7 +25,7 @@ function Mypage() {
     console.log(location);
     //return() => {
     // }
-  });
+  }, []);
 
   const [searchWord, setSearchWord] = useState('')
   //console.log(searchWord)
@@ -73,6 +73,9 @@ function Mypage() {
       </div>
       <div>
         <Link to="/Location">지도로가기</Link>
+      </div>
+      <div>
+        <Link to="/Calendar">달력으로가기</Link>
       </div>
     </div>
   );

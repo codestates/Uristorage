@@ -16,6 +16,7 @@ function Calendarcomponent() {
   ];
 
   return (
+    <div className="react-calendar">
     <div className="highlight">
       <Calendar
         onChange={onChange}
@@ -27,6 +28,7 @@ function Calendarcomponent() {
           }
         }}
       />
+    </div>
     </div>
   );
 }

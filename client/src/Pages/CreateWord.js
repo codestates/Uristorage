@@ -5,7 +5,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./Mypage.css";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { ko } from "date-fns/esm/locale"
 import { RenderAfterNavermapsLoaded, NaverMap, Marker } from "react-naver-maps";
 
 function CreateWord() {
@@ -22,9 +24,8 @@ function CreateWord() {
     content: "",
     pub: false,
     type: "",
+    calendar: "",
   });
-
-  console.log(checkedGroups);
 
   const checkHandle = (checked, id) => {
     if (checked) {
@@ -39,9 +40,9 @@ function CreateWord() {
   };
 
   const handleCreateword = () => {
-    const { users_id, word, summary, content, pub, type } = Wordcreate;
+    const { users_id, word, summary, content, pub, type, calendar } = Wordcreate;
     const groups_id = checkedGroups;
-    axios.post(`${process.env.REACT_APP_URL}/words`, { users_id, word, summary, content, pub, type, groups_id }, { withCredentials: true }).then((res) => {
+    axios.post(`${process.env.REACT_APP_URL}/words`, { users_id, word, summary, content, pub, type, groups_id, calendar }, { withCredentials: true }).then((res) => {
       console.log(res);
       if (res.data.success) {
         alert(res.data.message);
@@ -66,9 +67,29 @@ function CreateWord() {
       map: {lat: _lat, lng: _lng}
     })
   }
-   console.log(mark)
-   console.log(Wordcreate)
 
+   const [wordDate, setWordDate] = useState(new Date());
+   const dateToString = (e) => {
+    return e.getFullYear() + '-' + (e.getMonth() + 1).toString().padStart(2, '0') + '-' + e.getDate().toString().padStart(2, '0');
+  }
+   const handledate = (e) => {
+     console.log("e는", e);
+     const worddate = dateToString(e);
+     console.log("worddate는", worddate);
+     setWordDate(e);
+     setWordcreate({
+       users_id: Wordcreate.users_id,
+       word: Wordcreate.word,
+       summary: Wordcreate.summary,
+       content: Wordcreate.content,
+       pub: Wordcreate.pub,
+       type: Wordcreate.type,
+       calendar: worddate
+    })
+   }
+
+console.log("날짜", wordDate)
+console.log(Wordcreate)
   return (
     <div>
       <Nav />
@@ -109,6 +130,15 @@ function CreateWord() {
             <input type="radio" name="type" value={"date"} onChange={handleInputValue("type")} />
             날짜
           </div>
+          {Wordcreate.type === "date" ?
+            <DatePicker
+              dateFormat="yyyy-MM-dd"
+              selected={wordDate}
+              placeholderText="단어 날짜 선택"
+              onChange={handledate}
+              locale={ko}
+            />
+          : null}
           <div className="Pub_Create">
             <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
             공개
