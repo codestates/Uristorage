@@ -50,7 +50,7 @@ function Wordsgrid({ buttonClicked }) {
     filteredWordData = worddata;
   }
 
-  // console.log(worddata)
+  console.log(worddata)
   // console.log(searchedWord)
   // console.log(filteredWordData)
 

@@ -23,7 +23,6 @@ function Mypage() {
 
   const [searchWord, setSearchWord] = useState("");
   //console.log(searchWord)
-
   const handleInputValue = (key) => (e) => {
     setSearchWord({ ...searchWord, [key]: e.target.value });
   };
@@ -68,6 +67,9 @@ function Mypage() {
       </div>
       <div>
         <Link to="/Location">지도로가기</Link>
+      </div>
+      <div>
+        <Link to="/Calendar">달력으로가기</Link>
       </div>
     </div>
   );
