@@ -11,10 +11,11 @@ function Profile() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.userInfo);
   const userGroups = useSelector((state) => state.userGroups);
+  const groupfilter = useSelector((state) => state.groupfilter);
   const { token } = useSelector((state) => state.auth);
 
   const id = userInfo.id;
-  const [Content, setContent] = useState(0); //select버튼 value값을 받아 단어그리드로 넘겨줘야함profile=>wordgrid(redux이용해야할듯)
+  const [Content, setContent] = useState(groupfilter); //select버튼 value값을 받아 단어그리드로 넘겨줘야함profile=>wordgrid(redux이용해야할듯)
   const groupList = [{ name: "내 단어", image: "", group_id: 0 }, ...userGroups];
 
   const onChangeHandler = (e) => {
@@ -24,7 +25,7 @@ function Profile() {
   const getUserGroups = () => {
     try {
       axios
-        .get(`${process.env.REACT_APP_URL}/groups/${id}`, {
+        .get(`${process.env.REACT_APP_URL}/groups/user/${id}`, {
           withCredentials: true,
           headers: { authorization: `Bearer ${token}` },
         })
@@ -51,12 +52,16 @@ function Profile() {
       payload: Content,
     });
   }, [Content]);
+
   return (
     <div className="information">
       <img className="profile-image" style={{ width: "250px", height: "250px" }} src="https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2" />
       <div>
         <span> {userInfo.nickname} </span>
         <select onChange={onChangeHandler} value={Content}>
+          {/* <option key={groupfilter} value={groupfilter} selected>
+            {groupfilter}
+          </option> */}
           {groupList.map((item) => (
             <option key={item.group_id} value={item.group_id}>
               {item.name}
