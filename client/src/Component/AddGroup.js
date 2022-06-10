@@ -12,8 +12,6 @@ function AddGroup() {
   const [member, setMember] = useState("");
   const [members, setMembers] = useState([userInfo.nickname]);
 
-  console.log(members);
-
   const onNameHandler = (event) => {
     setName(event.currentTarget.value);
   };

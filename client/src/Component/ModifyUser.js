@@ -3,6 +3,8 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import Modal from "./Modal/User";
+
 function ModifyUser() {
   const userInfo = useSelector((state) => state.userInfo);
   const { token } = useSelector((state) => state.auth);
@@ -12,6 +14,8 @@ function ModifyUser() {
   const [nickname, setNickName] = useState(userInfo.nickname);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [modalOn, setModalOn] = useState(false);
 
   const onEmailHandler = (event) => {
     setEmail(event.currentTarget.value);
@@ -62,7 +66,7 @@ function ModifyUser() {
         height: "10vh",
       }}
     >
-      <form style={{ display: "flex", flexDirection: "column" }} onSubmit={onSubmitHandler}>
+      <div style={{ display: "flex", flexDirection: "column" }}>
         <label>닉네임</label>
         <input type="text" value={nickname} onChange={onNickNameHandler} />
 
@@ -76,8 +80,12 @@ function ModifyUser() {
         <input type="email" value={email} onChange={onEmailHandler} />
 
         <br />
-        <button type="submit">회원 정보 변경</button>
-      </form>
+        <button onClick={onSubmitHandler}>회원 정보 변경</button>
+        <br />
+        <button onClick={() => setModalOn(true)}>회원 탈퇴</button>
+      </div>
+
+      <Modal open={modalOn} close={() => setModalOn(false)} />
     </div>
   );
 }
