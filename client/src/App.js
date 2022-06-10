@@ -34,8 +34,6 @@ export default function App() {
     setSearchedWord(element);
   };
 
-  console.log(searchedWord);
-
   const getUserInfo = () => {
     try {
       axios
@@ -73,11 +71,11 @@ export default function App() {
     });
   }, [navigate]);
 
-  useEffect(() => {
-    dispatch({
-      type: "wordInfo/setWordInfo",
-    });
-  });
+  // useEffect(() => {
+  //   dispatch({
+  //     type: "wordInfo/setWordInfo",
+  //   });
+  // });
 
   return (
     <div>
@@ -86,7 +84,7 @@ export default function App() {
         <Route path="/Mypage" element={<Mypage />} />
         <Route path="/Location" element={<Location />} />
         <Route path="/Detail" element={<Detail />} />
-        <Route path="/Words" element={<Words searchHandler={searchHandler}/>} />
+        <Route path="/Words" element={<Words searchHandler={searchHandler} />} />
         <Route path="/Login" element={<Loginpage />} />
         <Route path="/Signup" element={<Signuppage />} />
         <Route path="/CreateWord" element={<CreateWord />} />
