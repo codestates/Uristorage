@@ -22,7 +22,7 @@ function Mypage() {
   };
 
   useEffect(() => {
-    console.log(location);
+    //console.log(location);
     //return() => {
     // }
   });

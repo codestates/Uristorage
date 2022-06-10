@@ -22,9 +22,10 @@ function CreateWord() {
     content: "",
     pub: false,
     type: "",
+    map: ""
   });
 
-  console.log(checkedGroups);
+  // console.log(checkedGroups);
 
   const checkHandle = (checked, id) => {
     if (checked) {
@@ -39,9 +40,9 @@ function CreateWord() {
   };
 
   const handleCreateword = () => {
-    const { users_id, word, summary, content, pub, type } = Wordcreate;
+    const { users_id, word, summary, content, pub, type, map } = Wordcreate;
     const groups_id = checkedGroups;
-    axios.post(`${process.env.REACT_APP_URL}/words`, { users_id, word, summary, content, pub, type, groups_id }, { withCredentials: true }).then((res) => {
+    axios.post(`${process.env.REACT_APP_URL}/words`, { users_id, word, summary, content, pub, type, groups_id, map }, { withCredentials: true }).then((res) => {
       console.log(res);
       if (res.data.success) {
         alert(res.data.message);
@@ -53,9 +54,11 @@ function CreateWord() {
   };
 
   const [mark, setMark] = useState({});
+  const [stringifyMark, setStringifyMark] = useState('')
   const ClickLocationHandler = (e) => {
     const { _lat, _lng } = e.latlng;
     setMark({lat: _lat, lng: _lng});
+    setStringifyMark(String(mark.lat)+'a'+String(mark.lng))
     setWordcreate({
       users_id: Wordcreate.users_id,
       word: Wordcreate.word,
@@ -63,11 +66,13 @@ function CreateWord() {
       content: Wordcreate.content,
       pub: Wordcreate.pub,
       type: Wordcreate.type,
-      map: {lat: _lat, lng: _lng}
+      map: stringifyMark
     })
   }
    console.log(mark)
    console.log(Wordcreate)
+   console.log(stringifyMark)
+   
 
   return (
     <div>

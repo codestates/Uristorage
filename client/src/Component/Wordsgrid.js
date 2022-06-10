@@ -62,7 +62,7 @@ function Wordsgrid({ buttonClicked }) {
     {!searchedWord ?
       <div className="wordgrid">
       <Row gutter={[16, 16]}>
-        {currentWords === undefined
+        {currentWords.length === 0
           ? "그룹에 속한 단어가 없습니다."
           :
             currentWords.map((word, index) => (
