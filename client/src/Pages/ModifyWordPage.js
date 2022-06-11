@@ -10,6 +10,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 import { RenderAfterNavermapsLoaded, NaverMap, Marker } from "react-naver-maps";
 
+import ImageUpload from "../Component/ImageUpload";
+
 function ModifyWord() {
   const location = useLocation();
   const userGroups = useSelector((state) => state.userGroups);
@@ -23,11 +25,39 @@ function ModifyWord() {
     word: location.state.data.word,
     summary: location.state.data.summary,
     content: location.state.data.content,
+    image: location.state.data.image,
     pub: location.state.data.public,
     type: location.state.data.type,
     map: location.state.data.map,
     calendar: location.state.data.calendar,
   });
+
+  const [uploadImage, setUploadImage] = useState(location.state.data.image);
+
+  const handleFileInput = (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      return setUploadImage(null);
+    }
+    const upload = new AWS.S3.ManagedUpload({
+      params: {
+        Bucket: "uristorageimage", // 업로드할 대상 버킷명
+        Key: file.name,
+        Body: file, // 업로드할 파일 객체
+      },
+    });
+
+    const promise = upload.promise();
+    promise.then(
+      function (data) {
+        setUploadImage(data.Location);
+        setWordcreate({ ...Wordcreate, image: data.Location });
+      },
+      function (err) {
+        return alert("오류가 발생했습니다: ", err.message);
+      }
+    );
+  };
 
   // console.log(checkedGroups);
 
@@ -44,9 +74,9 @@ function ModifyWord() {
   };
 
   const handleCreateword = () => {
-    const { id, word, summary, content, pub, type, map, calendar } = Wordcreate;
+    const { id, word, summary, content, image, pub, type, map, calendar } = Wordcreate;
     const groups_id = checkedGroups;
-    axios.put(`${process.env.REACT_APP_URL}/words`, { id, word, summary, content, pub, type, groups_id, map, calendar }, { withCredentials: true }).then((res) => {
+    axios.put(`${process.env.REACT_APP_URL}/words`, { id, word, summary, content, image, pub, type, groups_id, map, calendar }, { withCredentials: true }).then((res) => {
       console.log(res);
       if (res.data.success) {
         alert(res.data.message);
@@ -68,6 +98,7 @@ function ModifyWord() {
       word: Wordcreate.word,
       summary: Wordcreate.summary,
       content: Wordcreate.content,
+      image: Wordcreate.image,
       pub: Wordcreate.pub,
       type: Wordcreate.type,
       map: stringifyMark,
@@ -88,6 +119,7 @@ function ModifyWord() {
       word: Wordcreate.word,
       summary: Wordcreate.summary,
       content: Wordcreate.content,
+      image: Wordcreate.image,
       pub: Wordcreate.pub,
       type: Wordcreate.type,
       calendar: worddate,
@@ -161,8 +193,7 @@ function ModifyWord() {
             )} */}
           </div>
           <div className="Content_Image">
-            <span>이미지</span>&emsp;
-            <input ref={Wordcreate.image} className="input_content" type="file" accept="image/*" onChange={handleInputValue("image")} />
+            <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
           </div>
           <div className="Content_Create">
             <span>내용</span>&emsp;

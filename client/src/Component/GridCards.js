@@ -22,8 +22,7 @@ export default function GridCars({ wordData, delWord }) {
             </Link>
           </div>
           <div className="gridsummary">{wordData.summary}</div>
-          <img className="gridimage" />
-          <span>여기는 이미지</span>
+          <img className="gridimage" src={wordData.image} />
           <Link to="/ModifyWord" state={{ data: wordData }}>
             수정
           </Link>
@@ -38,8 +37,7 @@ export default function GridCars({ wordData, delWord }) {
             </Link>
           </div>
           <div className="gridsummary">{wordData.summary}</div>
-          <img className="gridimage" />
-          <span>여기는 이미지</span>
+          <img className="gridimage" src={wordData.image} />
         </div>
       )}
     </Col>

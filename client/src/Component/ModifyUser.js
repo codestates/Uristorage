@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import Modal from "./Modal/User";
+import ImageUpload from "./ImageUpload";
 
 function ModifyUser() {
   const userInfo = useSelector((state) => state.userInfo);
@@ -45,6 +46,7 @@ function ModifyUser() {
       email: email,
       password: password,
       nickname: nickname,
+      image: uploadImage,
     };
 
     axios.put(`${process.env.REACT_APP_URL}/users`, body, { headers: { authorization: `Bearer ${token}` } }, { withCredentials: true }).then((res) => {
@@ -59,6 +61,32 @@ function ModifyUser() {
         alert(res.data.message);
       }
     });
+  };
+
+  const [uploadImage, setUploadImage] = useState(userInfo.image);
+
+  const handleFileInput = (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      return setUploadImage(null);
+    }
+    const upload = new AWS.S3.ManagedUpload({
+      params: {
+        Bucket: "uristorageimage", // 업로드할 대상 버킷명
+        Key: file.name,
+        Body: file, // 업로드할 파일 객체
+      },
+    });
+
+    const promise = upload.promise();
+    promise.then(
+      function (data) {
+        setUploadImage(data.Location);
+      },
+      function (err) {
+        return alert("오류가 발생했습니다: ", err.message);
+      }
+    );
   };
 
   return (
@@ -83,6 +111,9 @@ function ModifyUser() {
 
         <label>Email</label>
         <input type="email" value={email} onChange={onEmailHandler} />
+
+        <label>프로필 변경</label>
+        <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
 
         <br />
         <button onClick={onSubmitHandler}>회원 정보 변경</button>

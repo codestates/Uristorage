@@ -2,22 +2,19 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import ImageUpload from "./ImageUpload";
 
 function AddGroup() {
   const userInfo = useSelector((state) => state.userInfo);
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState("https://cdn-icons-png.flaticon.com/512/151/151943.png");
   const [member, setMember] = useState("");
   const [members, setMembers] = useState([userInfo.nickname]);
 
   const onNameHandler = (event) => {
     setName(event.currentTarget.value);
-  };
-
-  const onImageHandler = (event) => {
-    setImage(event.currentTarget.value);
   };
 
   const handleInputValue = (event) => {
@@ -54,6 +51,33 @@ function AddGroup() {
     });
   };
 
+  const [uploadImage, setUploadImage] = useState(null);
+
+  const handleFileInput = (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      return setUploadImage(null);
+    }
+    const upload = new AWS.S3.ManagedUpload({
+      params: {
+        Bucket: "uristorageimage", // 업로드할 대상 버킷명
+        Key: file.name,
+        Body: file, // 업로드할 파일 객체
+      },
+    });
+
+    const promise = upload.promise();
+    promise.then(
+      function (data) {
+        setUploadImage(data.Location);
+        setImage(data.Location);
+      },
+      function (err) {
+        return alert("오류가 발생했습니다: ", err.message);
+      }
+    );
+  };
+
   return (
     <div
       style={{
@@ -87,9 +111,8 @@ function AddGroup() {
         </div>
         <input type="text" value={member} onChange={handleInputValue} />
         <button onClick={onMemberAdd}>추가</button>
-
-        <label>이미지</label>
-        <input type="file" value={image} onChange={onImageHandler} />
+        <br />
+        <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
 
         <br />
         <button onClick={onSubmitHandler}>그룹 추가</button>

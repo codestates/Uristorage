@@ -5,11 +5,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./Mypage.css";
-import "./image.css";
+// import "./image.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 import { RenderAfterNavermapsLoaded, NaverMap, Marker } from "react-naver-maps";
+
+import ImageUpload from "../Component/ImageUpload";
 
 function CreateWord() {
   const userInfo = useSelector((state) => state.userInfo);
@@ -23,13 +25,12 @@ function CreateWord() {
     word: "",
     summary: "",
     content: "",
+    image: "",
     pub: false,
     type: "",
     map: "",
     calendar: "",
   });
-
-  // console.log(checkedGroups);
 
   const checkHandle = (checked, id) => {
     if (checked) {
@@ -44,9 +45,9 @@ function CreateWord() {
   };
 
   const handleCreateword = () => {
-    const { users_id, word, summary, content, pub, type, map, calendar } = Wordcreate;
+    const { users_id, word, summary, content, image, pub, type, map, calendar } = Wordcreate;
     const groups_id = checkedGroups;
-    axios.post(`${process.env.REACT_APP_URL}/words`, { users_id, word, summary, content, pub, type, groups_id, map, calendar }, { withCredentials: true }).then((res) => {
+    axios.post(`${process.env.REACT_APP_URL}/words`, { users_id, word, summary, content, image, pub, type, groups_id, map, calendar }, { withCredentials: true }).then((res) => {
       if (res.data.success) {
         alert(res.data.message);
         navigate("/Mypage", { state: res.data });
@@ -67,6 +68,7 @@ function CreateWord() {
       word: Wordcreate.word,
       summary: Wordcreate.summary,
       content: Wordcreate.content,
+      image: Wordcreate.image,
       pub: Wordcreate.pub,
       type: Wordcreate.type,
       map: stringifyMark,
@@ -87,10 +89,41 @@ function CreateWord() {
       word: Wordcreate.word,
       summary: Wordcreate.summary,
       content: Wordcreate.content,
+      image: Wordcreate.image,
       pub: Wordcreate.pub,
       type: Wordcreate.type,
       calendar: worddate,
     });
+  };
+
+  const [uploadImage, setUploadImage] = useState(null);
+
+  const handleFileInput = (e) => {
+    // input 태그를 통해 선택한 파일 객체
+    const file = e.target.files[0];
+    if (!file) {
+      return setUploadImage(null);
+    }
+
+    // S3 SDK에 내장된 업로드 함수
+    const upload = new AWS.S3.ManagedUpload({
+      params: {
+        Bucket: "uristorageimage", // 업로드할 대상 버킷명
+        Key: file.name,
+        Body: file, // 업로드할 파일 객체
+      },
+    });
+
+    const promise = upload.promise();
+    promise.then(
+      function (data) {
+        setUploadImage(data.Location);
+        setWordcreate({ ...Wordcreate, image: data.Location });
+      },
+      function (err) {
+        return alert("오류가 발생했습니다: ", err.message);
+      }
+    );
   };
 
   return (
@@ -142,12 +175,7 @@ function CreateWord() {
             <input type="radio" name="open" value={false} onChange={handleInputValue("pub")} />
             비공개
           </div>
-          <div className="Content_Image">
-            <span>이미지</span>&emsp;
-            <input ref={Wordcreate.image} className="image-upload" type="file" accept="image/*" onChange={handleInputValue("image")} />
-            <label htmlFor="upload" className="image-upload-wrapper"></label>
-          </div>
-
+          <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
           <div className="Content_Create">
             <span>내용</span>&emsp;
             <input className="input_content" type="text" onChange={handleInputValue("content")} />

@@ -4,16 +4,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import Modal from "./Modal/Group";
+import ImageUpload from "./ImageUpload";
 
 function ModifyGroup() {
   const userInfo = useSelector((state) => state.userInfo);
   const { token } = useSelector((state) => state.auth);
   const groupId = useSelector((state) => state.groupfilter);
+  const userGroups = useSelector((state) => state.userGroups);
 
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
   const [member, setMember] = useState("");
   const [members, setMembers] = useState([userInfo.nickname]);
 
@@ -21,10 +22,6 @@ function ModifyGroup() {
 
   const onNameHandler = (event) => {
     setName(event.currentTarget.value);
-  };
-
-  const onImageHandler = (event) => {
-    setImage(event.currentTarget.value);
   };
 
   const handleInputValue = (event) => {
@@ -58,7 +55,7 @@ function ModifyGroup() {
 
     let body = {
       name: name,
-      image: image,
+      image: uploadImage,
       members: members,
     };
 
@@ -79,6 +76,32 @@ function ModifyGroup() {
   useEffect(() => {
     getGroupInfo();
   }, []);
+
+  const [uploadImage, setUploadImage] = useState(userGroups.filter((el) => el.group_id === groupId)[0].image);
+
+  const handleFileInput = (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      return setUploadImage(null);
+    }
+    const upload = new AWS.S3.ManagedUpload({
+      params: {
+        Bucket: "uristorageimage", // 업로드할 대상 버킷명
+        Key: file.name,
+        Body: file, // 업로드할 파일 객체
+      },
+    });
+
+    const promise = upload.promise();
+    promise.then(
+      function (data) {
+        setUploadImage(data.Location);
+      },
+      function (err) {
+        return alert("오류가 발생했습니다: ", err.message);
+      }
+    );
+  };
 
   return (
     <div>
@@ -118,8 +141,8 @@ function ModifyGroup() {
             <input type="text" value={member} onChange={handleInputValue} />
             <button onClick={onMemberAdd}>추가</button>
 
-            <label>이미지</label>
-            <input type="file" value={image || ""} onChange={onImageHandler} />
+            <label>그룹 프로필 변경</label>
+            <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
 
             <br />
             <button onClick={onSubmitHandler}>그룹 정보 변경</button>
