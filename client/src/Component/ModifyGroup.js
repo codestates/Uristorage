@@ -10,16 +10,12 @@ function ModifyGroup() {
   const { token } = useSelector((state) => state.auth);
   const groupId = useSelector((state) => state.groupfilter);
 
-  console.log(groupId);
-
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [member, setMember] = useState("");
   const [members, setMembers] = useState([userInfo.nickname]);
-
-  console.log(members);
 
   const [modalOn, setModalOn] = useState(false);
 
@@ -61,10 +57,12 @@ function ModifyGroup() {
     event.preventDefault();
 
     let body = {
-      name: image,
+      name: name,
+      image: image,
+      members: members,
     };
 
-    axios.put(`${process.env.REACT_APP_URL}/groups`, body, { headers: { authorization: `Bearer ${token}` } }, { withCredentials: true }).then((res) => {
+    axios.put(`${process.env.REACT_APP_URL}/groups/${groupId}`, body, { headers: { authorization: `Bearer ${token}` } }, { withCredentials: true }).then((res) => {
       if (res.data.success) {
         alert(res.data.message);
         navigate("/Mypage");
@@ -83,48 +81,54 @@ function ModifyGroup() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "10vh",
-      }}
-    >
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <label>그룹 이름</label>
-        <input type="text" value={name} onChange={onNameHandler} />
+    <div>
+      {groupId === 0 ? (
+        "그룹을 선택해 주세요."
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "10vh",
+          }}
+        >
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <label>그룹 이름</label>
+            <input type="text" value={name} onChange={onNameHandler} />
 
-        <label>그룹원 목록</label>
-        <div>
-          {members.map((el, index) => (
-            <div key={index}>
-              {index === 0 ? (
-                <div>{el}</div>
-              ) : (
-                <div>
-                  {el}
-                  <button value={el} onClick={onMemberDelete}>
-                    삭제
-                  </button>
+            <label>그룹원 목록</label>
+            <div>
+              {members.map((el, index) => (
+                <div key={index}>
+                  {index === 0 ? (
+                    <div>{el}</div>
+                  ) : (
+                    <div>
+                      {el}
+                      <button value={el} onClick={onMemberDelete}>
+                        삭제
+                      </button>
+                    </div>
+                  )}
                 </div>
-              )}
+              ))}
             </div>
-          ))}
+            <input type="text" value={member} onChange={handleInputValue} />
+            <button onClick={onMemberAdd}>추가</button>
+
+            <label>이미지</label>
+            <input type="file" value={image || ""} onChange={onImageHandler} />
+
+            <br />
+            <button onClick={onSubmitHandler}>그룹 정보 변경</button>
+            <br />
+            <button onClick={() => setModalOn(true)}>그룹 삭제</button>
+          </div>
+          <Modal open={modalOn} close={() => setModalOn(false)} groupId={groupId} />
         </div>
-        <input type="text" value={member} onChange={handleInputValue} />
-        <button onClick={onMemberAdd}>추가</button>
-
-        <label>이미지</label>
-        <input type="file" value={image || ""} onChange={onImageHandler} />
-
-        <br />
-        <button onClick={onSubmitHandler}>그룹 정보 변경</button>
-        <br />
-        <button onClick={() => setModalOn(true)}>그룹 삭제</button>
-      </div>
-      <Modal open={modalOn} close={() => setModalOn(false)} />
+      )}
     </div>
   );
 }

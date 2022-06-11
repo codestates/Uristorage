@@ -2,31 +2,31 @@ import React, { useEffect, useState } from "react";
 import Nav from "../Component/Nav";
 import Locationmap from "../Component/Locationmap";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./Mypage.css";
-import "./image.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 import { RenderAfterNavermapsLoaded, NaverMap, Marker } from "react-naver-maps";
 
-function CreateWord() {
-  const userInfo = useSelector((state) => state.userInfo);
+function ModifyWord() {
+  const location = useLocation();
   const userGroups = useSelector((state) => state.userGroups);
-  const id = userInfo.id;
+
+  console.log("@@@@", location.state.data);
 
   const navigate = useNavigate();
   const [checkedGroups, setCheckedGroups] = useState([]);
   const [Wordcreate, setWordcreate] = useState({
-    users_id: id,
-    word: "",
-    summary: "",
-    content: "",
-    pub: false,
-    type: "",
-    map: "",
-    calendar: "",
+    id: location.state.data.id,
+    word: location.state.data.word,
+    summary: location.state.data.summary,
+    content: location.state.data.content,
+    pub: location.state.data.public,
+    type: location.state.data.type,
+    map: location.state.data.map,
+    calendar: location.state.data.calendar,
   });
 
   // console.log(checkedGroups);
@@ -44,12 +44,13 @@ function CreateWord() {
   };
 
   const handleCreateword = () => {
-    const { users_id, word, summary, content, pub, type, map, calendar } = Wordcreate;
+    const { id, word, summary, content, pub, type, map, calendar } = Wordcreate;
     const groups_id = checkedGroups;
-    axios.post(`${process.env.REACT_APP_URL}/words`, { users_id, word, summary, content, pub, type, groups_id, map, calendar }, { withCredentials: true }).then((res) => {
+    axios.put(`${process.env.REACT_APP_URL}/words`, { id, word, summary, content, pub, type, groups_id, map, calendar }, { withCredentials: true }).then((res) => {
+      console.log(res);
       if (res.data.success) {
         alert(res.data.message);
-        navigate("/Mypage", { state: res.data });
+        navigate("/Mypage");
       } else {
         alert(res.data.message);
       }
@@ -63,7 +64,7 @@ function CreateWord() {
     setMark({ lat: _lat, lng: _lng });
     setStringifyMark(String(mark.lat) + "," + String(mark.lng));
     setWordcreate({
-      users_id: Wordcreate.users_id,
+      id: location.state.data.id,
       word: Wordcreate.word,
       summary: Wordcreate.summary,
       content: Wordcreate.content,
@@ -83,7 +84,7 @@ function CreateWord() {
     console.log("worddate는", worddate);
     setWordDate(e);
     setWordcreate({
-      users_id: Wordcreate.users_id,
+      id: location.state.data.id,
       word: Wordcreate.word,
       summary: Wordcreate.summary,
       content: Wordcreate.content,
@@ -93,6 +94,8 @@ function CreateWord() {
     });
   };
 
+  // console.log("날짜", wordDate);
+  console.log(Wordcreate);
   return (
     <div>
       <Nav />
@@ -100,11 +103,11 @@ function CreateWord() {
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="Word_Create">
             <span>단어</span>&emsp;
-            <input className="input_word" type="text" onChange={handleInputValue("word")} />
+            <input className="input_word" type="text" value={Wordcreate.word} onChange={handleInputValue("word")} />
           </div>
           <div className="Summary_Create">
             <span>요약</span>&emsp;
-            <input className="input_summary" type="text" onChange={handleInputValue("summary")} />
+            <input className="input_summary" type="text" value={Wordcreate.summary} onChange={handleInputValue("summary")} />
           </div>
           <div>
             <span>그룹 선택</span>&emsp;
@@ -141,16 +144,29 @@ function CreateWord() {
             공개
             <input type="radio" name="open" value={false} onChange={handleInputValue("pub")} />
             비공개
+            {/* {Wordcreate.pub ? (
+              <>
+                <input type="radio" name="open" value={true}  onChange={handleInputValue("pub")} />
+                공개
+                <input type="radio" name="open" value={false} onChange={handleInputValue("pub")} />
+                비공개
+              </>
+            ) : (
+              <>
+                <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
+                공개
+                <input type="radio" name="open" value={false}  onChange={handleInputValue("pub")} />
+                비공개
+              </>
+            )} */}
           </div>
           <div className="Content_Image">
             <span>이미지</span>&emsp;
-            <input ref={Wordcreate.image} className="image-upload" type="file" accept="image/*" onChange={handleInputValue("image")} />
-            <label htmlFor="upload" className="image-upload-wrapper"></label>
+            <input ref={Wordcreate.image} className="input_content" type="file" accept="image/*" onChange={handleInputValue("image")} />
           </div>
-
           <div className="Content_Create">
             <span>내용</span>&emsp;
-            <input className="input_content" type="text" onChange={handleInputValue("content")} />
+            <input className="input_content" type="text" value={Wordcreate.content} onChange={handleInputValue("content")} />
           </div>
           {Wordcreate.type === "place" ? (
             <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
@@ -161,7 +177,7 @@ function CreateWord() {
           ) : null}
           <div className="Create_Button">
             <button className="btn" type="button" onClick={handleCreateword}>
-              단어 등록하기
+              단어 수정하기
             </button>
           </div>
         </form>
@@ -170,4 +186,4 @@ function CreateWord() {
   );
 }
 
-export default CreateWord;
+export default ModifyWord;

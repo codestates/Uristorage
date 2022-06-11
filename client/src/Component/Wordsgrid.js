@@ -27,6 +27,11 @@ function Wordsgrid({ buttonClicked }) {
     }
   }
 
+  function deleteWord(id) {
+    console.log("delete");
+    setWorddata(worddata.filter((el) => el.id !== id));
+  }
+
   useEffect(() => {
     fetchData();
   }, [users_id, groupFilter]);
@@ -50,7 +55,7 @@ function Wordsgrid({ buttonClicked }) {
     filteredWordData = worddata;
   }
 
-  console.log(worddata)
+  console.log(worddata);
   // console.log(searchedWord)
   // console.log(filteredWordData)
 
@@ -65,7 +70,7 @@ function Wordsgrid({ buttonClicked }) {
               ? "그룹에 속한 단어가 없습니다."
               : currentWords.map((word, index) => (
                   <React.Fragment key={index}>
-                    <GridCars worddata={currentWords} words={word.word} summary={word.summary} content={word.content} />
+                    <GridCars wordData={word} delWord={deleteWord} />
                   </React.Fragment>
                 ))}
           </Row>
@@ -76,7 +81,7 @@ function Wordsgrid({ buttonClicked }) {
             {filteredWordData &&
               filteredWordData.map((word, index) => (
                 <React.Fragment key={index}>
-                  <GridCars words={word.word} summary={word.summary} content={word.content} />
+                  <GridCars wordData={word} delWord={deleteWord} />
                 </React.Fragment>
               ))}
           </Row>

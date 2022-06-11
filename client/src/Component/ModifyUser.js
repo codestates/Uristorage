@@ -9,6 +9,7 @@ function ModifyUser() {
   const userInfo = useSelector((state) => state.userInfo);
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState(userInfo.email);
   const [nickname, setNickName] = useState(userInfo.nickname);
@@ -48,6 +49,10 @@ function ModifyUser() {
 
     axios.put(`${process.env.REACT_APP_URL}/users`, body, { headers: { authorization: `Bearer ${token}` } }, { withCredentials: true }).then((res) => {
       if (res.data.success) {
+        dispatch({
+          type: "userInfo/setUpdateUserInfo",
+          payload: res.data.data,
+        });
         alert(res.data.message);
         navigate("/Mypage");
       } else {

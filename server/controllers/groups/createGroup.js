@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
   const { name, image, members } = req.body;
 
   if (!name || !members) {
-    return res.send({ message: "필수 항목을 입력하세요", success: false });
+    return res.send({ message: "그룹 이름을 입력하세요", success: false });
   }
 
   try {
