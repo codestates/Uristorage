@@ -28,14 +28,19 @@ function LocationGrid() {
     */
   }
 
+  function deleteWord(id) {
+    console.log("delete");
+    setWorddata(worddata.filter((el) => el.id !== id));
+  }
+
   useEffect(() => {
     fetchData();
   }, [users_id]);
 
-  const filteredWordData = []
+  const filteredWordData = [];
   for (let i = 0; i < worddata.length; i++) {
-    if (worddata[i].type === 'place') {
-      filteredWordData.push(worddata[i])
+    if (worddata[i].type === "place") {
+      filteredWordData.push(worddata[i]);
     }
   }
 
@@ -44,12 +49,12 @@ function LocationGrid() {
   //id값 같을 때 해당 words 출력 추가
 
   return (
-      <div className="wordgrid">
+    <div className="wordgrid">
       <Row gutter={[16, 16]}>
         {filteredWordData &&
           filteredWordData.map((word, index) => (
             <React.Fragment key={index}>
-              <GridCars words={word.word} summary={word.summary} content={word.content} />
+              <GridCars wordData={word} delWord={deleteWord} />
             </React.Fragment>
           ))}
       </Row>

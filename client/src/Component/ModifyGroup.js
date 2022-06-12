@@ -4,31 +4,24 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import Modal from "./Modal/Group";
+import ImageUpload from "./ImageUpload";
 
 function ModifyGroup() {
   const userInfo = useSelector((state) => state.userInfo);
   const { token } = useSelector((state) => state.auth);
   const groupId = useSelector((state) => state.groupfilter);
-
-  console.log(groupId);
+  const userGroups = useSelector((state) => state.userGroups);
 
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
   const [member, setMember] = useState("");
   const [members, setMembers] = useState([userInfo.nickname]);
-
-  console.log(members);
 
   const [modalOn, setModalOn] = useState(false);
 
   const onNameHandler = (event) => {
     setName(event.currentTarget.value);
-  };
-
-  const onImageHandler = (event) => {
-    setImage(event.currentTarget.value);
   };
 
   const handleInputValue = (event) => {
@@ -61,10 +54,12 @@ function ModifyGroup() {
     event.preventDefault();
 
     let body = {
-      name: image,
+      name: name,
+      image: uploadImage,
+      members: members,
     };
 
-    axios.put(`${process.env.REACT_APP_URL}/groups`, body, { headers: { authorization: `Bearer ${token}` } }, { withCredentials: true }).then((res) => {
+    axios.put(`${process.env.REACT_APP_URL}/groups/${groupId}`, body, { headers: { authorization: `Bearer ${token}` } }, { withCredentials: true }).then((res) => {
       if (res.data.success) {
         alert(res.data.message);
         navigate("/Mypage");
@@ -82,49 +77,86 @@ function ModifyGroup() {
     getGroupInfo();
   }, []);
 
+  const [uploadImage, setUploadImage] = useState(userGroups.filter((el) => el.group_id === groupId)[0].image || "");
+
+  function uuidv4() {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+      let r = (Math.random() * 16) | 0,
+        v = c == "x" ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
+
+  const handleFileInput = (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      return setUploadImage(null);
+    }
+    const upload = new AWS.S3.ManagedUpload({
+      params: {
+        Bucket: "uristorageimage", // 업로드할 대상 버킷명
+        Key: `${uuidv4()}_${file.name}`,
+        Body: file, // 업로드할 파일 객체
+      },
+    });
+
+    const promise = upload.promise();
+    promise.then(
+      function (data) {
+        setUploadImage(data.Location);
+      },
+      function (err) {
+        return alert("오류가 발생했습니다: ", err.message);
+      }
+    );
+  };
+
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "10vh",
-      }}
-    >
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <label>그룹 이름</label>
-        <input type="text" value={name} onChange={onNameHandler} />
+    <div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "10vh",
+        }}
+      >
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <label>그룹 이름</label>
+          <input type="text" value={name} onChange={onNameHandler} />
 
-        <label>그룹원 목록</label>
-        <div>
-          {members.map((el, index) => (
-            <div key={index}>
-              {index === 0 ? (
-                <div>{el}</div>
-              ) : (
-                <div>
-                  {el}
-                  <button value={el} onClick={onMemberDelete}>
-                    삭제
-                  </button>
-                </div>
-              )}
-            </div>
-          ))}
+          <label>그룹원 목록</label>
+          <div>
+            {members.map((el, index) => (
+              <div key={index}>
+                {index === 0 ? (
+                  <div>{el}</div>
+                ) : (
+                  <div>
+                    {el}
+                    <button value={el} onClick={onMemberDelete}>
+                      삭제
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <input type="text" value={member} onChange={handleInputValue} />
+          <button onClick={onMemberAdd}>추가</button>
+
+          <br />
+          <label>그룹 프로필 변경</label>
+          <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
+
+          <button onClick={onSubmitHandler}>그룹 정보 변경</button>
+
+          <br />
+          <button onClick={() => setModalOn(true)}>그룹 삭제</button>
         </div>
-        <input type="text" value={member} onChange={handleInputValue} />
-        <button onClick={onMemberAdd}>추가</button>
-
-        <label>이미지</label>
-        <input type="file" value={image || ""} onChange={onImageHandler} />
-
-        <br />
-        <button onClick={onSubmitHandler}>그룹 정보 변경</button>
-        <br />
-        <button onClick={() => setModalOn(true)}>그룹 삭제</button>
+        <Modal open={modalOn} close={() => setModalOn(false)} groupId={groupId} />
       </div>
-      <Modal open={modalOn} close={() => setModalOn(false)} />
     </div>
   );
 }

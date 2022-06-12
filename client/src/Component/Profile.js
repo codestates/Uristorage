@@ -16,7 +16,7 @@ function Profile() {
 
   const id = userInfo.id;
   const [Content, setContent] = useState(groupfilter); //select버튼 value값을 받아 단어그리드로 넘겨줘야함profile=>wordgrid(redux이용해야할듯)
-  const groupList = [{ name: "내 단어", image: "", group_id: 0 }, ...userGroups];
+  const groupList = [{ name: "내 단어", image: userInfo.image, group_id: 0 }, ...userGroups];
 
   const onChangeHandler = (e) => {
     setContent(e.target.value);
@@ -39,6 +39,24 @@ function Profile() {
       console.log(err);
     }
   };
+  const [members, setMembers] = useState();
+
+  const getGroupMembers = () => {
+    if (groupfilter !== 0) {
+      try {
+        axios
+          .get(`${process.env.REACT_APP_URL}/groups/${groupfilter}`, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            setMembers(res.data.members);
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+  console.log("members", members);
 
   useEffect(() => {
     if (id) {
@@ -53,9 +71,33 @@ function Profile() {
     });
   }, [Content]);
 
+  useEffect(() => {
+    getGroupMembers();
+  }, [groupfilter]);
+
   return (
     <div className="information">
-      <img className="profile-image" style={{ width: "250px", height: "250px" }} src="https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2" />
+      {groupfilter === 0 ? (
+        <img
+          className="profile-image"
+          style={{ width: "250px", height: "250px" }}
+          src={userInfo.image}
+          onError={(event) => {
+            event.target.src = "https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2";
+            event.onerror = null;
+          }}
+        />
+      ) : (
+        <img
+          className="profile-image"
+          style={{ width: "250px", height: "250px" }}
+          src={userGroups.filter((el) => el.group_id === groupfilter)[0].image}
+          onError={(event) => {
+            event.target.src = "https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2";
+            event.onerror = null;
+          }}
+        />
+      )}
       <div>
         <span> {userInfo.nickname} </span>
         <select onChange={onChangeHandler} value={Content}>
@@ -69,11 +111,10 @@ function Profile() {
           ))}
         </select>
       </div>
-      <Link to="/ModifyUser"> 회원정보변경 </Link>
+      <div>{groupfilter !== 0 ? <Link to="/ModifyGroup"> 그룹정보변경 </Link> : <Link to="/ModifyUser"> 회원정보변경 </Link>}</div>
       <div>
-        <Link to="/ModifyGroup"> 그룹정보변경 </Link>
+        <Link to="/AddGroup"> 그룹추가 </Link>
       </div>
-      <Link to="/AddGroup"> 그룹추가 </Link>
     </div>
   );
 }

@@ -1,18 +1,14 @@
-const { user } = require("../../models");
+const { word } = require("../../models");
 const { isAuthorized, removeAccessToken } = require("../tokenFuntions");
 
 module.exports = async (req, res) => {
   const userInfo = isAuthorized(req);
+  const id = req.params.id;
 
   try {
     if (userInfo) {
-      const getUser = await user.findOne({
-        where: { id: userInfo.id },
-      });
-      if (getUser) {
-        await user.destroy({ where: { id: userInfo.id } });
-        removeAccessToken(res);
-      }
+      await word.destroy({ where: { id: id } });
+      return res.status(200).json({ message: "단어를 삭제 했습니다." });
     } else {
       return res.status(401).json({ message: "권한이 없습니다." });
     }

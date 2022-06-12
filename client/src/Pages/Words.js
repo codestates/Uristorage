@@ -9,27 +9,8 @@ import "./Words.css";
 
 function Words({ searchHandler }) {
   const location = useLocation();
-  const [clicked, setClicked] = useState(location.state.data);
+  const clicked = location.state.data;
 
-  console.log(clicked);
-  
-  const id = clicked.users_id
-  // const getWordUser = () => {
-  //   try {
-  //     axios
-  //       .get(`${process.env.REACT_APP_URL}/groups/user/${id}`, {
-  //         withCredentials: true
-  //       })
-  //       .then((res) => {
-  //         dispatch({
-  //           type: "userGroups/setUpdateUserGroups",
-  //           payload: res.data,
-  //         });
-  //       });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   // useEffect(() => {
   //   if (id) {
@@ -60,7 +41,7 @@ function Words({ searchHandler }) {
             {clicked.content}
           </div>
         </div>
-        <img className="words_clickedimage" style={{ width: "300px", height: "300px" }} src="https://t1.daumcdn.net/cfile/tistory/251A563C5854122C07" />
+        <img className="words_clickedimage" style={{ width: "300px", height: "300px" }} src={clicked.image} />
       </div>
     </div>
   );

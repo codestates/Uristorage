@@ -6,6 +6,7 @@ module.exports = {
   getInfo: require("./users/getInfo"),
   modifyUser: require("./users/modifyUser"),
   createWord: require("./words/createWord"),
+  modifyWord: require("./words/modifyWord"),
   deleteWord: require("./words/deleteWord"),
   groupWords: require("./words/groupWords"),
   publicWords: require("./words/publicWords"),
@@ -14,4 +15,5 @@ module.exports = {
   userGroup: require("./groups/userGroup"),
   createGroup: require("./groups/createGroup"),
   deleteGroup: require("./groups/deleteGroup"),
+  modifyGroup: require("./groups/modifyGroup"),
 };
