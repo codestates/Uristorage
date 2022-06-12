@@ -2,22 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import ImageUpload from "./ImageUpload";
 
 function AddGroup() {
   const userInfo = useSelector((state) => state.userInfo);
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
   const [member, setMember] = useState("");
   const [members, setMembers] = useState([userInfo.nickname]);
 
   const onNameHandler = (event) => {
     setName(event.currentTarget.value);
-  };
-
-  const onImageHandler = (event) => {
-    setImage(event.currentTarget.value);
   };
 
   const handleInputValue = (event) => {
@@ -40,7 +36,7 @@ function AddGroup() {
     event.preventDefault();
     let body = {
       name: name,
-      image: image,
+      image: uploadImage,
       members: members,
     };
 
@@ -52,6 +48,40 @@ function AddGroup() {
         alert(res.data.message);
       }
     });
+  };
+
+  function uuidv4() {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+      let r = (Math.random() * 16) | 0,
+        v = c == "x" ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
+
+  const [uploadImage, setUploadImage] = useState("https://cdn-icons-png.flaticon.com/512/151/151943.png");
+
+  const handleFileInput = (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      return setUploadImage(null);
+    }
+    const upload = new AWS.S3.ManagedUpload({
+      params: {
+        Bucket: "uristorageimage", // 업로드할 대상 버킷명
+        Key: `${uuidv4()}_file.name`,
+        Body: file, // 업로드할 파일 객체
+      },
+    });
+
+    const promise = upload.promise();
+    promise.then(
+      function (data) {
+        setUploadImage(data.Location);
+      },
+      function (err) {
+        return alert("오류가 발생했습니다: ", err.message);
+      }
+    );
   };
 
   return (
@@ -87,9 +117,8 @@ function AddGroup() {
         </div>
         <input type="text" value={member} onChange={handleInputValue} />
         <button onClick={onMemberAdd}>추가</button>
-
-        <label>이미지</label>
-        <input type="file" value={image} onChange={onImageHandler} />
+        <br />
+        <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
 
         <br />
         <button onClick={onSubmitHandler}>그룹 추가</button>

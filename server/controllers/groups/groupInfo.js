@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
         model: user,
         required: true,
         as: "usergroup",
-        attributes: ["nickname"],
+        attributes: ["nickname", "image"],
       },
     ],
   });

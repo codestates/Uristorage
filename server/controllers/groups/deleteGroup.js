@@ -1,17 +1,18 @@
-const { user } = require("../../models");
-const { isAuthorized, removeAccessToken } = require("../tokenFuntions");
+const { group } = require("../../models");
+const { isAuthorized } = require("../tokenFuntions");
 
 module.exports = async (req, res) => {
   const userInfo = isAuthorized(req);
+  const id = req.params.id; //groups.id로 찾아 그룹삭제
 
   try {
     if (userInfo) {
-      const getUser = await user.findOne({
-        where: { id: userInfo.id },
+      const getGroup = await group.findOne({
+        where: { id: id },
       });
-      if (getUser) {
-        await user.destroy({ where: { id: userInfo.id } });
-        removeAccessToken(res);
+      if (getGroup) {
+        await group.destroy({ where: { id: id } });
+        return res.status(205).json({ message: "삭제 되었습니다.", success: true });
       }
     } else {
       return res.status(401).json({ message: "권한이 없습니다." });

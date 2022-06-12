@@ -43,6 +43,7 @@ function SignupPage() {
     let body = {
       userId: userId,
       email: email,
+      image: "https://cdn-icons-png.flaticon.com/512/309/309543.png",
       password: password,
       nickname: nickname,
     };

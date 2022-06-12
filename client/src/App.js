@@ -15,6 +15,7 @@ import AddGroupPage from "./Pages/AddGroupPage";
 import ModifyUserPage from "./Pages/ModifyUserPage";
 import ModifyGroupPage from "./Pages/ModifyGroupPage";
 import Calendar from "./Pages/Calendarpage";
+import ModifyWord from "./Pages/ModifyWordPage";
 
 import axios from "axios";
 
@@ -56,13 +57,7 @@ export default function App() {
     if (token) {
       getUserInfo();
     }
-  }, [token, navigate]);
-
-  // useEffect(() => {
-  //   if (id) {
-  //     getUserGroups();
-  //   }
-  // }, [id]);
+  }, [token]);
 
   useEffect(() => {
     dispatch({
@@ -70,12 +65,6 @@ export default function App() {
       payload: localStorage.getItem("Token"),
     });
   }, [navigate]);
-
-  // useEffect(() => {
-  //   dispatch({
-  //     type: "wordInfo/setWordInfo",
-  //   });
-  // });
 
   return (
     <div>
@@ -85,6 +74,7 @@ export default function App() {
         <Route path="/Location" element={<Location />} />
         <Route path="/Detail" element={<Detail />} />
         <Route path="/Words" element={<Words searchHandler={searchHandler} />} />
+        <Route path="/ModifyWord" element={<ModifyWord />} />
         <Route path="/Login" element={<Loginpage />} />
         <Route path="/Signup" element={<Signuppage />} />
         <Route path="/CreateWord" element={<CreateWord />} />
