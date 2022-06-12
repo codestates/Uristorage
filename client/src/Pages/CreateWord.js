@@ -58,22 +58,29 @@ function CreateWord() {
   };
 
   const [mark, setMark] = useState({});
-  const [stringifyMark, setStringifyMark] = useState("");
+
   const ClickLocationHandler = (e) => {
     const { _lat, _lng } = e.latlng;
     setMark({ lat: _lat, lng: _lng });
-    setStringifyMark(String(mark.lat) + "," + String(mark.lng));
-    setWordcreate({
-      users_id: Wordcreate.users_id,
-      word: Wordcreate.word,
-      summary: Wordcreate.summary,
-      content: Wordcreate.content,
-      image: Wordcreate.image,
-      pub: Wordcreate.pub,
-      type: Wordcreate.type,
-      map: stringifyMark,
-    });
   };
+
+  useEffect(() => {
+    if (mark !== {}) {
+      const pin = String(mark.lat) + "," + String(mark.lng);
+      setWordcreate({
+        users_id: Wordcreate.users_id,
+        word: Wordcreate.word,
+        summary: Wordcreate.summary,
+        content: Wordcreate.content,
+        image: Wordcreate.image,
+        pub: Wordcreate.pub,
+        type: Wordcreate.type,
+        map: pin,
+      });
+    }
+  }, [mark]);
+
+  console.log(Wordcreate);
 
   const [wordDate, setWordDate] = useState(new Date());
   const dateToString = (e) => {
@@ -98,6 +105,14 @@ function CreateWord() {
 
   const [uploadImage, setUploadImage] = useState(null);
 
+  function uuidv4() {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+      let r = (Math.random() * 16) | 0,
+        v = c == "x" ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
+
   const handleFileInput = (e) => {
     // input 태그를 통해 선택한 파일 객체
     const file = e.target.files[0];
@@ -109,7 +124,7 @@ function CreateWord() {
     const upload = new AWS.S3.ManagedUpload({
       params: {
         Bucket: "uristorageimage", // 업로드할 대상 버킷명
-        Key: file.name,
+        Key: `${uuidv4()}_${file.name}`,
         Body: file, // 업로드할 파일 객체
       },
     });

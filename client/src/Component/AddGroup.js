@@ -9,7 +9,6 @@ function AddGroup() {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
-  const [image, setImage] = useState("https://cdn-icons-png.flaticon.com/512/151/151943.png");
   const [member, setMember] = useState("");
   const [members, setMembers] = useState([userInfo.nickname]);
 
@@ -37,7 +36,7 @@ function AddGroup() {
     event.preventDefault();
     let body = {
       name: name,
-      image: image,
+      image: uploadImage,
       members: members,
     };
 
@@ -51,7 +50,15 @@ function AddGroup() {
     });
   };
 
-  const [uploadImage, setUploadImage] = useState(null);
+  function uuidv4() {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+      let r = (Math.random() * 16) | 0,
+        v = c == "x" ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
+
+  const [uploadImage, setUploadImage] = useState("https://cdn-icons-png.flaticon.com/512/151/151943.png");
 
   const handleFileInput = (e) => {
     const file = e.target.files[0];
@@ -61,7 +68,7 @@ function AddGroup() {
     const upload = new AWS.S3.ManagedUpload({
       params: {
         Bucket: "uristorageimage", // 업로드할 대상 버킷명
-        Key: file.name,
+        Key: `${uuidv4()}_file.name`,
         Body: file, // 업로드할 파일 객체
       },
     });
@@ -70,7 +77,6 @@ function AddGroup() {
     promise.then(
       function (data) {
         setUploadImage(data.Location);
-        setImage(data.Location);
       },
       function (err) {
         return alert("오류가 발생했습니다: ", err.message);

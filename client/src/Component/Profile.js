@@ -39,6 +39,24 @@ function Profile() {
       console.log(err);
     }
   };
+  const [members, setMembers] = useState();
+
+  const getGroupMembers = () => {
+    if (groupfilter !== 0) {
+      try {
+        axios
+          .get(`${process.env.REACT_APP_URL}/groups/${groupfilter}`, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            setMembers(res.data.members);
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+  console.log("members", members);
 
   useEffect(() => {
     if (id) {
@@ -52,6 +70,10 @@ function Profile() {
       payload: Content,
     });
   }, [Content]);
+
+  useEffect(() => {
+    getGroupMembers();
+  }, [groupfilter]);
 
   return (
     <div className="information">
@@ -89,11 +111,10 @@ function Profile() {
           ))}
         </select>
       </div>
-      <Link to="/ModifyUser"> 회원정보변경 </Link>
+      <div>{groupfilter !== 0 ? <Link to="/ModifyGroup"> 그룹정보변경 </Link> : <Link to="/ModifyUser"> 회원정보변경 </Link>}</div>
       <div>
-        <Link to="/ModifyGroup"> 그룹정보변경 </Link>
+        <Link to="/AddGroup"> 그룹추가 </Link>
       </div>
-      <Link to="/AddGroup"> 그룹추가 </Link>
     </div>
   );
 }

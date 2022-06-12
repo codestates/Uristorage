@@ -47,9 +47,10 @@ function Locationmap() {
           zoomControl={true} // 지도 zoom 허용
           draggable={true}
         >
-          {decodeMarkerInfo.map((address) => {
+          {decodeMarkerInfo.map((address, index) => {
             return (
               <Marker
+                key={index}
                 position={address}
                 //animation={navermaps.Animation. DROP}
               />

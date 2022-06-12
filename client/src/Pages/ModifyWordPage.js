@@ -34,6 +34,14 @@ function ModifyWord() {
 
   const [uploadImage, setUploadImage] = useState(location.state.data.image);
 
+  function uuidv4() {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+      let r = (Math.random() * 16) | 0,
+        v = c == "x" ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
+
   const handleFileInput = (e) => {
     const file = e.target.files[0];
     if (!file) {
@@ -42,7 +50,7 @@ function ModifyWord() {
     const upload = new AWS.S3.ManagedUpload({
       params: {
         Bucket: "uristorageimage", // 업로드할 대상 버킷명
-        Key: file.name,
+        Key: `${uuidv4()}_${file.name}`,
         Body: file, // 업로드할 파일 객체
       },
     });
@@ -104,6 +112,29 @@ function ModifyWord() {
       map: stringifyMark,
     });
   };
+
+  // const [mark, setMark] = useState({});
+
+  // const ClickLocationHandler = (e) => {
+  //   const { _lat, _lng } = e.latlng;
+  //   setMark({ lat: _lat, lng: _lng });
+  // };
+
+  // useEffect(() => {
+  //   if (mark !== {}) {
+  //     const pin = String(mark.lat) + "," + String(mark.lng);
+  //     setWordcreate({
+  //       users_id: Wordcreate.users_id,
+  //       word: Wordcreate.word,
+  //       summary: Wordcreate.summary,
+  //       content: Wordcreate.content,
+  //       image: Wordcreate.image,
+  //       pub: Wordcreate.pub,
+  //       type: Wordcreate.type,
+  //       map: pin,
+  //     });
+  //   }
+  // }, [mark]);
 
   const [wordDate, setWordDate] = useState(new Date());
   const dateToString = (e) => {

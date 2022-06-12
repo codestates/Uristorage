@@ -77,7 +77,15 @@ function ModifyGroup() {
     getGroupInfo();
   }, []);
 
-  const [uploadImage, setUploadImage] = useState(userGroups.filter((el) => el.group_id === groupId)[0].image);
+  const [uploadImage, setUploadImage] = useState(userGroups.filter((el) => el.group_id === groupId)[0].image || "");
+
+  function uuidv4() {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+      let r = (Math.random() * 16) | 0,
+        v = c == "x" ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
 
   const handleFileInput = (e) => {
     const file = e.target.files[0];
@@ -87,7 +95,7 @@ function ModifyGroup() {
     const upload = new AWS.S3.ManagedUpload({
       params: {
         Bucket: "uristorageimage", // 업로드할 대상 버킷명
-        Key: file.name,
+        Key: `${uuidv4()}_${file.name}`,
         Body: file, // 업로드할 파일 객체
       },
     });
@@ -105,53 +113,50 @@ function ModifyGroup() {
 
   return (
     <div>
-      {groupId === 0 ? (
-        "그룹을 선택해 주세요."
-      ) : (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            height: "10vh",
-          }}
-        >
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <label>그룹 이름</label>
-            <input type="text" value={name} onChange={onNameHandler} />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "10vh",
+        }}
+      >
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <label>그룹 이름</label>
+          <input type="text" value={name} onChange={onNameHandler} />
 
-            <label>그룹원 목록</label>
-            <div>
-              {members.map((el, index) => (
-                <div key={index}>
-                  {index === 0 ? (
-                    <div>{el}</div>
-                  ) : (
-                    <div>
-                      {el}
-                      <button value={el} onClick={onMemberDelete}>
-                        삭제
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-            <input type="text" value={member} onChange={handleInputValue} />
-            <button onClick={onMemberAdd}>추가</button>
-
-            <label>그룹 프로필 변경</label>
-            <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
-
-            <br />
-            <button onClick={onSubmitHandler}>그룹 정보 변경</button>
-            <br />
-            <button onClick={() => setModalOn(true)}>그룹 삭제</button>
+          <label>그룹원 목록</label>
+          <div>
+            {members.map((el, index) => (
+              <div key={index}>
+                {index === 0 ? (
+                  <div>{el}</div>
+                ) : (
+                  <div>
+                    {el}
+                    <button value={el} onClick={onMemberDelete}>
+                      삭제
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
-          <Modal open={modalOn} close={() => setModalOn(false)} groupId={groupId} />
+          <input type="text" value={member} onChange={handleInputValue} />
+          <button onClick={onMemberAdd}>추가</button>
+
+          <br />
+          <label>그룹 프로필 변경</label>
+          <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
+
+          <button onClick={onSubmitHandler}>그룹 정보 변경</button>
+
+          <br />
+          <button onClick={() => setModalOn(true)}>그룹 삭제</button>
         </div>
-      )}
+        <Modal open={modalOn} close={() => setModalOn(false)} groupId={groupId} />
+      </div>
     </div>
   );
 }
