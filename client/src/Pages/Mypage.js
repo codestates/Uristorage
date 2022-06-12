@@ -10,13 +10,15 @@ import { useSelector } from "react-redux";
 import "./Mypage.css";
 
 function Mypage() {
-  //const wordarr = data;
   const [wordcreate, setWordcreate] = useState("");
-  //const location = useLocation();
-  //const data = () => {
-  //  const { state } = useLocation();
-  //  console.log("state", state);
-  //}
+  const [Filters, setFilter] = useState();
+  const types = [
+    { contents: "All", id: 1},
+    { contents: "person", id: 2},
+    { contents: "place", id: 3},
+    { contents: "date", id: 4},
+  ];
+
   const getdata = (wordcreate) => {
     setWordcreate(wordcreate);
   };
@@ -25,6 +27,38 @@ function Mypage() {
   const handleInputValue = (key) => (e) => {
     setSearchWord({ ...searchWord, [key]: e.target.value });
   };
+
+  const showFilter = (filters) => {
+    const newcreateword = [...wordcreate]
+    newcreateword.push(filters)
+    setWordcreate(newcreateword)
+  }
+
+  const handletypeValue = (value) => {
+    const data = types;
+    let contents = "";
+
+    for (let key in data){
+      if(data[key].id === parseInt(value, 10)){
+        contents = data[key].contents
+      }
+    }
+    console.log("contents", contents)
+    return contents;
+  }
+
+  const handleFilters = (filters) => {
+    let newFilters = {...Filters}
+    newFilters = filters
+    console.log("filters", newFilters)
+
+    if(newFilters !== null){
+    let typeValue = handletypeValue(filters)
+    newFilters = typeValue
+    }
+
+    showFilter(newFilters)
+  }
   
   return (
     <div>
@@ -33,7 +67,7 @@ function Mypage() {
         <Profile />
       </div>
       <div className="My_Filter">
-        <TypeFilter />
+        <TypeFilter handleFilters={filters => handleFilters(filters)} />
       </div>
       <div className="My_search_createword">
         <div className="home_searchbar">

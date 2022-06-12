@@ -83,3 +83,11 @@
     opacity: 0.2;
   }
   .pagination-container a:hover:not(.active) {background-color: rgb(238, 238, 238);}
+
+  html, body {
+    height: 100%;
+  }
+
+  .highlight {
+      background-color: #007bff;
+  }
