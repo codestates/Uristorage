@@ -27,6 +27,11 @@ function Wordsgrid({ searchWord }) {
     }
   }
 
+  function deleteWord(id) {
+    console.log("delete");
+    setWorddata(worddata.filter((el) => el.id !== id));
+  }
+
   useEffect(() => {
     fetchData();
   }, [users_id, groupFilter]);
@@ -53,7 +58,6 @@ function Wordsgrid({ searchWord }) {
   const pages = Math.ceil(filteredWordData.length / wordsPerPage);
 
   //id값 같을 때 해당 words 출력 추가
-
   //리덕스에서 wordtype값을 불러온다. (all,person.map,date)
 
   return (
@@ -75,13 +79,28 @@ function Wordsgrid({ searchWord }) {
               ? "그룹에 속한 단어가 없습니다."
               : currentFilteredWords.map((word, index) => (
                   <React.Fragment key={index}>
-                    <GridCars worddata={currentFilteredWords} words={word.word} summary={word.summary} content={word.content} />
+
+                    <GridCars wordData={word} delWord={deleteWord} />
+
                   </React.Fragment>
                 ))}
           </Row>
           <Pagination pages={pages} setCurrentPage={setCurrentPage} />
         </div>
-        }
+      ) : (
+        <div className="wordgrid">
+          <Row gutter={[16, 16]}>
+            {filteredWordData &&
+              filteredWordData.map((word, index) => (
+                <React.Fragment key={index}>
+                  <GridCars wordData={word} delWord={deleteWord} />
+                </React.Fragment>
+              ))}
+          </Row>
+        </div>
+      )}
+      <Pagination pages={pages} setCurrentPage={setCurrentPage} />
+
     </div>
   );
 }

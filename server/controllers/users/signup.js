@@ -2,7 +2,7 @@ const { user } = require("../../models");
 const bcrypt = require("bcrypt");
 
 module.exports = async (req, res) => {
-  const { userId, email, password, nickname } = req.body;
+  const { userId, email, password, image, nickname } = req.body;
 
   if (!userId || !password || !email || !nickname) {
     return res.send({ message: "필수 항목을 입력하세요", success: false });
@@ -20,6 +20,7 @@ module.exports = async (req, res) => {
       user.create({
         userId,
         email,
+        image,
         nickname,
         password: hashed,
       });
