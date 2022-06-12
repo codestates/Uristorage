@@ -36,19 +36,19 @@ function Wordsgrid({ searchWord }) {
     fetchData();
   }, [users_id, groupFilter]);
 
-  worddata.sort ((a, b) => {
-    let nameA = a.word
-    let nameB = b.word
+  worddata.sort((a, b) => {
+    let nameA = a.word;
+    let nameB = b.word;
     if (nameA < nameB) return -1;
     if (nameA > nameB) return 1;
-    return 0
-  })
+    return 0;
+  });
 
-  const searchedWord = searchWord.searchWord
-  const filteredWordData = worddata.filter((x) => x.word.includes(searchedWord))
+  const searchedWord = searchWord.searchWord;
+  const filteredWordData = worddata.filter((x) => x.word.includes(searchedWord));
 
   // console.log(worddata)
-   console.log(searchWord)
+  console.log(searchWord);
   // console.log(filteredWordData)
 
   const lastPost = currentPage * wordsPerPage;
@@ -62,45 +62,31 @@ function Wordsgrid({ searchWord }) {
 
   return (
     <div>
-      {(searchedWord === '' || searchedWord === undefined || searchedWord === null || !searchedWord) ?
-      <div className="wordgrid">
-        <Row gutter={[16, 16]}>
-          {currentWords.map((word, index) => (
-                <React.Fragment key={index}>
-                  <GridCars worddata={currentWords} words={word.word} summary={word.summary} content={word.content} />
-                </React.Fragment>
-            ))}
-        </Row>
-        <Pagination pages={pages} setCurrentPage={setCurrentPage} />
-      </div>
-      : <div className="wordgrid">
+      {searchedWord === "" || searchedWord === undefined || searchedWord === null || !searchedWord ? (
+        <div className="wordgrid">
           <Row gutter={[16, 16]}>
-            {currentFilteredWords.length === 0
-              ? "그룹에 속한 단어가 없습니다."
-              : currentFilteredWords.map((word, index) => (
-                  <React.Fragment key={index}>
-
-                    <GridCars wordData={word} delWord={deleteWord} />
-
-                  </React.Fragment>
-                ))}
+            {currentWords.map((word, index) => (
+              <React.Fragment key={index}>
+                <GridCars wordData={word} />
+              </React.Fragment>
+            ))}
           </Row>
           <Pagination pages={pages} setCurrentPage={setCurrentPage} />
         </div>
       ) : (
         <div className="wordgrid">
           <Row gutter={[16, 16]}>
-            {filteredWordData &&
-              filteredWordData.map((word, index) => (
-                <React.Fragment key={index}>
-                  <GridCars wordData={word} delWord={deleteWord} />
-                </React.Fragment>
-              ))}
+            {currentFilteredWords.length === 0
+              ? "그룹에 속한 단어가 없습니다."
+              : currentFilteredWords.map((word, index) => (
+                  <React.Fragment key={index}>
+                    <GridCars wordData={word} delWord={deleteWord} />
+                  </React.Fragment>
+                ))}
           </Row>
+          <Pagination pages={pages} setCurrentPage={setCurrentPage} />
         </div>
       )}
-      <Pagination pages={pages} setCurrentPage={setCurrentPage} />
-
     </div>
   );
 }
