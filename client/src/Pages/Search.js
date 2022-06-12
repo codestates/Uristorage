@@ -60,6 +60,10 @@ function Search ({ searchHandler, searchedWord }) {
     }
   };
 
+  const handleSearchFilters = () => {
+
+  }
+
   return (
     <div>
       <Nav />
@@ -72,7 +76,7 @@ function Search ({ searchHandler, searchedWord }) {
            </button>
            </Link>
          </div> 
-        <TypeFilter />
+        <TypeFilter handleSearchFilters={filters => handleSearchFilters(filters)} />
       </div>
       <div className="searched_word">
         {filteredWordData.length === publicWords.length || filteredWordData.length === 0 ?
