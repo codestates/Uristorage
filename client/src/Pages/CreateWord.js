@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../Component/Nav";
-import Locationmap from "../Component/Locationmap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -56,12 +55,27 @@ function CreateWord() {
     });
   };
 
-  const [mark, setMark] = useState({});
-  const [stringifyMark, setStringifyMark] = useState('')
+  // const [mark, setMark] = useState({});
+  // const [stringifyMark, setStringifyMark] = useState('')
+  
+  // const SaveMark = (e) => {
+  //   const { _lat, _lng } = e.latlng;
+  //   setMark({lat: _lat, lng: _lng})
+  // }
+
+  // const StringifyMark = (mark) => {
+  //   setStringifyMark(String(mark.lat) + ',' + String(mark.lng))
+  // }
+
+  let mark = {}
+  let stringifyMark = ''
+
   const ClickLocationHandler = (e) => {
     const { _lat, _lng } = e.latlng;
-    setMark({lat: _lat, lng: _lng});
-    setStringifyMark(String(mark.lat) + ',' + String(mark.lng))
+    // setMark({lat: _lat, lng: _lng})
+    // setStringifyMark(String(mark.lat) + ',' + String(mark.lng))
+    mark = {lat: _lat, lng: _lng}
+    stringifyMark = (String(mark.lat) + ',' + String(mark.lng))
     setWordcreate({
       users_id: Wordcreate.users_id,
       word: Wordcreate.word,
@@ -72,6 +86,16 @@ function CreateWord() {
       map: stringifyMark
     })
   }
+
+  // const ClickLocationHandler = async (e) => {
+  //   SaveMark(e)
+  //   StringifyMark(mark)
+  //   MapInfoInWord(stringifyMark)
+  // }
+  
+  console.log(mark)
+  console.log(stringifyMark)
+  console.log(Wordcreate)
 
    const [wordDate, setWordDate] = useState(new Date());
    const dateToString = (e) => {
@@ -92,6 +116,8 @@ function CreateWord() {
        calendar: worddate
     })
    }
+   
+   console.log(Wordcreate.map)
 
 // console.log("날짜", wordDate)
 // console.log(Wordcreate)
@@ -144,8 +170,8 @@ function CreateWord() {
               defaultZoom={16} zoomControl={true} draggable={true}
               onClick={ClickLocationHandler}
             >
-            <Marker 
-              position={mark}
+            <Marker
+              position={Wordcreate.map}
             />
             </NaverMap>
             </RenderAfterNavermapsLoaded>

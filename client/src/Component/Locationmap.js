@@ -21,7 +21,7 @@ function Locationmap () {
     }
   }
   // console.log(markerInfo)
-  // console.log(locationWord)
+   console.log(locationWord)
 
   const decodeMarkerInfo = []
   for (let i = 0; i < markerInfo.length; i++) {
@@ -31,8 +31,19 @@ function Locationmap () {
     }
   }
 
-
   console.log(decodeMarkerInfo)
+
+  const popUpInfo = []
+  for (let i = 0; i < locationWord.length; i++) {
+    if (locationWord[i].type === 'place' && locationWord[i].map !== "") { // 두번째 조건은 차후에 삭제
+      popUpInfo.push([locationWord[i].word, locationWord[i].summary])
+    }
+  }
+  console.log(popUpInfo)
+
+  const clickMarkerHandler = () => {
+    alert(popUpInfo)
+  }
 
   //const navermaps = window.naver.maps;
   //console.log(window.naver.maps)
@@ -56,6 +67,7 @@ function Locationmap () {
           return (
            <Marker
            position={address}
+           onClick={clickMarkerHandler}
            //animation={navermaps.Animation. DROP}
            />)
           })
