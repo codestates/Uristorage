@@ -22,23 +22,10 @@ function Mypage() {
   };
 
   const [searchWord, setSearchWord] = useState("");
-  //console.log(searchWord)
   const handleInputValue = (key) => (e) => {
     setSearchWord({ ...searchWord, [key]: e.target.value });
   };
-
-  const onKeyPress = (e) => {
-    if (e.key === "Enter") {
-      setButtonClicked(searchWord);
-    }
-  };
-
-  const [buttonClicked, setButtonClicked] = useState("");
-
-  const searchClickHandler = () => {
-    setButtonClicked(searchWord);
-  };
-
+  
   return (
     <div>
       <Nav />
@@ -50,8 +37,8 @@ function Mypage() {
       </div>
       <div className="My_search_createword">
         <div className="home_searchbar">
-          <input className="searchbar" type="text" placeholder="단어를 입력해주세요" onChange={handleInputValue("searchword")} onKeyPress={onKeyPress} />
-          <button type="submit" className="searchbutton" onClick={searchClickHandler}>
+          <input className="searchbar" type="text" placeholder="단어를 입력해주세요" onChange={handleInputValue("searchWord")} />
+          <button type="submit" className="searchbutton">
             <img className="searchicon" src="https://cdn-icons-png.flaticon.com/512/149/149852.png" />
           </button>
         </div>
@@ -60,7 +47,7 @@ function Mypage() {
         </div>
       </div>
       <div className="WordGrid">
-        <Wordsgrid wordcreate={wordcreate} getdata={getdata} buttonClicked={buttonClicked} />
+        <Wordsgrid wordcreate={wordcreate} getdata={getdata} searchWord={searchWord} />
       </div>
       <div className="Consonant">
         <div>자음 필터</div>

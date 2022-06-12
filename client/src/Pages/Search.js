@@ -44,9 +44,6 @@ function Search({ searchHandler, searchedWord }) {
     return 0;
   });
 
-  console.log(filteredWordData);
-  console.log(publicWords);
-
   const wordClickHandler0 = () => {
     searchHandler(searchWord);
     navigate("/Search");

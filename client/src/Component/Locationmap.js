@@ -21,8 +21,7 @@ function Locationmap() {
       markerInfo.push(locationWord[i].map);
     }
   }
-  console.log(markerInfo);
-  console.log(locationWord);
+
 
   const decodeMarkerInfo = [];
   for (let i = 0; i < markerInfo.length; i++) {
@@ -32,6 +31,7 @@ function Locationmap() {
     }
   }
   console.log(decodeMarkerInfo);
+
 
   //const navermaps = window.naver.maps;
   //console.log(window.naver.maps)

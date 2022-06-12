@@ -62,7 +62,7 @@ function TypeFilter ({ data }) {
       setWordtype(modifiedProducts);
     }
   };
-  console.log("타입은", wordType.contents)
+  // console.log("타입은", wordType.contents)
 
     return (
       <div className="filter">
