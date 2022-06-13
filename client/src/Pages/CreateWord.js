@@ -101,6 +101,8 @@ function CreateWord() {
     });
   };
 
+  console.log(Wordcreate);
+
   const [uploadImage, setUploadImage] = useState(null);
 
   function uuidv4() {
