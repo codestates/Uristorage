@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import Nav from "../Component/Nav";
 import Searchbar from "../Component/Searchbar";
-import TypeFilter from "../Component/TypeFilter";
+import Filter from "../Component/Filter";
 import "./Search.css";
 import axios from "axios";
 
@@ -56,8 +56,44 @@ function Search({ searchHandler, searchedWord }) {
     }
   };
 
-  const handleSearchFilters = () => {
+  const [Filters, setFilter] = useState();
+  const types = [
+    { contents: "All", id: 1},
+    { contents: "person", id: 2},
+    { contents: "place", id: 3},
+    { contents: "date", id: 4},
+  ];
 
+  // const showFilter = (filters) => {
+  //   const newcreateword = [...publicWords]
+  //   newcreateword.push(filters)
+  //   setPublicWords(newcreateword)
+  // }
+
+  const handletypeValue = (value) => {
+    const data = types;
+    let contents = "";
+
+    for (let key in data){
+      if(data[key].id === parseInt(value, 10)){
+        contents = data[key].contents
+      }
+    }
+    console.log("contents", contents)
+    return contents;
+  }
+
+  const handleSearchFilters = (filters) => {
+    let newFilters = {...Filters}
+    newFilters = filters
+    console.log("filters", newFilters)
+
+    if(newFilters !== null){
+    let typeValue = handletypeValue(filters)
+    newFilters = typeValue
+    }
+
+   // showFilter(newFilters)
   }
 
   return (
@@ -72,7 +108,7 @@ function Search({ searchHandler, searchedWord }) {
             </button>
           </Link>
         </div>
-        <TypeFilter />
+        <Filter handleSearchFilters={filters => handleSearchFilters(filters)}/>
       </div>
       <div className="searched_word">
         {filteredWordData.length === publicWords.length || filteredWordData.length === 0 ? (

@@ -80,8 +80,6 @@ function CreateWord() {
     }
   }, [mark]);
 
-  console.log(Wordcreate);
-
   const [wordDate, setWordDate] = useState(new Date());
   const dateToString = (e) => {
     return e.getFullYear() + "-" + (e.getMonth() + 1).toString().padStart(2, "0") + "-" + e.getDate().toString().padStart(2, "0");
@@ -102,6 +100,8 @@ function CreateWord() {
       calendar: worddate,
     });
   };
+
+  console.log(Wordcreate);
 
   const [uploadImage, setUploadImage] = useState(null);
 
