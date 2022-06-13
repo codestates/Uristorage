@@ -47,10 +47,6 @@ function Wordsgrid({ searchWord }) {
   const searchedWord = searchWord.searchWord;
   const filteredWordData = worddata.filter((x) => x.word.includes(searchedWord));
 
-  // console.log(worddata)
-  console.log(searchWord);
-  // console.log(filteredWordData)
-
   const lastPost = currentPage * wordsPerPage;
   const firstPost = lastPost - wordsPerPage;
   const currentWords = worddata.slice(firstPost, lastPost);
@@ -65,11 +61,13 @@ function Wordsgrid({ searchWord }) {
       {searchedWord === "" || searchedWord === undefined || searchedWord === null || !searchedWord ? (
         <div className="wordgrid">
           <Row gutter={[16, 16]}>
-            {currentWords.map((word, index) => (
-              <React.Fragment key={index}>
-                <GridCars wordData={word} />
-              </React.Fragment>
-            ))}
+            {currentWords.length === 0
+              ? "그룹에 속한 단어가 없습니다."
+              : currentWords.map((word, index) => (
+                  <React.Fragment key={index}>
+                    <GridCars wordData={word} />
+                  </React.Fragment>
+                ))}
           </Row>
           <Pagination pages={pages} setCurrentPage={setCurrentPage} />
         </div>
@@ -77,7 +75,7 @@ function Wordsgrid({ searchWord }) {
         <div className="wordgrid">
           <Row gutter={[16, 16]}>
             {currentFilteredWords.length === 0
-              ? "그룹에 속한 단어가 없습니다."
+              ? "일치하는 단어가 없습니다."
               : currentFilteredWords.map((word, index) => (
                   <React.Fragment key={index}>
                     <GridCars wordData={word} delWord={deleteWord} />

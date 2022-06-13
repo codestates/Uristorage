@@ -21,6 +21,7 @@ export default function GridCars({ wordData, delWord }) {
               {wordData.word}
             </Link>
           </div>
+          {/* <div className="gridnickname">작성자:[{wordData.user.nickname}]</div> */}
           <div className="gridsummary">{wordData.summary}</div>
           <img className="gridimage" src={wordData.image} />
           <Link to="/ModifyWord" state={{ data: wordData }}>
@@ -36,6 +37,7 @@ export default function GridCars({ wordData, delWord }) {
               {wordData.word}
             </Link>
           </div>
+          <div className="gridnickname">작성자:[{wordData.user.nickname}]</div>
           <div className="gridsummary">{wordData.summary}</div>
           <img className="gridimage" src={wordData.image} />
         </div>

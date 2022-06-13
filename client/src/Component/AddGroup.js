@@ -20,8 +20,23 @@ function AddGroup() {
     setMember(event.currentTarget.value);
   };
 
-  const onMemberAdd = () => {
-    setMembers([...members, member]);
+  const onMemberAdd = async () => {
+    await axios
+      .post(
+        `${process.env.REACT_APP_URL}/users/nickname`,
+        {
+          nickname: member,
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.success) {
+          setMembers([...members, member]);
+        } else {
+          alert(res.data.message);
+        }
+      }); //닉네임이 존재하는 지 조회
   };
 
   const onMemberDelete = (e) => {
