@@ -16,6 +16,13 @@ module.exports = async (req, res) => {
         // through: {
         //   attributes: ["words_id", "groups_id"],
         // },
+        include: [
+          {
+            model: user,
+            required: true,
+            attributes: ["nickname"],
+          },
+        ],
       },
     ],
   });

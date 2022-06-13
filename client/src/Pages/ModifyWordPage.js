@@ -95,46 +95,46 @@ function ModifyWord() {
     });
   };
 
-  const [mark, setMark] = useState({});
-  const [stringifyMark, setStringifyMark] = useState("");
-  const ClickLocationHandler = (e) => {
-    const { _lat, _lng } = e.latlng;
-    setMark({ lat: _lat, lng: _lng });
-    setStringifyMark(String(mark.lat) + "," + String(mark.lng));
-    setWordcreate({
-      id: location.state.data.id,
-      word: Wordcreate.word,
-      summary: Wordcreate.summary,
-      content: Wordcreate.content,
-      image: Wordcreate.image,
-      pub: Wordcreate.pub,
-      type: Wordcreate.type,
-      map: stringifyMark,
-    });
-  };
-
   // const [mark, setMark] = useState({});
-
+  // const [stringifyMark, setStringifyMark] = useState("");
   // const ClickLocationHandler = (e) => {
   //   const { _lat, _lng } = e.latlng;
   //   setMark({ lat: _lat, lng: _lng });
+  //   setStringifyMark(String(mark.lat) + "," + String(mark.lng));
+  //   setWordcreate({
+  //     id: location.state.data.id,
+  //     word: Wordcreate.word,
+  //     summary: Wordcreate.summary,
+  //     content: Wordcreate.content,
+  //     image: Wordcreate.image,
+  //     pub: Wordcreate.pub,
+  //     type: Wordcreate.type,
+  //     map: stringifyMark,
+  //   });
   // };
 
-  // useEffect(() => {
-  //   if (mark !== {}) {
-  //     const pin = String(mark.lat) + "," + String(mark.lng);
-  //     setWordcreate({
-  //       users_id: Wordcreate.users_id,
-  //       word: Wordcreate.word,
-  //       summary: Wordcreate.summary,
-  //       content: Wordcreate.content,
-  //       image: Wordcreate.image,
-  //       pub: Wordcreate.pub,
-  //       type: Wordcreate.type,
-  //       map: pin,
-  //     });
-  //   }
-  // }, [mark]);
+  const [mark, setMark] = useState({});
+
+  const ClickLocationHandler = (e) => {
+    const { _lat, _lng } = e.latlng;
+    setMark({ lat: _lat, lng: _lng });
+  };
+
+  useEffect(() => {
+    if (mark !== {}) {
+      const pin = String(mark.lat) + "," + String(mark.lng);
+      setWordcreate({
+        id: location.state.data.id,
+        word: Wordcreate.word,
+        summary: Wordcreate.summary,
+        content: Wordcreate.content,
+        image: Wordcreate.image,
+        pub: Wordcreate.pub,
+        type: Wordcreate.type,
+        map: pin,
+      });
+    }
+  }, [mark]);
 
   const [wordDate, setWordDate] = useState(new Date());
   const dateToString = (e) => {
@@ -193,7 +193,7 @@ function ModifyWord() {
           <div className="Type_Create">
             <span>구분</span>&emsp;
             <input type="radio" name="type" value={"All"} onChange={handleInputValue("type")} />
-            전체
+            일반
             <input type="radio" name="type" value={"person"} onChange={handleInputValue("type")} />
             인물
             <input type="radio" name="type" value={"place"} onChange={handleInputValue("type")} />

@@ -4,6 +4,7 @@ module.exports = {
   login: require("./users/login"),
   logout: require("./users/logout"),
   getInfo: require("./users/getInfo"),
+  isNickname: require("./users/isNickname"),
   modifyUser: require("./users/modifyUser"),
   createWord: require("./words/createWord"),
   modifyWord: require("./words/modifyWord"),

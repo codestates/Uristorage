@@ -80,8 +80,6 @@ function CreateWord() {
     }
   }, [mark]);
 
-  console.log(Wordcreate);
-
   const [wordDate, setWordDate] = useState(new Date());
   const dateToString = (e) => {
     return e.getFullYear() + "-" + (e.getMonth() + 1).toString().padStart(2, "0") + "-" + e.getDate().toString().padStart(2, "0");
@@ -175,7 +173,7 @@ function CreateWord() {
           <div className="Type_Create">
             <span>구분</span>&emsp;
             <input type="radio" name="type" value={"All"} onChange={handleInputValue("type")} />
-            전체
+            일반
             <input type="radio" name="type" value={"person"} onChange={handleInputValue("type")} />
             인물
             <input type="radio" name="type" value={"place"} onChange={handleInputValue("type")} />
@@ -183,32 +181,16 @@ function CreateWord() {
             <input type="radio" name="type" value={"date"} onChange={handleInputValue("type")} />
             날짜
           </div>
-          {Wordcreate.type === "place" ?
-            <RenderAfterNavermapsLoaded
-              ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
-            <NaverMap
-              className='CreateWord_Map' mapDivId={"naver-map"}
-              defaultCenter={{ lat: 37.3595704, lng: 127.105399 }}
-              defaultZoom={16} zoomControl={true} draggable={true}
-              onClick={ClickLocationHandler}
-            >
-            <Marker 
-              position={mark}
-            />
-            </NaverMap>
+          {Wordcreate.type === "place" ? (
+            <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
+              <NaverMap className="CreateWord_Map" mapDivId={"naver-map"} defaultCenter={{ lat: 37.3595704, lng: 127.105399 }} defaultZoom={16} zoomControl={true} draggable={true} onClick={ClickLocationHandler}>
+                <Marker position={mark} />
+              </NaverMap>
             </RenderAfterNavermapsLoaded>
-            : null}
-          {Wordcreate.type === "date" ?
-            <DatePicker
-              dateFormat="yyyy-MM-dd"
-              selected={wordDate}
-              placeholderText="단어 날짜 선택"
-              onChange={handledate}
-              locale={ko}
-            />
-          : null}
+          ) : null}
+          {Wordcreate.type === "date" ? <DatePicker dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}
           <div className="Pub_Create">
-            <span> 공개 여부 </span> 
+            <span> 공개 여부 </span>
             <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
             공개
             <input type="radio" name="open" value={false} onChange={handleInputValue("pub")} />

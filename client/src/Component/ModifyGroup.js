@@ -28,8 +28,23 @@ function ModifyGroup() {
     setMember(event.currentTarget.value);
   };
 
-  const onMemberAdd = () => {
-    setMembers([...members, member]);
+  const onMemberAdd = async () => {
+    await axios
+      .post(
+        `${process.env.REACT_APP_URL}/users/nickname`,
+        {
+          nickname: member,
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.success) {
+          setMembers([...members, member]);
+        } else {
+          alert(res.data.message);
+        }
+      }); //닉네임이 존재하는 지 조회
   };
 
   const onMemberDelete = (e) => {
@@ -37,17 +52,20 @@ function ModifyGroup() {
   };
 
   const getGroupInfo = async () => {
-    await axios.get(`${process.env.REACT_APP_URL}/groups/${groupId}`, { withCredentials: true }).then((res) => {
-      const groupMembers = res.data.members
-        .filter((el) => el.nickname !== userInfo.nickname)
-        .map((el) => {
-          return el.nickname;
-        });
-      setMembers([...members, ...groupMembers]);
-      setName(res.data.name);
-      setImage(res.data.image);
-      console.log(groupMembers);
-    });
+    await axios
+      .get(`${process.env.REACT_APP_URL}/groups/${groupId}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        const groupMembers = res.data.members
+          .filter((el) => el.nickname !== userInfo.nickname)
+          .map((el) => {
+            return el.nickname;
+          });
+        setMembers([...members, ...groupMembers]);
+        setName(res.data.name);
+        console.log(groupMembers);
+      });
   };
 
   const onSubmitHandler = (event) => {
@@ -77,8 +95,9 @@ function ModifyGroup() {
     getGroupInfo();
   }, []);
 
-  const [uploadImage, setUploadImage] = useState(userGroups.filter((el) => el.group_id === groupId)[0].image || "");
+  const [uploadImage, setUploadImage] = useState(userGroups.filter((el) => el.group_id === groupId)[0]?.image || "");
 
+  console.log(uploadImage);
   function uuidv4() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
       let r = (Math.random() * 16) | 0,
