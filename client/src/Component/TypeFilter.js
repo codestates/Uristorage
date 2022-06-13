@@ -1,56 +1,50 @@
 import React, { useState, useEffect } from "react";
 import "../Pages/Mypage.css";
+import { Checkbox, Radio } from "antd";
 import { useNavigate } from "react-router-dom";
 
-function TypeFilter({ data }) {
-  const [wordType, setWordtype] = useState([
-    { contents: "All", checked: false, info: "type" },
-    { contents: "person", checked: false, info: "type" },
-    { contents: "place", checked: false, info: "type" },
-    { contents: "date", checked: false, info: "type" },
-  ]);
+function TypeFilter(props) {
+  const types = [
+    { contents: "All", id: 1 },
+    { contents: "person", id: 2 },
+    { contents: "place", id: 3 },
+    { contents: "date", id: 4 },
+  ];
 
-  useEffect(() => {
-    let findtype = wordType.findIndex((index) => index.checked === true);
-    if (findtype === -1) findtype = 0;
-  }, []);
-
-  const handleChange = (data) => {
-    if (data.info === "type") {
-      const copyProducts = [...wordType];
-      const modifiedProducts = copyProducts.map((type) => {
-        if (data.contents === type.contents) {
-          type.checked = !type.checked;
-        } else {
-          type.checked = false;
-        }
-        return type;
-      });
-      setWordtype(modifiedProducts);
+  const [wordType, setWordtype] = useState(1);
+  /*
+  const handleToggle = (value) => {
+    const currentIndex = wordType.indexOf(value)
+    const newChecked = [...wordType]
+    if(currentIndex === -1){ 
+      newChecked.push(value)
+    } else {
+      newChecked.splice(currentIndex, 1)
     }
+    setWordtype(newChecked)
+    props.handleFilters(newChecked)
+  }
+  */
+
+  const typeLists = () =>
+    types.map((value) => (
+      <Radio key={value.id} value={value.id}>
+        {value.contents}
+      </Radio>
+    ));
+
+  const handletype = (event) => {
+    setWordtype(event.target.value);
+    props.handleFilters(event.target.value);
+    props.handleSearchFilters(event.target.value);
+    console.log("event.target.value", event.target.value);
   };
 
   return (
     <div className="filter">
-      {wordType &&
-        wordType.map((type, idx) => (
-          <div className="filter_box" key={idx}>
-            <input
-              type="checkbox"
-              className="check_typefilter"
-              checked={type.checked}
-              onChange={() => {
-                handleChange(type);
-              }}
-            />
-            &nbsp;
-            <label className="label_typefilter">
-              {type.contents}
-              {/* {checkData.area} */}
-            </label>
-            {/* </div> */}
-          </div>
-        ))}
+      <Radio.Group onChange={handletype} value={wordType}>
+        {typeLists()}
+      </Radio.Group>
     </div>
   );
 }

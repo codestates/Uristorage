@@ -55,6 +55,10 @@ function Search({ searchHandler, searchedWord }) {
     }
   };
 
+  const handleSearchFilters = () => {
+
+  }
+
   return (
     <div>
       <Nav />
