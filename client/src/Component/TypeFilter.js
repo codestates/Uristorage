@@ -6,13 +6,14 @@ import { useNavigate } from "react-router-dom";
 function TypeFilter (props) {
   const navigate = useNavigate();
   const types = [
-    { contents: "All", id: 1},
-    { contents: "person", id: 2},
-    { contents: "place", id: 3},
-    { contents: "date", id: 4},
+    { contents: "All", id: 1 },
+    { contents: "person", id: 2 },
+    { contents: "place", id: 3 },
+    { contents: "date", id: 4 },
   ];
 
-  const [wordType, setWordtype] = useState()
+  const [wordType, setWordtype] = useState();
+
   /*
   const handleToggle = (value) => {
     const currentIndex = wordType.indexOf(value)
@@ -30,11 +31,12 @@ function TypeFilter (props) {
 
    console.log("wordType", wordType)
 
-  const typeLists = () => (
-    types.map(value => (
-        <Radio key={value.id} value={value.id}>{value.contents}</Radio>
-    ))
-  )
+  const typeLists = () =>
+    types.map((value) => (
+      <Radio key={value.id} value={value.id}>
+        {value.contents}
+      </Radio>
+    ));
 
   const handletype = (event) => {
     setWordtype(event.target.value)

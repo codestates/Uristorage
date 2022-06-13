@@ -32,7 +32,7 @@ function Detail() {
       <div className="words_information_detail">
         <div className="words_clickedwords_detail">
           {clicked.words}
-          <div> 김준환님의 단어</div>
+          <div> {clicked.user.nickname}님의 단어</div>
         </div>
         <div className="words_clickedtitle_detail">
           <div>요약:</div>
