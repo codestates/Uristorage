@@ -56,7 +56,7 @@ function Profile() {
       }
     }
   };
-  console.log("members", members);
+  // console.log("members", members);
 
   useEffect(() => {
     if (id) {

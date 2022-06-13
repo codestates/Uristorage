@@ -22,7 +22,6 @@ function Locationmap() {
     }
   }
 
-
   const decodeMarkerInfo = [];
   for (let i = 0; i < markerInfo.length; i++) {
     if (decodeMarkerInfo[i] !== 0 || decodeMarkerInfo[i] !== "") {
@@ -30,9 +29,7 @@ function Locationmap() {
       decodeMarkerInfo.push({ lat: el[0], lng: el[1] });
     }
   }
-  console.log(decodeMarkerInfo);
-
-  console.log(decodeMarkerInfo)
+  // console.log(decodeMarkerInfo);
 
   const popUpInfo = []
   for (let i = 0; i < locationWord.length; i++) {
@@ -42,16 +39,25 @@ function Locationmap() {
   }
   console.log(popUpInfo)
 
-  const clickMarkerHandler = () => {
-    alert(popUpInfo)
+  
+  const [infoBelowMap, SetInfoBelowMap] = useState('')
+  const clickMarkerHandler = (index) => {
+    // let thisPop = []
+    // thisPop.push(popUpInfo[index][0] + ' - ' + popUpInfo[index][1])
+    SetInfoBelowMap(popUpInfo[index][0] + ' - ' + popUpInfo[index][1])
+    // console.log(infoBelowMap)
   }
 
-  //const navermaps = window.naver.maps;
-  //console.log(window.naver.maps)
+  console.log(infoBelowMap)
+  // const navermap = window.naver.maps;
 
   return (
     <div>
-      <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID} error={<p>Maps Load Error</p>} loading={<p>Maps Loading...</p>}>
+      <RenderAfterNavermapsLoaded
+        ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}
+        error={<p>Maps Load Error</p>}
+        loading={<p>Maps Loading...</p>
+      }>
         <NaverMap
           className="Location_map"
           mapDivId={"naver-map"}
@@ -65,12 +71,13 @@ function Locationmap() {
               <Marker
                 key={index}
                 position={address}
-                onClick={clickMarkerHandler}
+                onClick={() => clickMarkerHandler(index)}
                 //animation={navermaps.Animation. DROP}
               />
             );
           })}
         </NaverMap>
+        <div className='Map-info'>{infoBelowMap}</div>
       </RenderAfterNavermapsLoaded>
     </div>
   );
