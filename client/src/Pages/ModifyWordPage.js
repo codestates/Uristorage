@@ -16,7 +16,7 @@ function ModifyWord() {
   const location = useLocation();
   const userGroups = useSelector((state) => state.userGroups);
 
-  console.log("@@@@", location.state.data);
+  // console.log("@@@@", location.state.data);
 
   const navigate = useNavigate();
   const [checkedGroups, setCheckedGroups] = useState([]);
@@ -95,24 +95,6 @@ function ModifyWord() {
     });
   };
 
-  // const [mark, setMark] = useState({});
-  // const [stringifyMark, setStringifyMark] = useState("");
-  // const ClickLocationHandler = (e) => {
-  //   const { _lat, _lng } = e.latlng;
-  //   setMark({ lat: _lat, lng: _lng });
-  //   setStringifyMark(String(mark.lat) + "," + String(mark.lng));
-  //   setWordcreate({
-  //     id: location.state.data.id,
-  //     word: Wordcreate.word,
-  //     summary: Wordcreate.summary,
-  //     content: Wordcreate.content,
-  //     image: Wordcreate.image,
-  //     pub: Wordcreate.pub,
-  //     type: Wordcreate.type,
-  //     map: stringifyMark,
-  //   });
-  // };
-
   const [mark, setMark] = useState({});
 
   const ClickLocationHandler = (e) => {
@@ -124,7 +106,7 @@ function ModifyWord() {
     if (mark !== {}) {
       const pin = String(mark.lat) + "," + String(mark.lng);
       setWordcreate({
-        id: location.state.data.id,
+        id: Wordcreate.id,
         word: Wordcreate.word,
         summary: Wordcreate.summary,
         content: Wordcreate.content,
@@ -203,13 +185,13 @@ function ModifyWord() {
           </div>
           {Wordcreate.type === "date" ? <DatePicker dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}
           <div className="Pub_Create">
-            <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
+            {/* <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
             공개
             <input type="radio" name="open" value={false} onChange={handleInputValue("pub")} />
-            비공개
-            {/* {Wordcreate.pub ? (
+            비공개 */}
+            {Wordcreate.pub ? (
               <>
-                <input type="radio" name="open" value={true}  onChange={handleInputValue("pub")} />
+                <input type="radio" name="open" value={true} checked onChange={handleInputValue("pub")} />
                 공개
                 <input type="radio" name="open" value={false} onChange={handleInputValue("pub")} />
                 비공개
@@ -218,10 +200,10 @@ function ModifyWord() {
               <>
                 <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
                 공개
-                <input type="radio" name="open" value={false}  onChange={handleInputValue("pub")} />
+                <input type="radio" name="open" value={false} checked onChange={handleInputValue("pub")} />
                 비공개
               </>
-            )} */}
+            )}
           </div>
           <div className="Content_Image">
             <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />

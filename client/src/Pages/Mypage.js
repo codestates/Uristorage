@@ -4,39 +4,67 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Nav from "../Component/Nav";
 import Profile from "../Component/Profile";
-import TypeFilter from "../Component/TypeFilter";
+import CatFilter from "../Component/CatFilter/CatFilter";
 import Wordsgrid from "../Component/Wordsgrid";
 import { useSelector } from "react-redux";
 import "./Mypage.css";
 
 function Mypage() {
-  const [wordcreate, setWordcreate] = useState("");
-  const [Filters, setFilter] = useState();
-
-  const getdata = (wordcreate) => {
-    setWordcreate(wordcreate);
-  };
+  const userInfo = useSelector((state) => state.userInfo);
+  const users_id = userInfo.id;
+  const groupFilter = useSelector((state) => state.groupfilter);
 
   const [searchWord, setSearchWord] = useState("");
   const handleInputValue = (key) => (e) => {
     setSearchWord({ ...searchWord, [key]: e.target.value });
   };
 
-  const handleFilters = (filters) => {
-    // let newFilters = {...Filters}
-    // newFilters = filters
+  const [allWorddata, setAllworddata] = useState([]);
+  const [worddata, setWorddata] = useState([]);
+  const [type, setType] = useState("All");
+
+  const filterHandler = (type) => {
+    type === "All" ? setWorddata(allWorddata) : setWorddata(allWorddata.filter((el) => el.type === type));
+  };
+
+  async function fetchData() {
+    if (groupFilter === 0) {
+      //그룹이없는 경우
+      axios.get(`${process.env.REACT_APP_URL}/words/user/${users_id}`).then((res) => {
+        setAllworddata(res.data);
+      });
+    } else {
+      axios.get(`${process.env.REACT_APP_URL}/words/group/${groupFilter}`).then((res) => {
+        setAllworddata(res.data.groupWords);
+      });
+    }
   }
-  
+  const deleteWord = (id) => {
+    setAllworddata(allWorddata.filter((el) => el.id !== id));
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [users_id, groupFilter]);
+
+  useEffect(() => {
+    fetchData();
+  }, [users_id, groupFilter]);
+
+  useEffect(() => {
+    filterHandler(type);
+  }, [allWorddata, type]);
+
   return (
     <div id="MyPage">
       <div className="My_Nav">
-      <Nav />
+        <Nav />
       </div>
       <div className="My_Profile">
         <Profile />
       </div>
       <div className="My_Filter">
-        <TypeFilter handleFilters={filters => handleFilters(filters)} />
+        <CatFilter setType={setType} />
       </div>
       {}
       <div className="My_search_createword">
@@ -50,8 +78,8 @@ function Mypage() {
           <Link to="/CreateWord">단어등록</Link>{" "}
         </div>
       </div>
-      <div className="My_WordGrid">
-        <Wordsgrid wordcreate={wordcreate} getdata={getdata} searchWord={searchWord} />
+      <div className="WordGrid">
+        <Wordsgrid searchWord={searchWord} worddata={worddata} deleteWord={deleteWord} />
       </div>
       <div className="My_Consonant">
         <div>자음 필터</div>

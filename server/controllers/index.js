@@ -12,7 +12,7 @@ module.exports = {
   groupWords: require("./words/groupWords"),
   publicWords: require("./words/publicWords"),
   userWords: require("./words/userWords"),
-  groupInfo: require("./groups/groupInfo"),
+  groupMembers: require("./groups/groupMembers"),
   userGroup: require("./groups/userGroup"),
   createGroup: require("./groups/createGroup"),
   deleteGroup: require("./groups/deleteGroup"),

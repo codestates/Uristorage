@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../Component/Nav";
-import Locationmap from "../Component/Locationmap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -186,7 +185,7 @@ function CreateWord() {
           {Wordcreate.type === "place" ? (
             <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
               <NaverMap className="CreateWord_Map" mapDivId={"naver-map"} defaultCenter={{ lat: 37.3595704, lng: 127.105399 }} defaultZoom={16} zoomControl={true} draggable={true} onClick={ClickLocationHandler}>
-                <Marker position={mark} />
+                <Marker position={Wordcreate.map} />
               </NaverMap>
             </RenderAfterNavermapsLoaded>
           ) : null}
