@@ -12,6 +12,8 @@ import axios from "axios";
 
 function Location () {
 
+  const [wordType, setWordtype] = useState(3)
+
   // const userInfo = useSelector((state) => state.userInfo);
   // const users_id = userInfo.id;
   // const [groupWords, setGroupWords] = useState([])
@@ -23,6 +25,12 @@ function Location () {
   // }, [])
   // console.log(groupWords)
 
+  const handleFilters = (filters) => {
+    let newFilters = {...wordType}
+    newFilters = filters
+    setWordtype(3)
+  }
+
   return (
     <div>
       <Nav />
@@ -30,7 +38,7 @@ function Location () {
         <Profile />
       </div>
       <div className="My_Filter">
-        <TypeFilter />
+      <TypeFilter handleFilters={filters => handleFilters(filters)} />
       </div>
       <div>
         <Locationmap />

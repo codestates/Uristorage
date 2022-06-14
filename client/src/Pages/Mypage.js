@@ -10,13 +10,9 @@ import { useSelector } from "react-redux";
 import "./Mypage.css";
 
 function Mypage() {
-  //const wordarr = data;
   const [wordcreate, setWordcreate] = useState("");
-  //const location = useLocation();
-  //const data = () => {
-  //  const { state } = useLocation();
-  //  console.log("state", state);
-  //}
+  const [Filters, setFilter] = useState();
+
   const getdata = (wordcreate) => {
     setWordcreate(wordcreate);
   };
@@ -25,6 +21,11 @@ function Mypage() {
   const handleInputValue = (key) => (e) => {
     setSearchWord({ ...searchWord, [key]: e.target.value });
   };
+
+  const handleFilters = (filters) => {
+    // let newFilters = {...Filters}
+    // newFilters = filters
+  }
   
   return (
     <div>
@@ -33,8 +34,9 @@ function Mypage() {
         <Profile />
       </div>
       <div className="My_Filter">
-        <TypeFilter />
+        <TypeFilter handleFilters={filters => handleFilters(filters)} />
       </div>
+      {}
       <div className="My_search_createword">
         <div className="home_searchbar">
           <input className="searchbar" type="text" placeholder="단어를 입력해주세요" onChange={handleInputValue("searchWord")} />
@@ -51,12 +53,6 @@ function Mypage() {
       </div>
       <div className="Consonant">
         <div>자음 필터</div>
-      </div>
-      <div>
-        <Link to="/Location">지도로가기</Link>
-      </div>
-      <div>
-        <Link to="/Calendar">달력으로가기</Link>
       </div>
     </div>
   );

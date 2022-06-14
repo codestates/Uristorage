@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import Nav from "../Component/Nav";
 import Searchbar from "../Component/Searchbar";
-import TypeFilter from "../Component/TypeFilter";
+import Filter from "../Component/Filter";
 import "./Search.css";
 import axios from "axios";
 
@@ -22,7 +22,6 @@ function Search({ searchHandler, searchedWord }) {
   }
 
   const [searchWord, setSearchWord] = useState(searchedWord);
-  console.log(searchWord);
   const handleInputValue = (key) => (e) => {
     setSearchWord({ ...searchWord, [key]: e.target.value });
   };
@@ -56,6 +55,46 @@ function Search({ searchHandler, searchedWord }) {
     }
   };
 
+  const [Filters, setFilter] = useState();
+  const types = [
+    { contents: "All", id: 1},
+    { contents: "person", id: 2},
+    { contents: "place", id: 3},
+    { contents: "date", id: 4},
+  ];
+
+  // const showFilter = (filters) => {
+  //   const newcreateword = [...publicWords]
+  //   newcreateword.push(filters)
+  //   setPublicWords(newcreateword)
+  // }
+
+  const handletypeValue = (value) => {
+    const data = types;
+    let contents = "";
+
+    for (let key in data){
+      if(data[key].id === parseInt(value, 10)){
+        contents = data[key].contents
+      }
+    }
+    console.log("contents", contents)
+    return contents;
+  }
+
+  const handleSearchFilters = (filters) => {
+    let newFilters = {...Filters}
+    newFilters = filters
+    console.log("filters", newFilters)
+
+    if(newFilters !== null){
+    let typeValue = handletypeValue(filters)
+    newFilters = typeValue
+    }
+
+   // showFilter(newFilters)
+  }
+
   return (
     <div>
       <Nav />
@@ -68,17 +107,18 @@ function Search({ searchHandler, searchedWord }) {
             </button>
           </Link>
         </div>
-        <TypeFilter />
+        <Filter handleSearchFilters={filters => handleSearchFilters(filters)}/>
       </div>
       <div className="searched_word">
         {filteredWordData.length === publicWords.length || filteredWordData.length === 0 ? (
-          <div className="searched_none">일치하는 단어가 없습니다</div>
+          <div className="searched_none">일치하는 단어가 없습니다.</div>
         ) : (
           filteredWordData.map((word, index) => {
             return (
               <Link key={index} to="/Words" state={{ data: word }}>
                 <div className="word_box" id={word.id} key={word.id}>
                   <div className="word_inbox"> {word.word}</div>
+                  <div className="nickname"> 작성자:[{word.user.nickname}]</div>
                   <div className="title_inbox"> {word.summary}</div>
                   <img src={word.image} width="100" height="80" />
                 </div>

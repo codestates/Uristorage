@@ -18,8 +18,10 @@ function Profile() {
   const [Content, setContent] = useState(groupfilter); //select버튼 value값을 받아 단어그리드로 넘겨줘야함profile=>wordgrid(redux이용해야할듯)
   const groupList = [{ name: "내 단어", image: userInfo.image, group_id: 0 }, ...userGroups];
 
+  console.log(groupfilter);
   const onChangeHandler = (e) => {
     setContent(e.target.value);
+    getGroupMembers();
   };
 
   const getUserGroups = () => {
@@ -39,7 +41,7 @@ function Profile() {
       console.log(err);
     }
   };
-  const [members, setMembers] = useState();
+  const [members, setMembers] = useState(null);
 
   const getGroupMembers = () => {
     if (groupfilter !== 0) {
@@ -54,9 +56,10 @@ function Profile() {
       } catch (err) {
         console.log(err);
       }
+    } else {
+      setMembers(null);
     }
   };
-  // console.log("members", members);
 
   useEffect(() => {
     if (id) {
@@ -72,12 +75,16 @@ function Profile() {
   }, [Content]);
 
   useEffect(() => {
-    getGroupMembers();
+    if (groupfilter === 0) {
+      setMembers(null);
+    } else {
+      getGroupMembers();
+    }
   }, [groupfilter]);
 
   return (
     <div className="information">
-      {groupfilter === 0 ? (
+      {groupfilter === 0 ? ( //setmembs.length로 한다??
         <img
           className="profile-image"
           style={{ width: "250px", height: "250px" }}
@@ -111,6 +118,18 @@ function Profile() {
           ))}
         </select>
       </div>
+      {members !== null ? (
+        <div>
+          {members.map((el, index) => (
+            <div key={index}>
+              <img style={{ width: "50px", height: "50px" }} src={el.image} />
+              <label>{el.nickname}</label>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <></>
+      )}
       <div>{groupfilter !== 0 ? <Link to="/ModifyGroup"> 그룹정보변경 </Link> : <Link to="/ModifyUser"> 회원정보변경 </Link>}</div>
       <div>
         <Link to="/AddGroup"> 그룹추가 </Link>

@@ -11,15 +11,6 @@ function Words({ searchHandler }) {
   const location = useLocation();
   const clicked = location.state.data;
 
-
-  // useEffect(() => {
-  //   if (id) {
-  //     getWordUser();
-  //   }
-  // }, [id]);
-
-  console.log(clicked.users_id)
-
   return (
     <div>
       <Nav />
@@ -30,7 +21,7 @@ function Words({ searchHandler }) {
         <div className="words_information">
           <div className="words_clickedwords">
             {clicked.word}
-            <div> {clicked.users_id}님의 단어</div>
+            <div> {clicked.user.nickname}님의 단어</div>
           </div>
           <div className="words_clickedtitle">
             <div>요약:</div>

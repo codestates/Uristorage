@@ -118,29 +118,6 @@ function ModifyWord() {
     }
   }, [mark]);
 
- 
-
-  // const ClickLocationHandler = (e) => {
-  //   const { _lat, _lng } = e.latlng;
-  //   setMark({ lat: _lat, lng: _lng });
-  // };
-
-  // useEffect(() => {
-  //   if (mark !== {}) {
-  //     const pin = String(mark.lat) + "," + String(mark.lng);
-  //     setWordcreate({
-  //       users_id: Wordcreate.users_id,
-  //       word: Wordcreate.word,
-  //       summary: Wordcreate.summary,
-  //       content: Wordcreate.content,
-  //       image: Wordcreate.image,
-  //       pub: Wordcreate.pub,
-  //       type: Wordcreate.type,
-  //       map: pin,
-  //     });
-  //   }
-  // }, [mark]);
-
   const [wordDate, setWordDate] = useState(new Date());
   const dateToString = (e) => {
     return e.getFullYear() + "-" + (e.getMonth() + 1).toString().padStart(2, "0") + "-" + e.getDate().toString().padStart(2, "0");
@@ -198,7 +175,7 @@ function ModifyWord() {
           <div className="Type_Create">
             <span>구분</span>&emsp;
             <input type="radio" name="type" value={"All"} onChange={handleInputValue("type")} />
-            전체
+            일반
             <input type="radio" name="type" value={"person"} onChange={handleInputValue("type")} />
             인물
             <input type="radio" name="type" value={"place"} onChange={handleInputValue("type")} />
