@@ -48,8 +48,18 @@
 }
 
 .Location_map {
+  position: absolute;
   left: 400px;
   top: 170px;
   width: 35%;
   height: 350px;
+}
+
+.Map-info {
+  position: absolute;
+  top: 600px;
+  left: 410px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #3E2723;
 }

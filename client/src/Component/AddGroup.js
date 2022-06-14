@@ -100,29 +100,23 @@ function AddGroup() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "10vh",
-      }}
-    >
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <label>그룹 이름</label>
+    <div>
+      <div className='group-desc'>
+        <div className='group-desceach1'>그룹 이름</div>
+        <div className='group-desceach2'>그룹원 목록</div>
+        <div className='group-desceach3'>그룹 이미지</div>
+      </div>
+      <div className='group-form'>
         <input type="text" value={name} onChange={onNameHandler} />
-
-        <label>그룹원 목록</label>
-        <div>
+        <div className='group-memberlist'>
           {members.map((el, index) => (
             <div key={index}>
               {index === 0 ? (
-                <div>{el}</div>
+                <div class='group-memberlist'>{el}</div>
               ) : (
                 <div>
                   {el}
-                  <button value={el} onClick={onMemberDelete}>
+                  <button className='group-button3' value={el} onClick={onMemberDelete}>
                     삭제
                   </button>
                 </div>
@@ -131,12 +125,12 @@ function AddGroup() {
           ))}
         </div>
         <input type="text" value={member} onChange={handleInputValue} />
-        <button onClick={onMemberAdd}>추가</button>
+        <button className='group-button1' onClick={onMemberAdd}>추가</button>
         <br />
         <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
 
         <br />
-        <button onClick={onSubmitHandler}>그룹 추가</button>
+        <button className='group-button2' onClick={onSubmitHandler}>그룹 추가</button>
       </div>
     </div>
   );
