@@ -53,7 +53,7 @@ function ModifyGroup() {
 
   const getGroupInfo = async () => {
     await axios
-      .get(`${process.env.REACT_APP_URL}/groups/${groupId}`, {
+      .get(`${process.env.REACT_APP_URL}/groups/members/${groupId}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -77,14 +77,23 @@ function ModifyGroup() {
       members: members,
     };
 
-    axios.put(`${process.env.REACT_APP_URL}/groups/${groupId}`, body, { headers: { authorization: `Bearer ${token}` } }, { withCredentials: true }).then((res) => {
-      if (res.data.success) {
-        alert(res.data.message);
-        navigate("/Mypage");
-      } else {
-        alert(res.data.message);
-      }
-    });
+    axios
+      .put(
+        `${process.env.REACT_APP_URL}/groups/${groupId}`,
+        body,
+        {
+          headers: { authorization: `Bearer ${token}` },
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        if (res.data.success) {
+          alert(res.data.message);
+          navigate("/Mypage");
+        } else {
+          alert(res.data.message);
+        }
+      });
   };
 
   useEffect(() => {
@@ -133,23 +142,23 @@ function ModifyGroup() {
   return (
     <div>
       <div>
-        <div className='group-form'>
-          <div className='group-desc'>
-          <div className='group-desceach1'>그룹 이름</div>
-          <div className='group-desceach2'>그룹원 목록</div>
-          <div className='group-desceach3'>그룹 이미지</div>
+        <div className="group-form">
+          <div className="group-desc">
+            <div className="group-desceach1">그룹 이름</div>
+            <div className="group-desceach2">그룹원 목록</div>
+            <div className="group-desceach3">그룹 이미지</div>
           </div>
-          
+
           <input type="text" value={name} onChange={onNameHandler} />
-          <div className='group-memberlist'>
+          <div className="group-memberlist">
             {members.map((el, index) => (
               <div key={index}>
                 {index === 0 ? (
-                  <div className='group-membernick'>{el}</div>
+                  <div className="group-membernick">{el}</div>
                 ) : (
                   <div>
                     {el}
-                    <button className='group-button3' value={el} onClick={onMemberDelete}>
+                    <button className="group-button3" value={el} onClick={onMemberDelete}>
                       삭제
                     </button>
                   </div>
@@ -158,15 +167,21 @@ function ModifyGroup() {
             ))}
           </div>
           <input type="text" value={member} onChange={handleInputValue} />
-          <button className='group-button1' onClick={onMemberAdd}>추가</button>
+          <button className="group-button1" onClick={onMemberAdd}>
+            추가
+          </button>
 
           <br />
           <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
 
-          <button className='group-button2' onClick={onSubmitHandler}>그룹 정보 변경</button>
+          <button className="group-button2" onClick={onSubmitHandler}>
+            그룹 정보 변경
+          </button>
 
           <br />
-          <button className='group-button2' onClick={() => setModalOn(true)}>그룹 삭제</button>
+          <button className="group-button2" onClick={() => setModalOn(true)}>
+            그룹 삭제
+          </button>
         </div>
         <Modal open={modalOn} close={() => setModalOn(false)} groupId={groupId} />
       </div>

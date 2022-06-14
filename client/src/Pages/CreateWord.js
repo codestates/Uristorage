@@ -182,19 +182,11 @@ function CreateWord() {
             <input type="radio" name="type" value={"date"} onChange={handleInputValue("type")} />
             날짜
           </div>
-          {Wordcreate.type === "place" ?
-            <RenderAfterNavermapsLoaded
-              ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
-            <NaverMap
-              className='CreateWord_Map' mapDivId={"naver-map"}
-              defaultCenter={{ lat: 37.3595704, lng: 127.105399 }}
-              defaultZoom={16} zoomControl={true} draggable={true}
-              onClick={ClickLocationHandler}
-            >
-            <Marker
-              position={Wordcreate.map}
-            />
-            </NaverMap>
+          {Wordcreate.type === "place" ? (
+            <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
+              <NaverMap className="CreateWord_Map" mapDivId={"naver-map"} defaultCenter={{ lat: 37.3595704, lng: 127.105399 }} defaultZoom={16} zoomControl={true} draggable={true} onClick={ClickLocationHandler}>
+                <Marker position={Wordcreate.map} />
+              </NaverMap>
             </RenderAfterNavermapsLoaded>
           : null}
           {Wordcreate.type === "date" ? <DatePicker dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}
