@@ -15,10 +15,9 @@ function Profile() {
   const { token } = useSelector((state) => state.auth);
 
   const id = userInfo.id;
-  const [Content, setContent] = useState(groupfilter); //select버튼 value값을 받아 단어그리드로 넘겨줘야함profile=>wordgrid(redux이용해야할듯)
+  const [Content, setContent] = useState(String(groupfilter)); //select버튼 value값을 받아 단어그리드로 넘겨줘야함profile=>wordgrid(redux이용해야할듯)
   const groupList = [{ name: "내 단어", image: userInfo.image, group_id: 0 }, ...userGroups];
 
-  console.log(groupfilter);
   const onChangeHandler = (e) => {
     setContent(e.target.value);
     getGroupMembers();
@@ -43,11 +42,11 @@ function Profile() {
   };
   const [members, setMembers] = useState(null);
 
-  const getGroupMembers = () => {
-    if (groupfilter !== 0) {
+  const getGroupMembers = (e) => {
+    if (e !== undefined && e !== "0") {
       try {
         axios
-          .get(`${process.env.REACT_APP_URL}/groups/${groupfilter}`, {
+          .get(`${process.env.REACT_APP_URL}/groups/members/${e}`, {
             withCredentials: true,
           })
           .then((res) => {
@@ -72,38 +71,23 @@ function Profile() {
       type: "groupfilter/setgroupIdFilter",
       payload: Content,
     });
+    getGroupMembers(Content);
   }, [Content]);
 
-  useEffect(() => {
-    if (groupfilter === 0) {
-      setMembers(null);
-    } else {
-      getGroupMembers();
-    }
-  }, [groupfilter]);
+  // useEffect(() => {
+  //   if (groupfilter == 0) {
+  //     setMembers(null);
+  //   } else {
+  //     getGroupMembers();
+  //   }
+  // }, [Content]);
 
   return (
     <div className="information">
       {groupfilter === 0 ? ( //setmembs.length로 한다??
-        <img
-          className="profile-image"
-          style={{ width: "250px", height: "250px" }}
-          src={userInfo.image}
-          onError={(event) => {
-            event.target.src = "https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2";
-            event.onerror = null;
-          }}
-        />
+        <img className="profile-image" style={{ width: "250px", height: "250px" }} src={userInfo.image} />
       ) : (
-        <img
-          className="profile-image"
-          style={{ width: "250px", height: "250px" }}
-          src={userGroups.filter((el) => el.group_id === groupfilter)[0].image}
-          onError={(event) => {
-            event.target.src = "https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2";
-            event.onerror = null;
-          }}
-        />
+        <img className="profile-image" style={{ width: "250px", height: "250px" }} src={userGroups.filter((el) => el.group_id === groupfilter)[0].image} />
       )}
       <div>
         <span> {userInfo.nickname} </span>
