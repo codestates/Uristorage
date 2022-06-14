@@ -3,7 +3,8 @@ import "../Pages/Mypage.css";
 import { Checkbox, Radio } from "antd";
 import { useNavigate } from "react-router-dom";
 
-function TypeFilter(props) {
+function TypeFilter (props) {
+  const navigate = useNavigate();
   const types = [
     { contents: "All", id: 1 },
     { contents: "person", id: 2 },
@@ -11,7 +12,8 @@ function TypeFilter(props) {
     { contents: "date", id: 4 },
   ];
 
-  const [wordType, setWordtype] = useState(1);
+  const [wordType, setWordtype] = useState();
+
   /*
   const handleToggle = (value) => {
     const currentIndex = wordType.indexOf(value)
@@ -25,6 +27,9 @@ function TypeFilter(props) {
     props.handleFilters(newChecked)
   }
   */
+  //useEffect
+
+   console.log("wordType", wordType)
 
   const typeLists = () =>
     types.map((value) => (
@@ -34,18 +39,31 @@ function TypeFilter(props) {
     ));
 
   const handletype = (event) => {
-    setWordtype(event.target.value);
-    props.handleFilters(event.target.value);
-    props.handleSearchFilters(event.target.value);
-    console.log("event.target.value", event.target.value);
-  };
+    setWordtype(event.target.value)
+    props.handleFilters(event.target.value)
+    console.log("event.target.value", event.target.value)
+        if(event.target.value === 1){
+          navigate("/Mypage")
+          setWordtype(1)
+        }else if(event.target.value === 2){
+          navigate("/Mypage")
 
-  return (
-    <div className="filter">
-      <Radio.Group onChange={handletype} value={wordType}>
-        {typeLists()}
-      </Radio.Group>
-    </div>
-  );
-}
-export default TypeFilter;
+          setWordtype(2)
+        }else if(event.target.value === 3){
+          navigate("/Location")
+          setWordtype(3)
+        }else if(event.target.value === 4){
+          navigate("/Calendar")
+          setWordtype(4)
+        }
+  }
+  
+    return (
+      <div className="filter">
+        <Radio.Group onChange={handletype} value={wordType} wordType={wordType}>
+          {typeLists()}
+        </Radio.Group>
+      </div>
+    )
+  }
+  export default TypeFilter;

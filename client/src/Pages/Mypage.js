@@ -56,14 +56,17 @@ function Mypage() {
   }, [allWorddata, type]);
 
   return (
-    <div>
-      <Nav />
+    <div id="MyPage">
+      <div className="My_Nav">
+        <Nav />
+      </div>
       <div className="My_Profile">
         <Profile />
       </div>
       <div className="My_Filter">
         <CatFilter setType={setType} />
       </div>
+      {}
       <div className="My_search_createword">
         <div className="home_searchbar">
           <input className="searchbar" type="text" placeholder="단어를 입력해주세요" onChange={handleInputValue("searchWord")} />
@@ -71,21 +74,15 @@ function Mypage() {
             <img className="searchicon" src="https://cdn-icons-png.flaticon.com/512/149/149852.png" />
           </button>
         </div>
-        <div className="my_createword">
+        <div className="My_createword">
           <Link to="/CreateWord">단어등록</Link>{" "}
         </div>
       </div>
       <div className="WordGrid">
         <Wordsgrid searchWord={searchWord} worddata={worddata} deleteWord={deleteWord} />
       </div>
-      <div className="Consonant">
+      <div className="My_Consonant">
         <div>자음 필터</div>
-      </div>
-      <div>
-        <Link to="/Location">지도로가기</Link>
-      </div>
-      <div>
-        <Link to="/Calendar">달력으로가기</Link>
       </div>
     </div>
   );

@@ -90,35 +90,27 @@ function ModifyUser() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "10vh",
-      }}
-    >
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <label>닉네임</label>
-        <input type="text" value={nickname} onChange={onNickNameHandler} />
+    <div>
+      <div className='modifyuser-desc'>
+        <div className='modifyuser-desceach1'>닉네임</div>
+        <div className='modifyuser-desceach2'>비밀번호 변경</div>
+        <div className='modifyuser-desceach3'>비밀번호 확인</div>
+        <div className='modifyuser-desceach4'>Email</div>
+        <div className='modifyuser-desceach5'>프로필 이미지</div>
+      </div>
+      <div className="modifyuser-form">
+        
+        <input type="text" className='modifyuser-inputeach' value={nickname} onChange={onNickNameHandler} />
+        <input type="password" className='modifyuser-inputeach' value={password} onChange={onPasswordHandler} />
+        <input type="password" className='modifyuser-inputeach' value={confirmPassword} onChange={onConfirmPasswordHandler} />
+        <input type="email" className='modifyuser-inputeach' value={email} onChange={onEmailHandler} />
 
-        <label>비밀번호 변경</label>
-        <input type="password" value={password} onChange={onPasswordHandler} />
-
-        <label>비밀번호 확인</label>
-        <input type="password" value={confirmPassword} onChange={onConfirmPasswordHandler} />
-
-        <label>Email</label>
-        <input type="email" value={email} onChange={onEmailHandler} />
-
-        <label>프로필 변경</label>
         <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
 
         <br />
-        <button onClick={onSubmitHandler}>회원 정보 변경</button>
+        <button className='modifyuser-button submit' onClick={onSubmitHandler}>회원 정보 변경</button>
         <br />
-        <button onClick={() => setModalOn(true)}>회원 탈퇴</button>
+        <button className='modifyuser-button delete' onClick={() => setModalOn(true)}>회원 탈퇴</button>
       </div>
 
       <Modal open={modalOn} close={() => setModalOn(false)} />

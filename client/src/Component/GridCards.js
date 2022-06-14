@@ -22,11 +22,14 @@ export default function GridCars({ wordData, deleteWord }) {
             </Link>
           </div>
           {/* <div className="gridnickname">작성자:[{wordData.user.nickname}]</div> */}
-          <div className="gridsummary">{wordData.summary}</div>
+          <div 
+          className="gridsummary">{wordData.summary}</div>
           <img className="gridimage" src={wordData.image} />
+          <div className="gridchange">
           <Link to="/ModifyWord" state={{ data: wordData }}>
             수정
           </Link>
+          </div>
           <button onClick={() => setModalOn(true)}>삭제</button>
           <Modal open={modalOn} close={() => setModalOn(false)} wordId={wordData.id} deleteWord={deleteWord} />
         </div>
