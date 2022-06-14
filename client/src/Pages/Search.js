@@ -67,7 +67,7 @@ function Search({ searchHandler, searchedWord }) {
   //   const newcreateword = [...publicWords]
   //   newcreateword.push(filters)
   //   setPublicWords(newcreateword)
-  // }
+  //}
 
   const handletypeValue = (value) => {
     const data = types;
@@ -111,14 +111,13 @@ function Search({ searchHandler, searchedWord }) {
       </div>
       <div className="searched_word">
         {filteredWordData.length === publicWords.length || filteredWordData.length === 0 ? (
-          <div className="searched_none">일치하는 단어가 없습니다.</div>
+          <div className="searched_none">일치하는 단어가 없습니다</div>
         ) : (
           filteredWordData.map((word, index) => {
             return (
               <Link key={index} to="/Words" state={{ data: word }}>
                 <div className="word_box" id={word.id} key={word.id}>
                   <div className="word_inbox"> {word.word}</div>
-                  <div className="nickname"> 작성자:[{word.user.nickname}]</div>
                   <div className="title_inbox"> {word.summary}</div>
                   <img src={word.image} width="100" height="80" />
                 </div>
