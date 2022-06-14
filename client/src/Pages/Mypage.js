@@ -28,8 +28,10 @@ function Mypage() {
   }
   
   return (
-    <div>
+    <div id="MyPage">
+      <div className="My_Nav">
       <Nav />
+      </div>
       <div className="My_Profile">
         <Profile />
       </div>
@@ -44,14 +46,14 @@ function Mypage() {
             <img className="searchicon" src="https://cdn-icons-png.flaticon.com/512/149/149852.png" />
           </button>
         </div>
-        <div className="my_createword">
+        <div className="My_createword">
           <Link to="/CreateWord">단어등록</Link>{" "}
         </div>
       </div>
-      <div className="WordGrid">
+      <div className="My_WordGrid">
         <Wordsgrid wordcreate={wordcreate} getdata={getdata} searchWord={searchWord} />
       </div>
-      <div className="Consonant">
+      <div className="My_Consonant">
         <div>자음 필터</div>
       </div>
     </div>

@@ -9,25 +9,41 @@
     display: flex;
     justify-content: space-between;
     border: 2px solid #5D4037;
+    border-radius: 10px;
     margin: 1px;
-    padding: 10px;
-    height: 80px;
+    padding: 10px 5px;
+    height: 120px;
 }
 
 .gridword{
     margin-left: 10px;
+    padding: 37px 0px;
+    width:100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .gridsummary{
     position: absolute;
-    left: 200px;
+    padding: 15px 0px;
+    left: 150px;
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/*.gridimage{
+.gridimage{
+    position: absolute;
+    left: 450px;
+    height: 100px;
+}
+
+.gridchange{
     position: absolute;
     right: 100px;
 }
-*/
+
 .input_word{
     width:200px;
     height:30px;
