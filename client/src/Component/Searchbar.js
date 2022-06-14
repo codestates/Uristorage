@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
 function Searchbar ({ searchHandler }) {
   const [searchWord, setSearchWord] = useState('')
-  console.log(searchWord)
-  const navigate = useNavigate();
+  //console.log(searchWord)
 
+  const navigate = useNavigate();
+  // console.log(searchWord)
+
+  
   const wordClickHandler0 = () => {
     searchHandler(searchWord);
     navigate('/Search')
@@ -17,7 +20,7 @@ function Searchbar ({ searchHandler }) {
   
   const onKeyPress = (e) => {
     if (e.key === "Enter") {
-      wordClickHandler0()
+      wordClickHandler0(searchWord)
       navigate("/Search");
     }
   };

@@ -26,6 +26,12 @@ function Nav() {
         dispatch({
           type: "auth/isLogout",
         });
+
+        dispatch({
+          type: "groupfilter/setgroupIdFilter",
+          payload: 0,
+        });
+
         navigate("/");
       });
   };

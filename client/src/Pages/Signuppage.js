@@ -43,6 +43,7 @@ function SignupPage() {
     let body = {
       userId: userId,
       email: email,
+      image: "https://cdn-icons-png.flaticon.com/512/309/309543.png",
       password: password,
       nickname: nickname,
     };
@@ -67,46 +68,29 @@ function SignupPage() {
 
   return (
     <div>
-      <Link
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "90%",
-          height: "10vh",
-        }}
-        to="/"
-        className="navigation_center"
-      >
-        Uri<span className="navigation_othercolor">Storage</span>
-      </Link>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          height: "70vh",
-        }}
-      >
-        <form style={{ display: "flex", flexDirection: "column" }} onSubmit={onSubmitHandler}>
-          <label>아이디</label>
-          <input type="text" value={userId} onChange={onUserIdHandler} />
-
-          <label>Password</label>
-          <input type="password" value={password} onChange={onPasswordHandler} />
-
-          <label>Password 확인</label>
-          <input type="password" value={confirmPassword} onChange={onConfirmPasswordHandler} />
-
-          <label>닉네임</label>
-          <input type="text" value={nickname} onChange={onNickNameHandler} />
-
-          <label>Email</label>
-          <input type="email" value={email} onChange={onEmailHandler} />
-
+      <div className='user-nav'>
+        <Link to="/" className="navigation_center">
+          Uri<span className="navigation_othercolor">Storage</span>
+        </Link>
+      </div>
+      <div className='loginNsignup'>
+        <form className='signup-form' onSubmit={onSubmitHandler}>
+          <div className='siguup-desc'>
+            <div className='siguup-desceach1'>아이디</div>
+            <div className='siguup-desceach2'>Password</div>
+            <div className='siguup-desceach3'>Password 확인</div>
+            <div className='siguup-desceach4'>닉네임</div>
+            <div className='siguup-desceach5'>Email</div>
+          </div>
+          <div className='signup-input'>
+            <input type="text" className='signup-inputeach' value={userId} onChange={onUserIdHandler} />
+            <input type="password" className='signup-inputeach' value={password} onChange={onPasswordHandler} />
+            <input type="password" className='signup-inputeach' value={confirmPassword} onChange={onConfirmPasswordHandler} />
+            <input type="text" className='signup-inputeach' value={nickname} onChange={onNickNameHandler} />
+            <input type="email" className='signup-inputeach' value={email} onChange={onEmailHandler} />
+          </div>
           <br />
-          <button type="submit">회원 가입</button>
+          <button type="submit" className='signup-button'>가입하기</button>
         </form>
       </div>
     </div>

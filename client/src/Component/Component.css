@@ -1,14 +1,109 @@
 .information{
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    line-height: 20px;
+    line-height: 50px;
 }
 
-.gridwords{
+.gridcards{
     display: flex;
     justify-content: space-between;
-    position: "relative";
     border: 2px solid #5D4037;
+    border-radius: 10px;
     margin: 1px;
-    padding: 10px;
+    padding: 10px 5px;
+    height: 120px;
 }
+
+.gridword{
+    margin-left: 10px;
+    padding: 37px 0px;
+    width:100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gridsummary{
+    position: absolute;
+    padding: 15px 0px;
+    left: 150px;
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gridimage{
+    position: absolute;
+    left: 450px;
+    height: 100px;
+}
+
+.gridchange{
+    position: absolute;
+    right: 100px;
+}
+
+.input_word{
+    width:200px;
+    height:30px;
+}
+
+.input_summary{
+    width:200px;
+    height:30px;
+}
+
+.input_content{
+    width:200px;
+    height:30px;
+}
+
+.input_content{
+    height:30px;
+}
+
+/* Pagenation */
+
+  .pagination-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      font-weight: 500;
+      font-size: 15px;
+  }
+
+  .pagination-container a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    padding: 8px 14px;
+    height: 40px;
+    width: 40px;
+    text-decoration: none;
+    transition: background-color .2s;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    
+  }
+  
+  .pagination-container a.active {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #7cbddb;
+  }
+  
+  .pagination-container a.disabled { 
+    opacity: 0.2;
+  }
+  .pagination-container a:hover:not(.active) {background-color: rgb(238, 238, 238);}
+
+  html, body {
+    height: 100%;
+  }
+
+  .highlight {
+      background-color: #007bff;
+  }

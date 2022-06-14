@@ -1,53 +1,126 @@
+#MyPage {
+    width: 100%;
+}
+
+.My_Nav {
+    width: 100%;
+    height: 70px;
+    margin-bottom: 10px;
+}
+
 .My_Profile {
-    position:absolute;
-    left: 50px;
-    top: 120px;
-    bottom: 50px;
-    background-color: greenyellow;
+    float: left;
+    width: 30%;
+    margin-left: 50px;
+    border-right: solid 3px #3E2723;
     width: 310px;
+    height: 900px;
     text-align: center;
-    padding-top: 50px;
+    padding-top: 20px;
+    line-height: 50px;
 }
 
 .My_Filter{
-    position:absolute;
-    left: 405px;
-    top: 160px;
-    right: 50px;
-    background-color: yellow;
+    float: left;
+    width: 70%;
+    height: 70px;
+    font-size: 20px;
+    margin: 10px 30px;
 }
 
-.My_search_createword{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    left: 435px;
-    top: 265px;
-    right: 100px;
-    background-color: blue;
-}
-
-.WordGrid{
-    position:absolute;
-    left: 405px;
-    top: 355px;
-    right: 150px;
-    height: 200px;
-    border: 1px solid #5D4037;
-    border-radius: 20px;
-}
-
-.Consonant{
-    position:absolute;
-    right: 50px;
-    top: 355px;
-    bottom: 50px;
-    border: 1px solid #5D4037;
-}
-
+/*
 .filter{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.filter_box{
+    border: solid 1px #3E2723;
+    border-radius: 30px;
+    padding: 5px 60px;
+}
+*/
+
+.My_search_createword{
+    float: left;
+    width: 70%;
+    height: 60px;
+    font-size: 20px;
+    margin: 10px 40px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+.searchbar {
+    border: 2px solid #3E2723;
+    height: 50px;
+    width: 680px;
+    padding: 5px;
+    border-radius: 5px 0px 0px 5px;
+    font-size: 20px;
+  }
+
+.My_createword{
+    margin: 0px 50px;
+}
+
+.My_WordGrid{
+    float: left;
+    width: 60%;
+    height: 200px;
+
+}
+
+.My_Consonant{
+    float: left;
+    width: 10%;
+    width: 30px;
+    height: 400px;
+    border: 1px solid #5D4037;
+}
+
+@media (max-width: 1220px){
+    .My_Filter {width: 100%;}
+    .My_search_createword {width: 100%;}
+    .My_WordGrid {width: 100%;}
+    .My_Profile {clear: both; float: none; width: 100%;}
+}
+
+
+
+
+
+
+/* CreateWord 페이지 */
+
+.CreateWord{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 50px;
+}
+
+.Content_Image {
+  margin: 10px;
+  height: 150px;
+  
+}
+
+/* Canlendar 페이지 */
+
+.My_Calendar{
+    position:absolute;
+    left: 405px;
+    top: 355px;
+}
+
+.CreateWord_Map {
+  margin: 5px;
+  right: 100px;
+  top: 0px;
+  width: 500px;
+  height: 350px;
 }

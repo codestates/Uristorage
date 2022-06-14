@@ -8,62 +8,132 @@ import "../Pages/ModifyUserPage";
 import "./Component.css";
 
 function Profile() {
-  const [myGroup, seMyGroup] = useState([]);
+  const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.userInfo);
-  const id = userInfo.id;
-  const [Content, setContent] = useState(); //select버튼 value값을 받아 단어그리드로 넘겨줘야함profile=>wordgrid(redux이용해야할듯)
-  const [Options, setOptions] = useState([{ key: 0, value: "mywords" }]);
-  console.log(id); //새로고침하면 null로 시작한 후 값을 가짐
-  console.log(Content);
+  const userGroups = useSelector((state) => state.userGroups);
+  const groupfilter = useSelector((state) => state.groupfilter);
+  const { token } = useSelector((state) => state.auth);
 
+  const id = userInfo.id;
+  const [Content, setContent] = useState(groupfilter); //select버튼 value값을 받아 단어그리드로 넘겨줘야함profile=>wordgrid(redux이용해야할듯)
+  const groupList = [{ name: "내 단어", image: userInfo.image, group_id: 0 }, ...userGroups];
+
+  console.log(groupfilter);
   const onChangeHandler = (e) => {
-    setContent(e.currentTarget.value);
+    setContent(e.target.value);
+    getGroupMembers();
   };
 
   const getUserGroups = () => {
     try {
       axios
-        .get(`${process.env.REACT_APP_URL}/groups/${id}`, {
+        .get(`${process.env.REACT_APP_URL}/groups/user/${id}`, {
           withCredentials: true,
+          headers: { authorization: `Bearer ${token}` },
         })
         .then((res) => {
-          console.log(res);
-          const result = res.data.userGroups.map((el, index) => {
-            return { key: el.user_group.groups_id, value: el.name };
+          dispatch({
+            type: "userGroups/setUpdateUserGroups",
+            payload: res.data,
           });
-          setOptions([...Options, ...result]);
         });
     } catch (err) {
       console.log(err);
     }
   };
+  const [members, setMembers] = useState(null);
+
+  const getGroupMembers = () => {
+    if (groupfilter !== 0) {
+      try {
+        axios
+          .get(`${process.env.REACT_APP_URL}/groups/${groupfilter}`, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            setMembers(res.data.members);
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      setMembers(null);
+    }
+  };
 
   useEffect(() => {
-    userInfo;
-  }, []);
+    if (id) {
+      getUserGroups();
+    }
+  }, [id]);
 
   useEffect(() => {
-    getUserGroups(); //새로고침하면 사라짐
-  }, [userInfo]);
+    dispatch({
+      type: "groupfilter/setgroupIdFilter",
+      payload: Content,
+    });
+  }, [Content]);
+
+  useEffect(() => {
+    if (groupfilter === 0) {
+      setMembers(null);
+    } else {
+      getGroupMembers();
+    }
+  }, [groupfilter]);
 
   return (
     <div className="information">
-      <img className="profile-image" style={{ width: "250px", height: "250px" }} src="https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2" />
+      {groupfilter === 0 ? ( //setmembs.length로 한다??
+        <img
+          className="profile-image"
+          style={{ width: "250px", height: "250px" }}
+          src={userInfo.image}
+          onError={(event) => {
+            event.target.src = "https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2";
+            event.onerror = null;
+          }}
+        />
+      ) : (
+        <img
+          className="profile-image"
+          style={{ width: "250px", height: "250px" }}
+          src={userGroups.filter((el) => el.group_id === groupfilter)[0].image}
+          onError={(event) => {
+            event.target.src = "https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2";
+            event.onerror = null;
+          }}
+        />
+      )}
       <div>
         <span> {userInfo.nickname} </span>
         <select onChange={onChangeHandler} value={Content}>
-          {Options.map((item) => (
-            <option key={item.key} value={item.key}>
-              {item.value}
+          {/* <option key={groupfilter} value={groupfilter} selected>
+            {groupfilter}
+          </option> */}
+          {groupList.map((item) => (
+            <option key={item.group_id} value={item.group_id}>
+              {item.name}
             </option>
           ))}
         </select>
       </div>
-      <Link to="/ModifyUser"> 회원정보변경 </Link>
+      {members !== null ? (
+        <div>
+          {members.map((el, index) => (
+            <div key={index}>
+              <img style={{ width: "50px", height: "50px" }} src={el.image} />
+              <label>{el.nickname}</label>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <></>
+      )}
+      <div>{groupfilter !== 0 ? <Link to="/ModifyGroup"> 그룹정보변경 </Link> : <Link to="/ModifyUser"> 회원정보변경 </Link>}</div>
       <div>
-        <Link to="/ModifyGroup"> 그룹정보변경 </Link>
+        <Link to="/AddGroup"> 그룹추가 </Link>
       </div>
-      <Link to="/AddGroup"> 그룹추가 </Link>
     </div>
   );
 }

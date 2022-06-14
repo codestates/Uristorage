@@ -3,13 +3,18 @@ a:link {
   color: #3E2723;
 }
 
+a:visited{
+  color: #3E2723;
+}
+
 .navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 20px;
+  padding: 0px 10px;
+  margin: 0px 50px;
   height: 70px;
-  color: #3E2723;
+  color: #3e27239d;
 
   border-bottom: 5px double #3E2723;
 }

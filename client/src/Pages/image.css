@@ -1,0 +1,32 @@
+.image-upload {
+  width: 230px !important;
+  height: 100px !important;
+  font-size: 15px;
+  text-align: right;
+  min-width: 0 !important;
+  outline: none;
+  /* background: rgb(0, 0, 0); */
+  cursor: inherit;
+  display: block !important;
+  /* border-radius: 50% !important; */
+  cursor: pointer;
+  position: absolute;
+  margin: 0 !important;
+  /* z-index: -1; */
+  bottom: 60px;
+}
+
+.image-upload-wrapper {
+  position: inherit;
+  width: 120px !important;
+  height: 120px !important;
+  font-size: 100px;
+  text-align: right;
+  min-width: 0 !important;
+  outline: none;
+  background: rgb(255, 255, 255);
+  cursor: inherit;
+  display: block !important;
+  border-radius: 50% !important;
+  cursor: pointer;
+}

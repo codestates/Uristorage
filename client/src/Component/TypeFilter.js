@@ -1,80 +1,69 @@
 import React, { useState, useEffect } from "react";
 import "../Pages/Mypage.css";
-import words from "./sampleword.json";
+import { Checkbox, Radio } from "antd";
+import { useNavigate } from "react-router-dom";
 
-function TypeFilter({ data }) {
-  /*  const [worddatatype, setWorddatatype] = useState([]);
+function TypeFilter (props) {
+  const navigate = useNavigate();
+  const types = [
+    { contents: "All", id: 1 },
+    { contents: "person", id: 2 },
+    { contents: "place", id: 3 },
+    { contents: "date", id: 4 },
+  ];
 
-  useEffect(() => {
-    async function fetchData() {
-      // const res = await axios.get("http://localhost:4000/uristorage/words/:id").then((res) => setWordData(res.data));
-      // words/user/:userid / words/group/:groupid
-      // state 값, Redux
-      const typelist = words.words.map((type) => ({
-        id: type.id,
-        words: type.words,
-        summary: type.title,
-        content: type.content,
-        info: type.info,
-        contents: type.contents
-      }));
-      setWorddatatype(worddatatype.concat(typelist));
+  const [wordType, setWordtype] = useState();
+
+  /*
+  const handleToggle = (value) => {
+    const currentIndex = wordType.indexOf(value)
+    const newChecked = [...wordType]
+    if(currentIndex === -1){ 
+      newChecked.push(value)
+    } else {
+      newChecked.splice(currentIndex, 1)
     }
-    fetchData();
-  }, []);
+    setWordtype(newChecked)
+    props.handleFilters(newChecked)
+  }
+  */
+  //useEffect
 
-  console.log("타입", worddatatype);
-*/
-  const [wordType, setWordtype] = useState([
-    { contents: "All", checked: false, info: "type" },
-    { contents: "person", checked: false, info: "type" },
-    { contents: "place", checked: false, info: "type" },
-    { contents: "date", checked: false, info: "type" },
-  ]);
+   console.log("wordType", wordType)
 
-  useEffect(() => {
-    let findtype = wordType.findIndex((index) => index.checked === true);
-    if (findtype === -1) findtype = 0;
-  }, []);
+  const typeLists = () =>
+    types.map((value) => (
+      <Radio key={value.id} value={value.id}>
+        {value.contents}
+      </Radio>
+    ));
 
-  const handleChange = (data) => {
-    if (data.info === "type") {
-      const copyProducts = [...wordType];
-      const modifiedProducts = copyProducts.map((type) => {
-        if (data.contents === type.contents) {
-          type.checked = !type.checked;
-        } else {
-          type.checked = false;
+  const handletype = (event) => {
+    setWordtype(event.target.value)
+    props.handleFilters(event.target.value)
+    console.log("event.target.value", event.target.value)
+        if(event.target.value === 1){
+          navigate("/Mypage")
+          setWordtype(1)
+        }else if(event.target.value === 2){
+          navigate("/Mypage")
+
+          setWordtype(2)
+        }else if(event.target.value === 3){
+          navigate("/Location")
+          setWordtype(3)
+        }else if(event.target.value === 4){
+          navigate("/Calendar")
+          setWordtype(4)
         }
-        return type;
-      });
-      setWordtype(modifiedProducts);
-    }
-  };
-
-  console.log(wordType.contents);
-
-  return (
-    <div className="filter">
-      {wordType &&
-        wordType.map((type, idx) => (
-          <div key={idx}>
-            <input
-              type="checkbox"
-              className="check_typefilter"
-              checked={type.checked}
-              onChange={() => {
-                handleChange(type);
-              }}
-            />
-            <label className="label_typefilter">
-              {type.contents}
-              {/* {checkData.area} */}
-            </label>
-            {/* </div> */}
-          </div>
-        ))}
-    </div>
-  );
-}
-export default TypeFilter;
+  }
+  
+    return (
+      <div className="filter">
+        <Radio.Group onChange={handletype} value={wordType} wordType={wordType}>
+          {typeLists()}
+        </Radio.Group>
+      </div>
+    )
+  }
+  export default TypeFilter;
