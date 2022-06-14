@@ -1,5 +1,6 @@
 import React from "react";
 import AWS from "aws-sdk";
+import '../Pages/image.css'
 
 function ImageUpload({ uploadImage, handleFileInput }) {
   AWS.config.update({
@@ -38,9 +39,8 @@ function ImageUpload({ uploadImage, handleFileInput }) {
 
   return (
     <div className="Content_Image">
-      <span>이미지</span>&emsp;
       <input className="image-upload" type="file" accept="image/*" onChange={handleFileInput} />
-      {uploadImage ? <img width="100" height="80" className="fileView" src={uploadImage} alt="preview-img" /> : null}
+      {uploadImage ? <img width="250" height="150" className="fileView" src={uploadImage} alt="preview-img" /> : null}
     </div>
   );
 }

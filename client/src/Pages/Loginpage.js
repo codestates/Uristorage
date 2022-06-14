@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import './LoginSignUp.css'
 
 function LoginPage() {
   const [userId, setUserId] = useState("");
@@ -51,36 +52,23 @@ function LoginPage() {
 
   return (
     <div>
-      <Link
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "90%",
-          height: "10vh",
-        }}
-        to="/"
-        className="navigation_center"
-      >
-        Uri<span className="navigation_othercolor">Storage</span>
-      </Link>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          height: "70vh",
-        }}
-      >
-        <form style={{ display: "flex", flexDirection: "column" }} onSubmit={onSubmitHandler}>
-          <label>Id</label>
-          <input type="userId" value={userId} onChange={onUserIdHandler} />
-          <label>Password</label>
-          <input type="password" value={password} onChange={onPasswordHandler} />
+      <div className='user-nav'>
+        <Link to="/" className="navigation_center">
+          Uri<span className="navigation_othercolor">Storage</span>
+        </Link>
+      </div>
+      <div className='loginNsignup'>
+        <form className='login-form' onSubmit={onSubmitHandler}>  
+          <input type="userId" className='login-input' value={userId} onChange={onUserIdHandler} placeholder="아이디" />
+          <input type="password" className='login-input' value={password} onChange={onPasswordHandler} placeholder="비밀번호" />
           <br />
-          <button type="submit">Login</button>
+          <button type="submit" className='login-button'>로그인</button>
         </form>
+      </div>
+      <div className='login-tosignup'>
+        <Link to="/Signup">
+          회원가입
+        </Link>
       </div>
     </div>
   );
