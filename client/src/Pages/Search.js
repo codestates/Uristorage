@@ -6,15 +6,27 @@ import Searchbar from "../Component/Searchbar";
 import TypeFilter from "../Component/TypeFilter";
 import "./Search.css";
 import axios from "axios";
+import CatFilter from "../Component/CatFilter/CatFilter";
 
 function Search({ searchHandler, searchedWord }) {
+  const [allWorddata, setAllworddata] = useState([]);
   const [publicWords, setPublicWords] = useState([]);
+  const [type, setType] = useState("All");
+
+  const filterHandler = (type) => {
+    type === "All" ? setPublicWords(allWorddata) : setPublicWords(allWorddata.filter((el) => el.type === type));
+  };
+
   useEffect(() => {
     async function getRandomWords() {
-      await axios.get(`${process.env.REACT_APP_URL}/words/public`).then((res) => setPublicWords(res.data));
+      await axios.get(`${process.env.REACT_APP_URL}/words/public`).then((res) => setAllworddata(res.data));
     }
     getRandomWords();
   }, []);
+
+  useEffect(() => {
+    filterHandler(type);
+  }, [allWorddata, type]);
 
   let wordsArray = [];
   for (let i = 0; i < publicWords.length; i++) {
@@ -55,9 +67,7 @@ function Search({ searchHandler, searchedWord }) {
     }
   };
 
-  const handleSearchFilters = () => {
-
-  }
+  const handleSearchFilters = () => {};
 
   return (
     <div>
@@ -71,7 +81,7 @@ function Search({ searchHandler, searchedWord }) {
             </button>
           </Link>
         </div>
-        <TypeFilter />
+        <CatFilter setType={setType} />
       </div>
       <div className="searched_word">
         {filteredWordData.length === publicWords.length || filteredWordData.length === 0 ? (

@@ -203,13 +203,13 @@ function ModifyWord() {
           </div>
           {Wordcreate.type === "date" ? <DatePicker dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}
           <div className="Pub_Create">
-            <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
+            {/* <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
             공개
             <input type="radio" name="open" value={false} onChange={handleInputValue("pub")} />
-            비공개
-            {/* {Wordcreate.pub ? (
+            비공개 */}
+            {Wordcreate.pub ? (
               <>
-                <input type="radio" name="open" value={true}  onChange={handleInputValue("pub")} />
+                <input type="radio" name="open" value={true} checked onChange={handleInputValue("pub")} />
                 공개
                 <input type="radio" name="open" value={false} onChange={handleInputValue("pub")} />
                 비공개
@@ -218,10 +218,10 @@ function ModifyWord() {
               <>
                 <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
                 공개
-                <input type="radio" name="open" value={false}  onChange={handleInputValue("pub")} />
+                <input type="radio" name="open" value={false} checked onChange={handleInputValue("pub")} />
                 비공개
               </>
-            )} */}
+            )}
           </div>
           <div className="Content_Image">
             <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />

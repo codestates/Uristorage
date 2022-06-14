@@ -4,62 +4,57 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Nav from "../Component/Nav";
 import Profile from "../Component/Profile";
-import TypeFilter from "../Component/TypeFilter";
+import CatFilter from "../Component/CatFilter/CatFilter";
 import Wordsgrid from "../Component/Wordsgrid";
 import { useSelector } from "react-redux";
 import "./Mypage.css";
 
 function Mypage() {
-  const [wordcreate, setWordcreate] = useState("");
-  const [Filters, setFilter] = useState();
-  const types = [
-    { contents: "All", id: 1},
-    { contents: "person", id: 2},
-    { contents: "place", id: 3},
-    { contents: "date", id: 4},
-  ];
-
-  const getdata = (wordcreate) => {
-    setWordcreate(wordcreate);
-  };
+  const userInfo = useSelector((state) => state.userInfo);
+  const users_id = userInfo.id;
+  const groupFilter = useSelector((state) => state.groupfilter);
 
   const [searchWord, setSearchWord] = useState("");
   const handleInputValue = (key) => (e) => {
     setSearchWord({ ...searchWord, [key]: e.target.value });
   };
 
-  const showFilter = (filters) => {
-    const newcreateword = [...wordcreate]
-    newcreateword.push(filters)
-    setWordcreate(newcreateword)
-  }
+  const [allWorddata, setAllworddata] = useState([]);
+  const [worddata, setWorddata] = useState([]);
+  const [type, setType] = useState("All");
 
-  const handletypeValue = (value) => {
-    const data = types;
-    let contents = "";
+  const filterHandler = (type) => {
+    type === "All" ? setWorddata(allWorddata) : setWorddata(allWorddata.filter((el) => el.type === type));
+  };
 
-    for (let key in data){
-      if(data[key].id === parseInt(value, 10)){
-        contents = data[key].contents
-      }
+  async function fetchData() {
+    if (groupFilter === 0) {
+      //그룹이없는 경우
+      axios.get(`${process.env.REACT_APP_URL}/words/user/${users_id}`).then((res) => {
+        setAllworddata(res.data);
+      });
+    } else {
+      axios.get(`${process.env.REACT_APP_URL}/words/group/${groupFilter}`).then((res) => {
+        setAllworddata(res.data.groupWords);
+      });
     }
-    console.log("contents", contents)
-    return contents;
   }
+  const deleteWord = (id) => {
+    setAllworddata(allWorddata.filter((el) => el.id !== id));
+  };
 
-  const handleFilters = (filters) => {
-    let newFilters = {...Filters}
-    newFilters = filters
-    console.log("filters", newFilters)
+  useEffect(() => {
+    fetchData();
+  }, [users_id, groupFilter]);
 
-    if(newFilters !== null){
-    let typeValue = handletypeValue(filters)
-    newFilters = typeValue
-    }
+  useEffect(() => {
+    fetchData();
+  }, [users_id, groupFilter]);
 
-    showFilter(newFilters)
-  }
-  
+  useEffect(() => {
+    filterHandler(type);
+  }, [allWorddata, type]);
+
   return (
     <div>
       <Nav />
@@ -67,7 +62,7 @@ function Mypage() {
         <Profile />
       </div>
       <div className="My_Filter">
-        <TypeFilter handleFilters={filters => handleFilters(filters)} />
+        <CatFilter setType={setType} />
       </div>
       <div className="My_search_createword">
         <div className="home_searchbar">
@@ -81,7 +76,7 @@ function Mypage() {
         </div>
       </div>
       <div className="WordGrid">
-        <Wordsgrid wordcreate={wordcreate} getdata={getdata} searchWord={searchWord} />
+        <Wordsgrid searchWord={searchWord} worddata={worddata} deleteWord={deleteWord} />
       </div>
       <div className="Consonant">
         <div>자음 필터</div>

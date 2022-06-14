@@ -5,36 +5,10 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import Pagination from "./Pagenation";
 
-function Wordsgrid({ searchWord }) {
-  const userInfo = useSelector((state) => state.userInfo);
-  const groupFilter = useSelector((state) => state.groupfilter);
-
-  const users_id = userInfo.id;
-  const [worddata, setWorddata] = useState([]);
+function Wordsgrid({ searchWord, worddata, deleteWord }) {
+  // const [worddata, setWorddata] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [wordsPerPage] = useState(5);
-
-  async function fetchData() {
-    if (groupFilter === 0) {
-      //그룹이없는 경우
-      axios.get(`${process.env.REACT_APP_URL}/words/user/${users_id}`).then((res) => {
-        setWorddata(res.data);
-      });
-    } else {
-      axios.get(`${process.env.REACT_APP_URL}/words/group/${groupFilter}`).then((res) => {
-        setWorddata(res.data.groupWords);
-      });
-    }
-  }
-
-  function deleteWord(id) {
-    console.log("delete");
-    setWorddata(worddata.filter((el) => el.id !== id));
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, [users_id, groupFilter]);
 
   worddata.sort((a, b) => {
     let nameA = a.word;
@@ -65,7 +39,7 @@ function Wordsgrid({ searchWord }) {
               ? "그룹에 속한 단어가 없습니다."
               : currentWords.map((word, index) => (
                   <React.Fragment key={index}>
-                    <GridCars wordData={word} />
+                    <GridCars wordData={word} deleteWord={deleteWord} />
                   </React.Fragment>
                 ))}
           </Row>
@@ -78,7 +52,7 @@ function Wordsgrid({ searchWord }) {
               ? "일치하는 단어가 없습니다."
               : currentFilteredWords.map((word, index) => (
                   <React.Fragment key={index}>
-                    <GridCars wordData={word} delWord={deleteWord} />
+                    <GridCars wordData={word} deleteWord={deleteWord} />
                   </React.Fragment>
                 ))}
           </Row>

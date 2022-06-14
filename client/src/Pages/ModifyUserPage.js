@@ -8,9 +8,6 @@ function ModifyUserPage() {
   return (
     <div>
       <Nav />
-      <div className="Profile">
-        <Profile />
-      </div>
       <div className="ModifyUser">
         <ModifyUser />
       </div>

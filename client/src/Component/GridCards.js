@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import "./Component.css";
 import Modal from "./Modal/Word";
 
-export default function GridCars({ wordData, delWord }) {
+export default function GridCars({ wordData, deleteWord }) {
   const groupFilter = useSelector((state) => state.groupfilter);
 
   const [modalOn, setModalOn] = useState(false);
@@ -28,7 +28,7 @@ export default function GridCars({ wordData, delWord }) {
             수정
           </Link>
           <button onClick={() => setModalOn(true)}>삭제</button>
-          <Modal open={modalOn} close={() => setModalOn(false)} wordId={wordData.id} delWord={delWord} />
+          <Modal open={modalOn} close={() => setModalOn(false)} wordId={wordData.id} deleteWord={deleteWord} />
         </div>
       ) : (
         <div className="gridcards">

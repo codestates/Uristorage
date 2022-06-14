@@ -7,9 +7,6 @@ function AddGroupPage() {
   return (
     <div>
       <Nav />
-      <div className="Profile">
-        <Profile />
-      </div>
       <div className="ModifyUser">
         <ModifyGroup />
       </div>
