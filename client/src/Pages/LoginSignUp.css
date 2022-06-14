@@ -38,7 +38,7 @@
   height: 110px;
   font-size: 30px;
   background-color: #BCAAA4;
-  border-radius: 25%;
+  border-radius: 10px;
   bottom: 150px;
   left: 430px;
   border: none
@@ -122,7 +122,7 @@
   height: 60px;
   font-size: 30px;
   background-color: #BCAAA4;
-  border-radius: 25%;
+  border-radius: 10px;
   border: none;
   left: 120px;
   bottom: 40px;
@@ -200,7 +200,7 @@
   height: 50px;
   font-size: 15px;
   background-color: #BCAAA4;
-  border-radius: 25%;
+  border-radius: 10px;
   border: none;
   left: 80px;
 }
@@ -279,7 +279,7 @@
   height: 50px;
   font-size: 15px;
   background-color: #BCAAA4;
-  border-radius: 25%;
+  border-radius: 10px;
   border: none;
   left: 80px;
 }

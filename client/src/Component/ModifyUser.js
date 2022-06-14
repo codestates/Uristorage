@@ -100,17 +100,17 @@ function ModifyUser() {
       </div>
       <div className="modifyuser-form">
         
-        <input type="text" className='modify-inputeach' value={nickname} onChange={onNickNameHandler} />
-        <input type="password" className='modify-inputeach' value={password} onChange={onPasswordHandler} />
-        <input type="password" className='modify-inputeach' value={confirmPassword} onChange={onConfirmPasswordHandler} />
-        <input type="email" className='modify-inputeach' value={email} onChange={onEmailHandler} />
+        <input type="text" className='modifyuser-inputeach' value={nickname} onChange={onNickNameHandler} />
+        <input type="password" className='modifyuser-inputeach' value={password} onChange={onPasswordHandler} />
+        <input type="password" className='modifyuser-inputeach' value={confirmPassword} onChange={onConfirmPasswordHandler} />
+        <input type="email" className='modifyuser-inputeach' value={email} onChange={onEmailHandler} />
 
         <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
 
         <br />
-        <button className='modify-button submit' onClick={onSubmitHandler}>회원 정보 변경</button>
+        <button className='modifyuser-button submit' onClick={onSubmitHandler}>회원 정보 변경</button>
         <br />
-        <button className='modify-button delete' onClick={() => setModalOn(true)}>회원 탈퇴</button>
+        <button className='modifyuser-button delete' onClick={() => setModalOn(true)}>회원 탈퇴</button>
       </div>
 
       <Modal open={modalOn} close={() => setModalOn(false)} />
