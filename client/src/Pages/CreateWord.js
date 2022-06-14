@@ -196,7 +196,7 @@ function CreateWord() {
             />
             </NaverMap>
             </RenderAfterNavermapsLoaded>
-          ) : null}
+          : null}
           {Wordcreate.type === "date" ? <DatePicker dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}
           <div className="Pub_Create">
             <span> 공개 여부 </span>

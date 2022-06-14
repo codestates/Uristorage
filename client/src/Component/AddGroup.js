@@ -101,32 +101,40 @@ function AddGroup() {
 
   return (
     <div>
-      <div className='group-desc'>
-        <div className='group-desceach1'>그룹 이름</div>
-        <div className='group-desceach2'>그룹원 목록</div>
-        <div className='group-desceach3'>그룹 이미지</div>
-      </div>
       <div className='group-form'>
+
+        <div className='group-desceach1'>그룹 이름</div>
         <input type="text" value={name} onChange={onNameHandler} />
-        <div className='group-memberlist'>
+
+        <div className='group-desceach2'>그룹원 목록</div>
+        <div>
           {members.map((el, index) => (
             <div key={index}>
               {index === 0 ? (
-                <div class='group-memberlist'>{el}</div>
-              ) : (
                 <div>
                   {el}
+                </div>
+              ) : (
+                <div>
+                  <div className='group-memberlist'>
+                    {el}
                   <button className='group-button3' value={el} onClick={onMemberDelete}>
                     삭제
                   </button>
+                  </div>
                 </div>
               )}
             </div>
           ))}
         </div>
-        <input type="text" value={member} onChange={handleInputValue} />
+
+        <div>
+        <input className='group-addinput' type="text" value={member} onChange={handleInputValue} />
         <button className='group-button1' onClick={onMemberAdd}>추가</button>
+        </div>
         <br />
+        
+        <div className='group-desceach3'>그룹 이미지</div>
         <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
 
         <br />

@@ -13,7 +13,7 @@
   position: absolute;
   margin: 0 !important;
   /* z-index: -1; */
-  bottom: 60px;
+  bottom: -18px;
 }
 
 .image-upload-wrapper {
