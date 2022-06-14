@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import Nav from "../Component/Nav";
 import Searchbar from "../Component/Searchbar";
-import Filter from "../Component/Filter";
 import "./Search.css";
 import axios from "axios";
 import CatFilter from "../Component/CatFilter/CatFilter";
