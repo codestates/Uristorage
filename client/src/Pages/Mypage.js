@@ -87,6 +87,8 @@ function Mypage() {
       <div className="My_Consonant">
         <div>자음 필터</div>
       </div>
+      </div>
+      </div>
     </div>
   );
 }

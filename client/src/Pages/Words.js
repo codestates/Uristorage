@@ -12,27 +12,29 @@ function Words({ searchHandler }) {
   const clicked = location.state.data;
 
   return (
-    <div>
+    <div id="Words">
       <Nav />
       <div>
-        <div>
+        <div className="words_searchbar">
           <Searchbar searchHandler={searchHandler} />
         </div>
         <div className="words_information">
+          <div className="words_words_title">
           <div className="words_clickedwords">
             {clicked.word}
-            <div> {clicked.user.nickname}님의 단어</div>
+            <div className="words_nickname"> {clicked.user.nickname}님의 단어</div>
           </div>
           <div className="words_clickedtitle">
-            <div>요약:</div>
-            {clicked.summary}
+            <span>요약</span>
+            <div className="words_summary">{clicked.summary}</div>
           </div>
+          </div>
+          <img className="words_clickedimage" src={clicked.image} />
           <div className="words_clickedcontent">
-            <div>내용:</div>
-            {clicked.content}
+            <span>내용</span>
+            <div className="words_content">{clicked.content}</div>
           </div>
         </div>
-        <img className="words_clickedimage" style={{ width: "300px", height: "300px" }} src={clicked.image} />
       </div>
     </div>
   );
