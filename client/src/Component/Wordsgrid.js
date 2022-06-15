@@ -7,6 +7,7 @@ import Pagination from "./Pagenation";
 
 function Wordsgrid({ searchWord, worddata, deleteWord }) {
   // const [worddata, setWorddata] = useState([]);
+
   worddata.sort((a, b) => {
     let nameA = a.word;
     let nameB = b.word;
