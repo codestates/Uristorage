@@ -85,12 +85,12 @@ function Profile() {
   return (
     <div className="information">
       {groupfilter === 0 ? ( //setmembs.length로 한다??
-        <img className="profile-image" style={{ width: "250px", height: "250px" }} src={userInfo.image} />
+        <img className="profile-image" src={userInfo.image} />
       ) : (
-        <img className="profile-image" style={{ width: "250px", height: "250px" }} src={userGroups.filter((el) => el.group_id === groupfilter)[0].image} />
+        <img className="profile-image" src={userGroups.filter((el) => el.group_id === groupfilter)[0].image} />
       )}
       <div>
-        <span> {userInfo.nickname} </span>
+        <div className="pofile_nickname"> {userInfo.nickname} </div>
         <select onChange={onChangeHandler} value={Content}>
           {/* <option key={groupfilter} value={groupfilter} selected>
             {groupfilter}
