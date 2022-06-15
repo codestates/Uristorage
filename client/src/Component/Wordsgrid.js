@@ -40,7 +40,6 @@ function Wordsgrid({ searchWord, worddata, deleteWord, type }) {
                   </React.Fragment>
                 ))}
           </Row>
-          <Pagination pages={pages} setCurrentPage={setCurrentPage} />
         </div>
       ) : (
         <div className="wordgrid">
@@ -53,7 +52,6 @@ function Wordsgrid({ searchWord, worddata, deleteWord, type }) {
                   </React.Fragment>
                 ))}
           </Row>
-          <Pagination pages={pages} setCurrentPage={setCurrentPage} />
         </div>
       )}
     </div>

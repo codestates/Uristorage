@@ -84,12 +84,7 @@ function Mypage() {
         {type === "date" ? <Calendar /> : <></>}
         <Wordsgrid searchWord={searchWord} worddata={worddata} deleteWord={deleteWord} />
       </div>
-      <div className="My_Consonant">
-        <div>자음 필터</div>
       </div>
-      </div>
-      </div>
-    </div>
   );
 }
 
