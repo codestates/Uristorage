@@ -3,7 +3,6 @@ import { useLocation } from "react-router";
 
 import Nav from "../Component/Nav";
 import Profile from "../Component/Profile";
-import TypeFilter from "../Component/TypeFilter";
 
 function Detail() {
   // const userInfo = useSelector((state) => state.userInfo);
@@ -25,9 +24,6 @@ function Detail() {
       <Nav />
       <div className="My_Profile">
         <Profile />
-      </div>
-      <div className="My_Filter">
-        <TypeFilter />
       </div>
       <div className="words_information_detail">
         <div className="words_clickedwords_detail">

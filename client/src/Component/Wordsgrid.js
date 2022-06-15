@@ -5,7 +5,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import Pagination from "./Pagenation";
 
-function Wordsgrid({ searchWord, worddata, deleteWord }) {
+function Wordsgrid({ searchWord, worddata, deleteWord, type }) {
   // const [worddata, setWorddata] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [wordsPerPage] = useState(5);
@@ -26,9 +26,6 @@ function Wordsgrid({ searchWord, worddata, deleteWord }) {
   const currentWords = worddata.slice(firstPost, lastPost);
   const currentFilteredWords = filteredWordData.slice(firstPost, lastPost);
   const pages = Math.ceil(filteredWordData.length / wordsPerPage);
-
-  //id값 같을 때 해당 words 출력 추가
-  //리덕스에서 wordtype값을 불러온다. (all,person.map,date)
 
   return (
     <div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import './LoginSignUp.css'
+import "./LoginSignUp.css";
 
 function LoginPage() {
   const [userId, setUserId] = useState("");
@@ -52,23 +52,26 @@ function LoginPage() {
 
   return (
     <div>
-      <div className='user-nav'>
+      <div className="user-nav">
         <Link to="/" className="navigation_center">
           Uri<span className="navigation_othercolor">Storage</span>
         </Link>
       </div>
-      <div className='loginNsignup'>
-        <form className='login-form' onSubmit={onSubmitHandler}>  
-          <input type="userId" className='login-input' value={userId} onChange={onUserIdHandler} placeholder="아이디" />
-          <input type="password" className='login-input' value={password} onChange={onPasswordHandler} placeholder="비밀번호" />
+      <div className="loginNsignup">
+        <form className="login-form" onSubmit={onSubmitHandler}>
+          <input type="userId" className="login-input" value={userId} onChange={onUserIdHandler} placeholder="아이디" />
+          <input type="password" className="login-input" value={password} onChange={onPasswordHandler} placeholder="비밀번호" />
           <br />
-          <button type="submit" className='login-button'>로그인</button>
+          <button type="submit" className="login-button">
+            로그인
+          </button>
         </form>
       </div>
-      <div className='login-tosignup'>
-        <Link to="/Signup">
-          회원가입
-        </Link>
+      <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=iwK_gnCquLTp4ZUNXTFs&redirect_uri=https://localhost:4000/users/callback&state=RANDOM_STATE">
+        <img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG" />
+      </a>
+      <div className="login-tosignup">
+        <Link to="/Signup">회원가입</Link>
       </div>
     </div>
   );

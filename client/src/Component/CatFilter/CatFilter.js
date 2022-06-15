@@ -1,12 +1,23 @@
 import { useState, useEffect } from "react";
 import "./CatFilter.css";
+import { useNavigate } from "react-router-dom";
 
 export default function CatFilter({ setType }) {
+  const navigate = useNavigate();
+
   const [activeCat, setActiveCat] = useState("All");
 
   const handleClick = (e) => {
     setActiveCat(e.target.value);
   };
+
+  // const navigatePlace = () => {
+  //   navigate("/Location");
+  // };
+
+  // const navigateDate = () => {
+  //   navigate("/Calendar");
+  // };
 
   useEffect(() => {
     setType(activeCat);
