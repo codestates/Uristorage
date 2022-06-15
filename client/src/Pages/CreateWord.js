@@ -170,15 +170,16 @@ function CreateWord() {
       <div className="CreateWord">
         <form className="Word_form" onSubmit={(e) => e.preventDefault()}>
           <div className="Word_Create">
-            <span className="word-desc">단어</span>&emsp;
+            <span className="word-desc2l">단어</span>&emsp;
             <input className="input_word" type="text" onChange={handleInputValue("word")} />
           </div>
           <div className="Summary_Create">
-            <span className="word-desc">요약</span>&emsp;
+            <span className="word-desc2l">요약</span>&emsp;
             <input className="input_summary" type="text" onChange={handleInputValue("summary")} />
           </div>
           <div>
-            <span className="word-desc">그룹 선택</span>&emsp;
+            <span className="word-desc4l">그룹 선택</span>&emsp;
+            <span className="word-type">
             {userGroups.length === 0
               ? "생성된 그룹이 없습니다."
               : userGroups.map((el) => (
@@ -194,6 +195,7 @@ function CreateWord() {
                     {el.name}
                   </label>
                 ))}
+                </span>
           </div>
           <div className="Type_Create">
             <span className="word-desc">구분</span>&emsp;
@@ -219,22 +221,26 @@ function CreateWord() {
               </RenderAfterNavermapsLoaded>
             ) : null}
           </div>
-          {Wordcreate.type === "date" ? <DatePicker dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}
+          <div>
+          {Wordcreate.type === "date" ? <DatePicker className='word-date' dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}
+          </div>
           <div className="Pub_Create">
-            <span className="word-desc"> 공개 여부 </span>
+            <span className="word-desc4l"> 공개 여부 </span>
+            <span className='word-pub'>
             <button className={activePub === true ? "wordActive_btn" : "word_btn"} onClick={pubHandleClick}>
               공개
             </button>
             <button className={activePub === false ? "wordActive_btn" : "word_btn"} onClick={unPubHandleClick}>
               비공개
             </button>
+            </span>
           </div>
           <div className="Content_Image">
-            <span className="word-desc">단어 이미지</span>
-            <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
+            <span className="word-desc5l">단어 이미지</span>
+            <div className="word-image"><ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} /></div>
           </div>
           <div className="Content_Create">
-            <span className="word-desc">내용</span>&emsp;
+            <span className="word-desc2lc">내용</span>&emsp;
             <textarea className="input_content" onChange={handleInputValue("content")} />
           </div>
           <div className="Create_Button">

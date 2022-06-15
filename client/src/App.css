@@ -69,7 +69,7 @@
   top: 0px;
   width: 350px;
   height: 350px;
-  left: 30px;
+  left: 40px;
 }
 
 .Word_form {
@@ -78,14 +78,55 @@
   left: 30px;
 }
 
+.word-desc2l {
+  position: relative;
+  font-size: 20px;
+  color: #3E2723;
+  right: 45px;
+}
+
+.word-desc4l {
+  position: relative;
+  font-size: 20px;
+  color: #3E2723;
+  right: 65px;
+}
+
+.word-desc5l {
+  position: relative;
+  font-size: 20px;
+  color: #3E2723;
+  right: 80px;
+}
+
+.word-desc2lc {
+  position: relative;
+  font-size: 20px;
+  color: #3E2723;
+  bottom: 90px;
+  right: 45px;
+}
+
+.word-image {
+  position: relative;
+  bottom: 50px;
+  left: 30px;
+}
+
 .word-desc {
+  position: relative;
   font-size: 20px;
   color: #3e2723;
 }
 
+.word-date {
+  position: relative;
+  left: 50px;
+}
+
 .Content_Create {
   position: relative;
-  top: 100px;
+  top: 60px;
 }
 
 .word-btn {
@@ -96,10 +137,20 @@
   background-color: #bcaaa4;
   border-radius: 10px;
   border: none;
-  top: 100px;
+  top: 60px;
   left: 80px;
 }
 
 .word-btn:hover {
   background-color: #f5e5e0;
+}
+
+.word-type {
+  position: relative;
+  right: 40px;
+}
+
+.word-pub {
+  position: relative;
+  right: 30px;
 }

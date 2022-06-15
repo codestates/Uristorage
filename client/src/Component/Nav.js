@@ -62,7 +62,7 @@ function Nav() {
             </span>
             <span> / </span>
             <span>
-              <button onClick={handleLogout}> 로그아웃 </button>
+              <button className='navigation_logout' onClick={handleLogout}> 로그아웃 </button>
             </span>
           </div>
         )}
