@@ -8,6 +8,8 @@ import CatFilter from "../Component/CatFilter/CatFilter";
 import Wordsgrid from "../Component/Wordsgrid";
 import { useSelector } from "react-redux";
 import "./Mypage.css";
+import Locationmap from "../Component/Locationmap";
+import Calendar from "react-calendar";
 
 function Mypage() {
   const userInfo = useSelector((state) => state.userInfo);
@@ -66,7 +68,6 @@ function Mypage() {
       <div className="My_Filter">
         <CatFilter setType={setType} />
       </div>
-      {}
       <div className="My_search_createword">
         <div className="home_searchbar">
           <input className="searchbar" type="text" placeholder="단어를 입력해주세요" onChange={handleInputValue("searchWord")} />
@@ -78,7 +79,9 @@ function Mypage() {
           <Link to="/CreateWord">단어등록</Link>{" "}
         </div>
       </div>
-      <div className="WordGrid">
+      <div className="My_WordGrid">
+        {type === "place" ? <Locationmap /> : <></>}
+        {type === "date" ? <Calendar /> : <></>}
         <Wordsgrid searchWord={searchWord} worddata={worddata} deleteWord={deleteWord} />
       </div>
       <div className="My_Consonant">

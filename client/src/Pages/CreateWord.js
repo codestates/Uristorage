@@ -185,7 +185,7 @@ function CreateWord() {
           {Wordcreate.type === "place" ? (
             <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
               <NaverMap className="CreateWord_Map" mapDivId={"naver-map"} defaultCenter={{ lat: 37.3595704, lng: 127.105399 }} defaultZoom={16} zoomControl={true} draggable={true} onClick={ClickLocationHandler}>
-                <Marker position={Wordcreate.map} />
+                <Marker position={mark} />
               </NaverMap>
             </RenderAfterNavermapsLoaded>
           ) : null}
