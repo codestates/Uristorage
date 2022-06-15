@@ -6,14 +6,24 @@ import { useSelector } from "react-redux";
 function Locationmap() {
   const userInfo = useSelector((state) => state.userInfo);
   const users_id = userInfo.id;
+  const groupFilter = useSelector((state) => state.groupfilter);
 
   const [locationWord, setLocationWord] = useState([]);
+
   useEffect(() => {
     async function getLocationWords() {
-      await axios.get(`${process.env.REACT_APP_URL}/words/user/${users_id}`).then((res) => setLocationWord(res.data));
+      if (groupFilter === 0) {
+        await axios.get(`${process.env.REACT_APP_URL}/words/user/${users_id}`).then((res) => setLocationWord(res.data));
+      } else {
+        axios.get(`${process.env.REACT_APP_URL}/words/group/${groupFilter}`).then((res) => {
+          console.log(res.data);
+          setLocationWord(res.data.groupWords);
+        });
+      }
     }
     getLocationWords();
-  }, []);
+  }, [groupFilter]);
+
   const markerInfo = [];
   for (let i = 0; i < locationWord.length; i++) {
     if (locationWord[i].type === "place" && locationWord[i].map !== "") {
@@ -31,33 +41,29 @@ function Locationmap() {
   }
   // console.log(decodeMarkerInfo);
 
-  const popUpInfo = []
+  const popUpInfo = [];
   for (let i = 0; i < locationWord.length; i++) {
-    if (locationWord[i].type === 'place' && locationWord[i].map !== "") { // 두번째 조건은 차후에 삭제
-      popUpInfo.push([locationWord[i].word, locationWord[i].summary])
+    if (locationWord[i].type === "place" && locationWord[i].map !== "") {
+      // 두번째 조건은 차후에 삭제
+      popUpInfo.push([locationWord[i].word, locationWord[i].summary]);
     }
   }
-  console.log(popUpInfo)
+  console.log(popUpInfo);
 
-  
-  const [infoBelowMap, SetInfoBelowMap] = useState('')
+  const [infoBelowMap, SetInfoBelowMap] = useState("");
   const clickMarkerHandler = (index) => {
     // let thisPop = []
     // thisPop.push(popUpInfo[index][0] + ' - ' + popUpInfo[index][1])
-    SetInfoBelowMap(popUpInfo[index][0] + ' - ' + popUpInfo[index][1])
+    SetInfoBelowMap(popUpInfo[index][0] + " - " + popUpInfo[index][1]);
     // console.log(infoBelowMap)
-  }
+  };
 
-  console.log(infoBelowMap)
+  console.log(infoBelowMap);
   // const navermap = window.naver.maps;
 
   return (
     <div>
-      <RenderAfterNavermapsLoaded
-        ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}
-        error={<p>Maps Load Error</p>}
-        loading={<p>Maps Loading...</p>
-      }>
+      <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID} error={<p>Maps Load Error</p>} loading={<p>Maps Loading...</p>}>
         <NaverMap
           className="Location_map"
           mapDivId={"naver-map"}
@@ -77,7 +83,7 @@ function Locationmap() {
             );
           })}
         </NaverMap>
-        <div className='Map-info'>{infoBelowMap}</div>
+        <div className="Map-info">{infoBelowMap}</div>
       </RenderAfterNavermapsLoaded>
     </div>
   );

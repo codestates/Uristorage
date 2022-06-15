@@ -3,6 +3,8 @@ const controllers = require("../controllers");
 
 router.post("/signup", controllers.signup);
 router.post("/login", controllers.login);
+router.get("/naverlogin", controllers.naverLogin);
+router.get("/callback", controllers.naverCallback);
 router.post("/logout", controllers.logout);
 router.post("/nickname", controllers.isNickname);
 router.get("/", controllers.getInfo);
