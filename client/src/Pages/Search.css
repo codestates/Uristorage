@@ -4,23 +4,26 @@ a:link {
 
 .word_box {
   display: flex;
+  position: relative;
   border: 2px solid #3E2723;
-  border-radius: 5%;
+  border-radius: 10px;
   padding: 10px;
-  margin: 15px;
+  margin: 20px;
   color: #3E2723;
   text-decoration: none;
+  width: 90%;
+  left: 45px;
 
   font-size: 20px;
 }
 
 .word_box:hover {
-  background-color: red;
+  background-color: #f5e5e0;
 }
 
 .word_inbox {
   border: 1.5px solid;
-  border-radius: 20%;
+  border-radius: 10px;
 }
 
 .title_inbox {

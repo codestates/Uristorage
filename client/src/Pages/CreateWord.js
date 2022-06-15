@@ -79,6 +79,8 @@ function CreateWord() {
     }
   }, [mark]);
 
+  console.log(mark)
+
   const [wordDate, setWordDate] = useState(new Date());
   const dateToString = (e) => {
     return e.getFullYear() + "-" + (e.getMonth() + 1).toString().padStart(2, "0") + "-" + e.getDate().toString().padStart(2, "0");
@@ -99,8 +101,6 @@ function CreateWord() {
       calendar: worddate,
     });
   };
-
-  console.log(Wordcreate);
 
   const [uploadImage, setUploadImage] = useState(null);
 
@@ -144,17 +144,17 @@ function CreateWord() {
     <div>
       <Nav />
       <div className="CreateWord">
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form className="Word_form" onSubmit={(e) => e.preventDefault()}>
           <div className="Word_Create">
-            <span>단어</span>&emsp;
+            <span className="word-desc">단어</span>&emsp;
             <input className="input_word" type="text" onChange={handleInputValue("word")} />
           </div>
           <div className="Summary_Create">
-            <span>요약</span>&emsp;
+            <span className="word-desc">요약</span>&emsp;
             <input className="input_summary" type="text" onChange={handleInputValue("summary")} />
           </div>
           <div>
-            <span>그룹 선택</span>&emsp;
+            <span className="word-desc">그룹 선택</span>&emsp;
             {userGroups.length === 0
               ? "생성된 그룹이 없습니다."
               : userGroups.map((el) => (
@@ -172,7 +172,7 @@ function CreateWord() {
                 ))}
           </div>
           <div className="Type_Create">
-            <span>구분</span>&emsp;
+            <span className="word-desc">구분</span>&emsp;
             <input type="radio" name="type" value={"All"} onChange={handleInputValue("type")} />
             일반
             <input type="radio" name="type" value={"person"} onChange={handleInputValue("type")} />
@@ -182,28 +182,36 @@ function CreateWord() {
             <input type="radio" name="type" value={"date"} onChange={handleInputValue("type")} />
             날짜
           </div>
+          <div>
           {Wordcreate.type === "place" ? (
             <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
-              <NaverMap className="CreateWord_Map" mapDivId={"naver-map"} defaultCenter={{ lat: 37.3595704, lng: 127.105399 }} defaultZoom={16} zoomControl={true} draggable={true} onClick={ClickLocationHandler}>
+              <NaverMap className='word-map' mapDivId={"naver-map"}
+              defaultCenter={{ lat: 37.3595704, lng: 127.105399 }}
+              defaultZoom={16} zoomControl={true}
+              draggable={true} onClick={ClickLocationHandler}>
                 <Marker position={mark} />
               </NaverMap>
-            </RenderAfterNavermapsLoaded>
-          ) : null}
+            </RenderAfterNavermapsLoaded>)
+          : null}
+          </div>
           {Wordcreate.type === "date" ? <DatePicker dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}
           <div className="Pub_Create">
-            <span> 공개 여부 </span>
+            <span className="word-desc"> 공개 여부 </span>
             <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
             공개
             <input type="radio" name="open" value={false} onChange={handleInputValue("pub")} />
             비공개
           </div>
-          <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
+          <div className="Content_Image">
+            <span className="word-desc">단어 이미지</span>
+            <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
+          </div>
           <div className="Content_Create">
-            <span>내용</span>&emsp;
-            <input className="input_content" type="text" onChange={handleInputValue("content")} />
+            <span className="word-desc">내용</span>&emsp;
+            <textarea className="input_content" onChange={handleInputValue("content")} />
           </div>
           <div className="Create_Button">
-            <button className="btn" type="button" onClick={handleCreateword}>
+            <button className="word-btn" type="button" onClick={handleCreateword}>
               단어 등록하기
             </button>
           </div>

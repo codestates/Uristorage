@@ -145,17 +145,17 @@ function ModifyWord() {
     <div>
       <Nav />
       <div className="CreateWord">
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form className="Word_form" onSubmit={(e) => e.preventDefault()}>
           <div className="Word_Create">
-            <span>단어</span>&emsp;
+            <span className="word-desc">단어</span>&emsp;
             <input className="input_word" type="text" value={Wordcreate.word} onChange={handleInputValue("word")} />
           </div>
           <div className="Summary_Create">
-            <span>요약</span>&emsp;
+            <span className="word-desc">요약</span>&emsp;
             <input className="input_summary" type="text" value={Wordcreate.summary} onChange={handleInputValue("summary")} />
           </div>
           <div>
-            <span>그룹 선택</span>&emsp;
+            <span className="word-desc">그룹 선택</span>&emsp;
             {userGroups.length === 0
               ? "생성된 그룹이 없습니다."
               : userGroups.map((el) => (
@@ -173,7 +173,7 @@ function ModifyWord() {
                 ))}
           </div>
           <div className="Type_Create">
-            <span>구분</span>&emsp;
+            <span className="word-desc">구분</span>&emsp;
             <input type="radio" name="type" value={"All"} onChange={handleInputValue("type")} />
             일반
             <input type="radio" name="type" value={"person"} onChange={handleInputValue("type")} />
@@ -183,12 +183,22 @@ function ModifyWord() {
             <input type="radio" name="type" value={"date"} onChange={handleInputValue("type")} />
             날짜
           </div>
+          <div>
+          {Wordcreate.type === "place" ? (
+            <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
+              <NaverMap className='word-map' mapDivId={"naver-map"} defaultCenter={{ lat: 37.3595704, lng: 127.105399 }} defaultZoom={16} zoomControl={true} draggable={true} onClick={ClickLocationHandler}>
+                <Marker position={mark} />
+              </NaverMap>
+            </RenderAfterNavermapsLoaded>
+          ) : null}
+          </div>
           {Wordcreate.type === "date" ? <DatePicker dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}
           <div className="Pub_Create">
             {/* <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
             공개
             <input type="radio" name="open" value={false} onChange={handleInputValue("pub")} />
             비공개 */}
+            <span className="word-desc"> 공개 여부 </span>
             {Wordcreate.pub ? (
               <>
                 <input type="radio" name="open" value={true} checked onChange={handleInputValue("pub")} />
@@ -206,21 +216,15 @@ function ModifyWord() {
             )}
           </div>
           <div className="Content_Image">
+            <span className="word-desc">단어 이미지</span>
             <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
           </div>
           <div className="Content_Create">
-            <span>내용</span>&emsp;
-            <input className="input_content" type="text" value={Wordcreate.content} onChange={handleInputValue("content")} />
+            <span className="word-desc">내용</span>&emsp;
+            <textarea className="input_content" value={Wordcreate.content} onChange={handleInputValue("content")} />
           </div>
-          {Wordcreate.type === "place" ? (
-            <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
-              <NaverMap className="CreateWord_Map" mapDivId={"naver-map"} defaultCenter={{ lat: 37.3595704, lng: 127.105399 }} defaultZoom={16} zoomControl={true} draggable={true} onClick={ClickLocationHandler}>
-                <Marker position={mark} />
-              </NaverMap>
-            </RenderAfterNavermapsLoaded>
-          ) : null}
           <div className="Create_Button">
-            <button className="btn" type="button" onClick={handleCreateword}>
+            <button className="word-btn" type="button" onClick={handleCreateword}>
               단어 수정하기
             </button>
           </div>
