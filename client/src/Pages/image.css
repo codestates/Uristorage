@@ -1,6 +1,6 @@
 .image-upload {
   width: 230px !important;
-  height: 100px !important;
+  height: 30px !important;
   font-size: 15px;
   text-align: right;
   min-width: 0 !important;
@@ -10,10 +10,10 @@
   display: block !important;
   /* border-radius: 50% !important; */
   cursor: pointer;
-  position: absolute;
+  position: relative;
   margin: 0 !important;
   /* z-index: -1; */
-  bottom: -18px;
+
 }
 
 .image-upload-wrapper {

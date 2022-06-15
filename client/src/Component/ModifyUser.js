@@ -108,10 +108,10 @@ function ModifyUser() {
         <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
 
         <br />
-        <div className='modifyuser-buttonall'>
+      <div className='modifyuser-buttonall'>
         <button className='modifyuser-button submit' onClick={onSubmitHandler}>회원 정보 변경</button>
         <button className='modifyuser-button delete' onClick={() => setModalOn(true)}>회원 탈퇴</button>
-        </div>
+      </div>
       </div>
 
       <Modal open={modalOn} close={() => setModalOn(false)} />

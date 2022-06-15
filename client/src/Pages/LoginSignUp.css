@@ -46,7 +46,7 @@
 }
 
 .login-button:hover {
-  background-color: #ffce65;
+  background-color: #f5e5e0;
 }
 
 .login-tosignup {
@@ -131,7 +131,7 @@
 }
 
 .signup-button:hover {
-  background-color: #ffce65;
+  background-color: #f5e5e0;
 }
 
 .ModifyUser {
@@ -214,7 +214,7 @@
 }
 
 .modifyuser-button:hover {
-  background-color: #ffce65;
+  background-color: #f5e5e0;
 }
 
 .grouppage {
@@ -246,6 +246,7 @@
   color: #3E2723;
   right: 110px;
   top: 29px;
+  width: 100px;
 }
 
 .group-desceach2 {
@@ -255,6 +256,7 @@
   color: #3E2723;
   right: 120px;
   top: 29px;
+  width: 100px;
 }
 
 .group-desceach3 {
@@ -263,17 +265,34 @@
   font-weight: 500;
   color: #3E2723;
   right: 120px;
-  top: 38px;
+  top: 42px;
+  width: 100px;
+}
+
+.group-memmberlist {
+  display: flex;
+}
+
+.groupadd-image {
+  position: relative;
+  top: 100px;
 }
 
 .group-form {
   position: relative;
-  display: flex;
-  flex-direction: column;
+}
+
+.group-nameinput {
+  width: 270px;
 }
 
 .group-addinput {
   width: 230px;
+}
+
+.fixgroup {
+  height: 150px;
+  border: 1px solid #3E2723;
 }
 
 .group-button1 {
@@ -285,6 +304,10 @@
   top: -0.5px;
 }
 
+.group-button1:hover {
+  background-color: #f5e5e0;
+}
+
 .group-button2 {
   position: relative;
   width: 130px;
@@ -293,33 +316,54 @@
   background-color: #BCAAA4;
   border-radius: 10px;
   border: none;
-  left: 80px;
-  top: 20px;
+  left: 60px;
+  top: 120px;
+}
+
+.group-button2:hover {
+  background-color: #f5e5e0;
 }
 
 .group-button3 {
-  position: relative;
+  position: absolute;
   width: 35px;
   height: 20px;
   font-size: 10px;
   background-color: gray;
   color: white;
-  left: 180px;
+  left: 232px
 }
 
 .group-button3:hover{
   background-color: red;
 }
 
-  /* a:link {
-    text-decoration: none;
-    color: #BCAAA4;
-  }
-  
-  a:visited{
-    color: #BCAAA4;
-  }
-  
-  a:hover {
-    color: #3E2723;
-  } */
+.modifygroup-buttonall {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modifygroup-button {
+  position: relative;
+  width: 130px;
+  height: 50px;
+  font-size: 15px;
+  background-color: #BCAAA4;
+  border-radius: 10px;
+  border: none;
+  top: 140px;
+  left: 0px;
+}
+
+.modifygroup-button:hover {
+  background-color: #f5e5e0;
+}
+
+.group-container2 {
+  position: absolute;
+  width: 290px;
+  height: 140px;
+  background-color: rgb(255, 203, 203);
+  top: 120px;
+  overflow: scroll;
+}

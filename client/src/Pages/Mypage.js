@@ -78,7 +78,7 @@ function Mypage() {
           <Link to="/CreateWord">단어등록</Link>{" "}
         </div>
       </div>
-      <div className="WordGrid">
+      <div className="My_WordGrid">
         <Wordsgrid searchWord={searchWord} worddata={worddata} deleteWord={deleteWord} />
       </div>
       <div className="My_Consonant">

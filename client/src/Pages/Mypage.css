@@ -10,10 +10,10 @@
 
 .My_Profile {
     float: left;
-    width: 30%;
+    width: 20%;
     margin-left: 50px;
     border-right: solid 3px #3E2723;
-    width: 310px;
+    /* width: 310px; */
     height: 900px;
     text-align: center;
     padding-top: 20px;

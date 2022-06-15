@@ -45,22 +45,18 @@
 }
 
 .input_word{
-    width:200px;
+    width:250px;
     height:30px;
 }
 
 .input_summary{
-    width:200px;
+    width:250px;
     height:30px;
 }
 
 .input_content{
-    width:200px;
-    height:30px;
-}
-
-.input_content{
-    height:30px;
+    width:350px;
+    font-size: 20px;
 }
 
 /* Pagenation */
