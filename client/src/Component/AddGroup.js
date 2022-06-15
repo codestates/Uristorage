@@ -135,7 +135,6 @@ function AddGroup() {
           ))}
         </div>
         </div>
-          
         </div>
         <br />
         

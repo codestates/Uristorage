@@ -85,7 +85,7 @@
 }
 
 
-@media (max-width: 1500px){
+@media (max-width: 768px){
     .My_Filter {width: 100%;}
     .My_search_createword {width: 100%;}
     .My_WordGrid {width: 100%;}

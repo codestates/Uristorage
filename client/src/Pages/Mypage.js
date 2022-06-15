@@ -79,14 +79,11 @@ function Mypage() {
           <Link to="/CreateWord">단어등록</Link>{" "}
         </div>
       </div>
+      <div className="My_Grid_Consonant">
       <div className="My_WordGrid">
         {type === "place" ? <Locationmap /> : <></>}
         {type === "date" ? <Calendar /> : <></>}
         <Wordsgrid searchWord={searchWord} worddata={worddata} deleteWord={deleteWord} />
-      </div>
-      <div className="My_Consonant">
-        <div>자음 필터</div>
-      </div>
       </div>
       </div>
     </div>

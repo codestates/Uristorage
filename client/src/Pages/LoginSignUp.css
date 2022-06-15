@@ -209,7 +209,7 @@
   background-color: #BCAAA4;
   border-radius: 10px;
   border: none;
-  top: 20px;
+  top: 40px;
   left: 20px;
 }
 
@@ -317,7 +317,7 @@
   border-radius: 10px;
   border: none;
   left: 60px;
-  top: 120px;
+  top: 140px;
 }
 
 .group-button2:hover {
@@ -329,8 +329,7 @@
   width: 35px;
   height: 20px;
   font-size: 10px;
-  background-color: gray;
-  color: white;
+  background-color: rgb(211, 211, 211);;
   left: 232px
 }
 
@@ -351,8 +350,7 @@
   background-color: #BCAAA4;
   border-radius: 10px;
   border: none;
-  top: 140px;
-  left: 0px;
+  top: 160px;
 }
 
 .modifygroup-button:hover {
@@ -363,7 +361,7 @@
   position: absolute;
   width: 290px;
   height: 140px;
-  background-color: rgb(255, 203, 203);
+  background-color: rgb(238, 238, 238);
   top: 120px;
   overflow: scroll;
 }
