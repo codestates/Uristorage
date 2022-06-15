@@ -2,6 +2,8 @@ module.exports = {
   signup: require("./users/signup"),
   deleteUser: require("./users/deleteUser"),
   login: require("./users/login"),
+  naverLogin: require("./users/naverLogin"),
+  naverCallback: require("./users/naverCallback"),
   logout: require("./users/logout"),
   getInfo: require("./users/getInfo"),
   isNickname: require("./users/isNickname"),
