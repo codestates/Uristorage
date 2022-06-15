@@ -5,10 +5,8 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import Pagination from "./Pagenation";
 
-function Wordsgrid({ searchWord, worddata, deleteWord, type }) {
+function Wordsgrid({ searchWord, worddata, deleteWord }) {
   // const [worddata, setWorddata] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [wordsPerPage] = useState(5);
 
   worddata.sort((a, b) => {
     let nameA = a.word;
@@ -21,20 +19,14 @@ function Wordsgrid({ searchWord, worddata, deleteWord, type }) {
   const searchedWord = searchWord.searchWord;
   const filteredWordData = worddata.filter((x) => x.word.includes(searchedWord));
 
-  const lastPost = currentPage * wordsPerPage;
-  const firstPost = lastPost - wordsPerPage;
-  const currentWords = worddata.slice(firstPost, lastPost);
-  const currentFilteredWords = filteredWordData.slice(firstPost, lastPost);
-  const pages = Math.ceil(filteredWordData.length / wordsPerPage);
-
   return (
     <div>
       {searchedWord === "" || searchedWord === undefined || searchedWord === null || !searchedWord ? (
         <div className="wordgrid">
           <Row gutter={[16, 16]}>
-            {currentWords.length === 0
+            {worddata.length === 0
               ? "그룹에 속한 단어가 없습니다."
-              : currentWords.map((word, index) => (
+              : worddata.map((word, index) => (
                   <React.Fragment key={index}>
                     <GridCars wordData={word} deleteWord={deleteWord} />
                   </React.Fragment>
@@ -44,9 +36,9 @@ function Wordsgrid({ searchWord, worddata, deleteWord, type }) {
       ) : (
         <div className="wordgrid">
           <Row gutter={[16, 16]}>
-            {currentFilteredWords.length === 0
+            {filteredWordData.length === 0
               ? "일치하는 단어가 없습니다."
-              : currentFilteredWords.map((word, index) => (
+              : filteredWordData.map((word, index) => (
                   <React.Fragment key={index}>
                     <GridCars wordData={word} deleteWord={deleteWord} />
                   </React.Fragment>

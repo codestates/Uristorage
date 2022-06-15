@@ -3,7 +3,6 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 }
 
 main > section {
@@ -40,15 +39,6 @@ main > section {
   transition: all 0.3s ease;
 }
 
-/* .hover {
-  background: rgba(54, 54, 54, 0.424);
-  transition: all 0.3s ease;
-} */
-/* .hover:hover {
-  width: 130px;
-  background: rgba(11, 195, 11, 0.74);
-  box-shadow: -1px 6px 10px 0 rgba(54, 54, 54, 0.424);
-} */
 .active_btn {
   width: 130px;
   height: 40px;
@@ -70,3 +60,13 @@ main > section {
   background: #3e2723;
   box-shadow: -1px 6px 10px 0 rgba(54, 54, 54, 0.424);
 }
+
+/* .hover {
+  background: rgba(54, 54, 54, 0.424);
+  transition: all 0.3s ease;
+} */
+/* .hover:hover {
+  width: 130px;
+  background: rgba(11, 195, 11, 0.74);
+  box-shadow: -1px 6px 10px 0 rgba(54, 54, 54, 0.424);
+} */

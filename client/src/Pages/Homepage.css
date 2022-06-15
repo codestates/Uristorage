@@ -42,6 +42,10 @@
   background-color: #BCAAA4;
 }
 
+.searchbutton:hover {
+  background-color: #f5e5e0;
+}
+
 .searchicon {
   max-width: 30px;
   max-height: 30px;
@@ -65,4 +69,8 @@
   margin: 20px 55px;
   border-radius: 10px;
   background-color: #BCAAA4;
+}
+
+.randombutton:hover {
+  background-color: #f5e5e0;
 }

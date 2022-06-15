@@ -1,7 +1,7 @@
 module.exports = async (req, res) => {
   var client_id = "iwK_gnCquLTp4ZUNXTFs";
   var client_secret = "Roe7KhP5NS";
-  var state = "RANDOM_STATE";
+  var state = "code";
   var redirectURI = encodeURI("https://localhost:4000/users/callback");
   var api_url = "";
 

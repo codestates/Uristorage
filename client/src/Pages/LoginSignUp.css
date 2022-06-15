@@ -24,6 +24,7 @@
 }
 
 .login-input {
+  position: relative;
   margin: 12px;
   border: 2px solid #3E2723;
   width: 400px;
@@ -45,7 +46,7 @@
 }
 
 .login-button:hover {
-  background-color: #ffce65;
+  background-color: #f5e5e0;
 }
 
 .login-tosignup {
@@ -130,7 +131,7 @@
 }
 
 .signup-button:hover {
-  background-color: #ffce65;
+  background-color: #f5e5e0;
 }
 
 .ModifyUser {
@@ -139,7 +140,7 @@
   align-items: center;
   position: relative;
   width: 100%;
-  height: 450px;
+  height: 400px;
   left: 45px;
 }  
 
@@ -194,6 +195,12 @@
   padding: 10px;
 }
 
+.modifyuser-buttonall {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 30px 0px 0px;
+}
+  
 .modifyuser-button {
   position: relative;
   width: 130px;
@@ -202,11 +209,12 @@
   background-color: #BCAAA4;
   border-radius: 10px;
   border: none;
-  left: 80px;
+  top: 40px;
+  left: 20px;
 }
 
 .modifyuser-button:hover {
-  background-color: #ffce65;
+  background-color: #f5e5e0;
 }
 
 .grouppage {
@@ -233,44 +241,71 @@
 
 .group-desceach1 {
   position: relative;
-  bottom: 129px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #3E2723;
+  right: 110px;
+  top: 29px;
+  width: 100px;
 }
 
 .group-desceach2 {
   position: relative;
-  bottom: 100px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #3E2723;
+  right: 120px;
+  top: 29px;
+  width: 100px;
 }
 
 .group-desceach3 {
   position: relative;
-  bottom: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #3E2723;
+  right: 120px;
+  top: 42px;
+  width: 100px;
+}
+
+.group-memmberlist {
+  display: flex;
+}
+
+.groupadd-image {
+  position: relative;
+  top: 100px;
 }
 
 .group-form {
   position: relative;
-  display: flex;
-  flex-direction: column;
 }
 
-.group-memberlist {
+.group-nameinput {
+  width: 270px;
+}
+
+.group-addinput {
+  width: 230px;
+}
+
+.fixgroup {
+  height: 150px;
   border: 1px solid #3E2723;
-  margin: 20px 0px 0px 0px;
-}
-
-.group-memberlist {
-  height: 100px;
 }
 
 .group-button1 {
   position: relative;
-  width: 70px;
-  height: 40px;
-  font-size: 15px;
+  width: 40px;
+  height: 28px;
+  font-size: 13px;
   background-color: #BCAAA4;
-  border-radius: 30px;
-  border: none;
-  left: 100px;
-  top: 5px;
+  top: -0.5px;
+}
+
+.group-button1:hover {
+  background-color: #f5e5e0;
 }
 
 .group-button2 {
@@ -281,30 +316,52 @@
   background-color: #BCAAA4;
   border-radius: 10px;
   border: none;
-  left: 80px;
+  left: 60px;
+  top: 140px;
+}
+
+.group-button2:hover {
+  background-color: #f5e5e0;
 }
 
 .group-button3 {
-  position: relative;
-  width: 70px;
-  height: 40px;
-  font-size: 15px;
-  background-color: #BCAAA4;
-  border-radius: 30px;
-  border: none;
-  left: 120px;
-  top: 5px;
+  position: absolute;
+  width: 35px;
+  height: 20px;
+  font-size: 10px;
+  background-color: rgb(211, 211, 211);;
+  left: 232px
 }
 
-  /* a:link {
-    text-decoration: none;
-    color: #BCAAA4;
-  }
-  
-  a:visited{
-    color: #BCAAA4;
-  }
-  
-  a:hover {
-    color: #3E2723;
-  } */
+.group-button3:hover{
+  background-color: red;
+}
+
+.modifygroup-buttonall {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modifygroup-button {
+  position: relative;
+  width: 130px;
+  height: 50px;
+  font-size: 15px;
+  background-color: #BCAAA4;
+  border-radius: 10px;
+  border: none;
+  top: 160px;
+}
+
+.modifygroup-button:hover {
+  background-color: #f5e5e0;
+}
+
+.group-container2 {
+  position: absolute;
+  width: 290px;
+  height: 140px;
+  background-color: rgb(238, 238, 238);
+  top: 120px;
+  overflow: scroll;
+}

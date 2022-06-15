@@ -99,35 +99,49 @@ function AddGroup() {
     );
   };
 
+  console.log(members)
+
   return (
     <div>
-      <div className='group-desc'>
-        <div className='group-desceach1'>그룹 이름</div>
-        <div className='group-desceach2'>그룹원 목록</div>
-        <div className='group-desceach3'>그룹 이미지</div>
-      </div>
       <div className='group-form'>
-        <input type="text" value={name} onChange={onNameHandler} />
-        <div className='group-memberlist'>
+        <div>
+          <div className='group-desceach1'>그룹 이름</div>
+          <input className='group-addinput' type="text" value={name} onChange={onNameHandler} />
+        </div>
+
+        <div>
+          <div className='group-desceach2'>그룹원 목록</div>
+        <div>
+        <input className='group-addinput' type="text" value={member} onChange={handleInputValue} />
+        <button className='group-button1' onClick={onMemberAdd}>추가</button>
+          <div className='group-container2'>
           {members.map((el, index) => (
             <div key={index}>
-              {index === 0 ? (
-                <div class='group-memberlist'>{el}</div>
-              ) : (
-                <div>
+            {index === 0 ? (
+              <div>
+                {el}
+              </div>
+            ) : (
+            <div>
+                <div className='group-memberlist'>
                   {el}
                   <button className='group-button3' value={el} onClick={onMemberDelete}>
-                    삭제
+                  삭제
                   </button>
                 </div>
-              )}
+              </div>
+            )}
             </div>
           ))}
         </div>
-        <input type="text" value={member} onChange={handleInputValue} />
-        <button className='group-button1' onClick={onMemberAdd}>추가</button>
+        </div>
+        </div>
         <br />
-        <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
+        
+        <div className='groupadd-image'> 
+          <div className='group-desceach3'>그룹 이미지</div>
+          <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
+        </div>
 
         <br />
         <button className='group-button2' onClick={onSubmitHandler}>그룹 추가</button>
@@ -137,3 +151,8 @@ function AddGroup() {
 }
 
 export default AddGroup;
+
+// className='group-container1'
+// className='group-container2'
+// className='group-container3'
+

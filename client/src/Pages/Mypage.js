@@ -84,7 +84,7 @@ function Mypage() {
         {type === "date" ? <Calendar /> : <></>}
         <Wordsgrid searchWord={searchWord} worddata={worddata} deleteWord={deleteWord} />
       </div>
-      </div>
+    </div>
   );
 }
 
