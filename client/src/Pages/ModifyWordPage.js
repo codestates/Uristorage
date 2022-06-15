@@ -16,7 +16,8 @@ function ModifyWord() {
   const location = useLocation();
   const userGroups = useSelector((state) => state.userGroups);
 
-  // console.log("@@@@", location.state.data);
+  const [activeCat, setActiveCat] = useState(location.state.data.type);
+  const [activePub, setActivePub] = useState(location.state.data.public);
 
   const navigate = useNavigate();
   const [checkedGroups, setCheckedGroups] = useState([]);
@@ -139,8 +140,21 @@ function ModifyWord() {
     });
   };
 
-  // console.log("날짜", wordDate);
-  console.log(Wordcreate);
+  const typeHandleClick = (e) => {
+    setActiveCat(e.target.value);
+    setWordcreate({ ...Wordcreate, type: e.target.value });
+  };
+
+  const pubHandleClick = () => {
+    setActivePub(true);
+    setWordcreate({ ...Wordcreate, pub: true });
+  };
+
+  const unPubHandleClick = () => {
+    setActivePub(false);
+    setWordcreate({ ...Wordcreate, pub: false });
+  };
+
   return (
     <div>
       <Nav />
@@ -174,46 +188,45 @@ function ModifyWord() {
           </div>
           <div className="Type_Create">
             <span className="word-desc">구분</span>&emsp;
-            <input type="radio" name="type" value={"All"} onChange={handleInputValue("type")} />
+            {/* <input type="radio" name="type" value={"All"} onChange={handleInputValue("type")} />
             일반
             <input type="radio" name="type" value={"person"} onChange={handleInputValue("type")} />
             인물
             <input type="radio" name="type" value={"place"} onChange={handleInputValue("type")} />
             장소
             <input type="radio" name="type" value={"date"} onChange={handleInputValue("type")} />
-            날짜
+            날짜 */}
+            <button value={"All"} className={activeCat === "All" ? "wordActive_btn" : "word_btn"} onClick={typeHandleClick}>
+              일반
+            </button>
+            <button value={"person"} className={activeCat === "person" ? "wordActive_btn" : "word_btn"} onClick={typeHandleClick}>
+              인물
+            </button>
+            <button value={"place"} className={activeCat === "place" ? "wordActive_btn" : "word_btn"} onClick={typeHandleClick}>
+              장소
+            </button>
+            <button value={"date"} className={activeCat === "date" ? "wordActive_btn" : "word_btn"} onClick={typeHandleClick}>
+              날짜
+            </button>
           </div>
           <div>
-          {Wordcreate.type === "place" ? (
-            <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
-              <NaverMap className='word-map' mapDivId={"naver-map"} defaultCenter={{ lat: 37.3595704, lng: 127.105399 }} defaultZoom={16} zoomControl={true} draggable={true} onClick={ClickLocationHandler}>
-                <Marker position={mark} />
-              </NaverMap>
-            </RenderAfterNavermapsLoaded>
-          ) : null}
+            {Wordcreate.type === "place" ? (
+              <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
+                <NaverMap className="word-map" mapDivId={"naver-map"} defaultCenter={{ lat: 37.3595704, lng: 127.105399 }} defaultZoom={16} zoomControl={true} draggable={true} onClick={ClickLocationHandler}>
+                  <Marker position={mark} />
+                </NaverMap>
+              </RenderAfterNavermapsLoaded>
+            ) : null}
           </div>
           {Wordcreate.type === "date" ? <DatePicker dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}
           <div className="Pub_Create">
-            {/* <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
-            공개
-            <input type="radio" name="open" value={false} onChange={handleInputValue("pub")} />
-            비공개 */}
             <span className="word-desc"> 공개 여부 </span>
-            {Wordcreate.pub ? (
-              <>
-                <input type="radio" name="open" value={true} checked onChange={handleInputValue("pub")} />
-                공개
-                <input type="radio" name="open" value={false} onChange={handleInputValue("pub")} />
-                비공개
-              </>
-            ) : (
-              <>
-                <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
-                공개
-                <input type="radio" name="open" value={false} checked onChange={handleInputValue("pub")} />
-                비공개
-              </>
-            )}
+            <button className={activePub === true ? "wordActive_btn" : "word_btn"} onClick={pubHandleClick}>
+              공개
+            </button>
+            <button className={activePub === false ? "wordActive_btn" : "word_btn"} onClick={unPubHandleClick}>
+              비공개
+            </button>
           </div>
           <div className="Content_Image">
             <span className="word-desc">단어 이미지</span>
