@@ -46,7 +46,8 @@
 }
 
 .login-button:hover {
-  background-color: #f5e5e0;
+  background-color: #3E2723;
+  color: white;
 }
 
 .login-tosignup {
@@ -131,7 +132,8 @@
 }
 
 .signup-button:hover {
-  background-color: #f5e5e0;
+  background-color: #3E2723;
+  color: white;
 }
 
 .ModifyUser {
@@ -214,7 +216,8 @@
 }
 
 .modifyuser-button:hover {
-  background-color: #f5e5e0;
+  background-color: #3E2723;
+  color: white;
 }
 
 .grouppage {
@@ -305,7 +308,8 @@
 }
 
 .group-button1:hover {
-  background-color: #f5e5e0;
+  background-color: #3E2723;
+  color: white;
 }
 
 .group-button2 {
@@ -321,7 +325,8 @@
 }
 
 .group-button2:hover {
-  background-color: #f5e5e0;
+  background-color: #3E2723;
+  color: white;
 }
 
 .group-button3 {
@@ -354,7 +359,8 @@
 }
 
 .modifygroup-button:hover {
-  background-color: #f5e5e0;
+  background-color: #3E2723;
+  color: white;
 }
 
 .group-container2 {

@@ -2,32 +2,47 @@ a:link {
     text-decoration: none;
   }
 
+.searchedword_containter {
+  width: 70%;
+  margin: auto
+}
+
 .word_box {
   display: flex;
   position: relative;
+  justify-content: space-between;
   border: 2px solid #3E2723;
   border-radius: 10px;
   padding: 10px;
   margin: 20px;
   color: #3E2723;
   text-decoration: none;
-  width: 90%;
-  left: 45px;
-
+  width: 100%;
   font-size: 20px;
+  left: 50%;
+  top: 100px;
+  transform: translate(-50%, -50%);
 }
 
 .word_box:hover {
   background-color: #f5e5e0;
+  cursor: pointer;
 }
 
 .word_inbox {
-  border: 1.5px solid;
-  border-radius: 10px;
+  padding: 30px 5px; 
+  font-weight: bold;
+  flex-grow: 1
 }
 
 .title_inbox {
-  margin: 0px 0px 0px 50px;
+  padding: 30px 0px; 
+  position: relative;
+  flex-grow: 4
+}
+
+.img_inbox {
+  margin: 10px 20px;
 }
 
 .searched_none {
