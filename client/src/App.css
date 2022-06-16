@@ -142,12 +142,20 @@
   right: 45px;
 }
 
-.word-desc4l {
+.word-desc4lp {
   position: relative;
   font-size: 20px;
   color: #3E2723;
   right: 65px;
-  top: 10px;
+  top: 14px;
+}
+
+.word-desc4lg {
+  position: relative;
+  font-size: 20px;
+  color: #3E2723;
+  right: 65px;
+  top: 4px;
 }
 
 .word-desc5l {
@@ -161,7 +169,7 @@
   position: relative;
   font-size: 20px;
   color: #3E2723;
-  bottom: 170px;
+  bottom: 125px;
   right: 45px;
 }
 
