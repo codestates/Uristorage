@@ -3,6 +3,8 @@ import { useLocation } from "react-router";
 
 import Nav from "../Component/Nav";
 import Profile from "../Component/Profile";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 function Detail() {
   // const userInfo = useSelector((state) => state.userInfo);
@@ -36,10 +38,17 @@ function Detail() {
         </div>
         <div className="words_clickedcontent_detail">
           <div>내용:</div>
-          {clicked.content}
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{clicked.content}</ReactMarkdown>
         </div>
       </div>
-      <img className="words_clickedimage_detail" style={{ width: "300px", height: "300px" }} src={clicked.image} />
+      <img
+        className="words_clickedimage_detail"
+        style={{ width: "300px", height: "300px" }}
+        src={clicked.image}
+        onError={(e) => {
+          e.target.style.display = "none";
+        }}
+      />
     </div>
   );
 }

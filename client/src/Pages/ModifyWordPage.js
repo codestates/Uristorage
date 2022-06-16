@@ -157,6 +157,7 @@ function ModifyWord() {
     setWordcreate({ ...Wordcreate, pub: false });
   };
 
+  console.log(Wordcreate);
   return (
     <div>
       <Nav />

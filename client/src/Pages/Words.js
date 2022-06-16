@@ -5,6 +5,8 @@ import axios from "axios";
 
 import Nav from "../Component/Nav";
 import Searchbar from "../Component/Searchbar";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import "./Words.css";
 
 function Words({ searchHandler }) {
@@ -20,19 +22,27 @@ function Words({ searchHandler }) {
         </div>
         <div className="words_information">
           <div className="words_words_title">
-          <div className="words_clickedwords">
-            {clicked.word}
-            <div className="words_nickname"> {clicked.user.nickname}님의 단어</div>
+            <div className="words_clickedwords">
+              {clicked.word}
+              <div className="words_nickname"> {clicked.user.nickname}님의 단어</div>
+            </div>
+            <div className="words_clickedtitle">
+              <span>요약</span>
+              <div className="words_summary">{clicked.summary}</div>
+            </div>
           </div>
-          <div className="words_clickedtitle">
-            <span>요약</span>
-            <div className="words_summary">{clicked.summary}</div>
-          </div>
-          </div>
-          <img className="words_clickedimage" src={clicked.image} />
+          <img
+            className="words_clickedimage"
+            src={clicked.image}
+            onError={(e) => {
+              e.target.style.display = "none";
+            }}
+          />
           <div className="words_clickedcontent">
             <span>내용</span>
-            <div className="words_content">{clicked.content}</div>
+            <div className="words_content">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{clicked.content}</ReactMarkdown>
+            </div>
           </div>
         </div>
       </div>
