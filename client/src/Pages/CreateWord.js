@@ -17,13 +17,11 @@ function CreateWord() {
   const userGroups = useSelector((state) => state.userGroups);
   const id = userInfo.id;
 
-  console.log(id);
-
   const [activeCat, setActiveCat] = useState("All");
   const [activePub, setActivePub] = useState(false);
+  const [checkedGroups, setCheckedGroups] = useState([]);
 
   const navigate = useNavigate();
-  const [checkedGroups, setCheckedGroups] = useState([]);
   const [Wordcreate, setWordcreate] = useState({
     users_id: id,
     word: "",
@@ -41,14 +39,6 @@ function CreateWord() {
   }, [id]);
 
   console.log(Wordcreate);
-
-  const checkHandle = (checked, id) => {
-    if (checked) {
-      setCheckedGroups([...checkedGroups, id]);
-    } else {
-      setCheckedGroups(checkedGroups.filter((el) => el !== id));
-    }
-  };
 
   const handleInputValue = (key) => (e) => {
     setWordcreate({ ...Wordcreate, [key]: e.target.value });
@@ -149,6 +139,17 @@ function CreateWord() {
     );
   };
 
+  const groupHandleClick = (e) => {
+    const value = Number(e.target.value);
+    if (checkedGroups.includes(value)) {
+      setCheckedGroups(checkedGroups.filter((el) => el !== value));
+    } else {
+      setCheckedGroups([...checkedGroups, value]);
+    }
+  };
+
+  console.log(checkedGroups);
+
   const typeHandleClick = (e) => {
     setActiveCat(e.target.value);
     setWordcreate({ ...Wordcreate, type: e.target.value });
@@ -180,25 +181,18 @@ function CreateWord() {
           <div>
             <span className="word-desc4l">그룹 선택</span>&emsp;
             <span className="word-type">
-            {userGroups.length === 0
-              ? "생성된 그룹이 없습니다."
-              : userGroups.map((el) => (
-                  <label key={el.group_id}>
-                    <input
-                      id={el.group_id}
-                      type="checkbox"
-                      onChange={(e) => {
-                        checkHandle(e.currentTarget.checked, el.group_id);
-                      }}
-                      checked={checkedGroups.includes(el.group_id) ? true : false}
-                    />
-                    {el.name}
-                  </label>
-                ))}
-                </span>
+              {userGroups.length === 0
+                ? "생성된 그룹이 없습니다."
+                : userGroups.map((el, index) => (
+                    <button key={index} value={el.group_id} className={checkedGroups.includes(el.group_id) ? "wordActive_btn" : "word_btn"} onClick={groupHandleClick}>
+                      {el.name}
+                    </button>
+                  ))}
+            </span>
+            &emsp;
           </div>
           <div className="Type_Create">
-            <span className="word-desc">구분</span>&emsp;
+            <span className="word-desc">구분</span>
             <button value={"All"} className={activeCat === "All" ? "wordActive_btn" : "word_btn"} onClick={typeHandleClick}>
               일반
             </button>
@@ -221,23 +215,23 @@ function CreateWord() {
               </RenderAfterNavermapsLoaded>
             ) : null}
           </div>
-          <div>
-          {Wordcreate.type === "date" ? <DatePicker className='word-date' dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}
-          </div>
+          <div>{Wordcreate.type === "date" ? <DatePicker className="word-date" dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}</div>
           <div className="Pub_Create">
             <span className="word-desc4l"> 공개 여부 </span>
-            <span className='word-pub'>
-            <button className={activePub === true ? "wordActive_btn" : "word_btn"} onClick={pubHandleClick}>
-              공개
-            </button>
-            <button className={activePub === false ? "wordActive_btn" : "word_btn"} onClick={unPubHandleClick}>
-              비공개
-            </button>
+            <span className="word-pub">
+              <button className={activePub === true ? "wordActive_btn" : "word_btn"} onClick={pubHandleClick}>
+                공개
+              </button>
+              <button className={activePub === false ? "wordActive_btn" : "word_btn"} onClick={unPubHandleClick}>
+                비공개
+              </button>
             </span>
           </div>
           <div className="Content_Image">
             <span className="word-desc5l">단어 이미지</span>
-            <div className="word-image"><ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} /></div>
+            <div className="word-image">
+              <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
+            </div>
           </div>
           <div className="Content_Create">
             <span className="word-desc2lc">내용</span>&emsp;
