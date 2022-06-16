@@ -73,7 +73,13 @@
   background-color: transparent;
 }
 
-.gridimage {
+
+.gridbutton:hover {
+  color: rgb(100, 185, 255);
+  cursor: pointer;
+}
+
+.gridimage{
   width: 290px;
   height: 180px;
 }
@@ -83,39 +89,30 @@
   width: 80px;
 }
 
-.input_word {
-  width: 250px;
-  height: 30px;
+
+.input_word{
+  width:400px;
+  height:30px;
 }
 
-.input_summary {
-  width: 250px;
-  height: 30px;
+.input_summary{
+    width:400px;
+    height:30px;
 }
 
-.input_content {
-  width: 350px;
-  height: 200px;
-  font-size: 15px;
+.input_content{
+    width: 550px;
+    height: 250px;
+    font-size: 15px;
+    line-height: 17px;
 }
 
-@media (max-width: 1230px) {
-  .gridword {
-    width: 80px;
-  }
-  .gridsummary {
-    width: 220px;
-  }
-  .gridimage {
-    width: 33%;
-  }
-  .profile-image {
-    height: 150px;
-  }
-  .porile_select {
-    width: 150px;
-  }
-}
+@media (max-width: 1230px){
+  .gridword {width: 80px;}
+  .gridsummary {width: 220px;}
+  .gridimage{width: 33%;}
+  .profile-image{height: 150px;}
+  .porile_select{width:150px}
 
 @media (max-width: 1000px) {
   .gridword {
