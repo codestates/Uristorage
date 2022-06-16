@@ -47,20 +47,23 @@
 }
 
 .Location_map {
-  position: absolute;
-  left: 400px;
-  top: 170px;
-  width: 35%;
+  position: relative;
+  left: 50px;
+  top: -10px;
+  width: 90%;
   height: 350px;
 }
 
 .Map-info {
-  position: absolute;
-  top: 600px;
-  left: 410px;
+  position: relative;
+  text-align: center;
   font-size: 20px;
+  width: 90%;
+  left: 50px;
+  top: -10px;
   font-weight: bold;
   color: #3e2723;
+  border: 1px double #3e2723;
 }
 
 .word-map {
@@ -103,7 +106,7 @@
   position: relative;
   font-size: 20px;
   color: #3E2723;
-  bottom: 90px;
+  bottom: 170px;
   right: 45px;
 }
 
@@ -142,7 +145,8 @@
 }
 
 .word-btn:hover {
-  background-color: #f5e5e0;
+  background-color: #3E2723;
+  color: white;
 }
 
 .word-type {

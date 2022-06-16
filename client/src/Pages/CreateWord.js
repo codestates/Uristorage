@@ -192,7 +192,7 @@ function CreateWord() {
             &emsp;
           </div>
           <div className="Type_Create">
-            <span className="word-desc">구분</span>
+            <span className="word-desc2l">구분</span>&emsp;
             <button value={"All"} className={activeCat === "All" ? "wordActive_btn" : "word_btn"} onClick={typeHandleClick}>
               일반
             </button>

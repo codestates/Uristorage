@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./Component.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -91,7 +90,7 @@ function Profile() {
       )}
       <div>
         <div className="pofile_nickname"> {userInfo.nickname} </div>
-        <select onChange={onChangeHandler} value={Content}>
+        <select className='porile_select' onChange={onChangeHandler} value={Content}>
           {/* <option key={groupfilter} value={groupfilter} selected>
             {groupfilter}
           </option> */}
@@ -107,7 +106,7 @@ function Profile() {
           {members.map((el, index) => (
             <div key={index}>
               <img style={{ width: "50px", height: "50px" }} src={el.image} />
-              <label>{el.nickname}</label>
+              <label>&nbsp;{el.nickname}</label>
             </div>
           ))}
         </div>
