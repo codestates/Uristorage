@@ -1,4 +1,4 @@
-const { word, user } = require("../../models");
+const { word, user, group } = require("../../models");
 
 module.exports = async (req, res) => {
   //유저아이디로 해당유저의 단어조회
@@ -13,6 +13,11 @@ module.exports = async (req, res) => {
           model: user,
           required: true,
           attributes: ["nickname"],
+        },
+        {
+          model: group,
+          require: true,
+          attributes: ["id"],
         },
       ],
     })
