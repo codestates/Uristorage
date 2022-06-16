@@ -48,4 +48,5 @@ a:visited{
 
 .navigation_logout:hover {
   color: rgb(100, 185, 255);
+  cursor: pointer;
 }

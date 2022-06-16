@@ -125,5 +125,48 @@
 }
 
 
-/*Filter*/
+.word_btn {
+  width: 50px;
+  height: 30px;
+  margin: 0 10px;
 
+  color: white;
+  cursor: pointer;
+
+  font-family: "Noto Sans", sans-serif;
+  font-size: 0.7rem;
+  font-weight: bold;
+
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 5px;
+
+  background: #bcaaa4;
+  transition: all 0.3s ease;
+
+  line-height: 10px;
+}
+
+.wordActive_btn {
+  width: 50px;
+  height: 30px;
+  margin: 0 10px;
+
+  color: white;
+  cursor: pointer;
+
+  font-family: "Noto Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: bold;
+
+  letter-spacing: 1px;
+
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+
+  background: #3e2723;
+  box-shadow: -1px 6px 10px 0 rgba(54, 54, 54, 0.424);
+
+  line-height: 10px;
+}

@@ -96,8 +96,9 @@
 }
 
 .input_content{
-    width:250px;
-    font-size: 20px;
+    width:350px;
+    height: 200px;
+    font-size: 15px;
 }
 */
 @media (max-width: 1230px){

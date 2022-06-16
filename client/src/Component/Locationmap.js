@@ -83,7 +83,7 @@ function Locationmap() {
             );
           })}
         </NaverMap>
-        <div className="Map-info">{infoBelowMap}</div>
+          <div className="Map-info">{infoBelowMap}</div>
       </RenderAfterNavermapsLoaded>
     </div>
   );
