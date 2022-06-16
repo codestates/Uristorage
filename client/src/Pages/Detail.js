@@ -3,6 +3,7 @@ import { useLocation } from "react-router";
 
 import Nav from "../Component/Nav";
 import Profile from "../Component/Profile";
+import "../App.css";
 
 function Detail() {
   // const userInfo = useSelector((state) => state.userInfo);
@@ -19,27 +20,31 @@ function Detail() {
   const location = useLocation();
   const clicked = location.state.data;
 
+  console.log("clicked", clicked);
+
   return (
-    <div>
+    <div id="Detail">
       <Nav />
       <div className="My_Profile">
         <Profile />
       </div>
       <div className="words_information_detail">
+      <div className="words_words_title_detail">
         <div className="words_clickedwords_detail">
-          {clicked.words}
-          <div> {clicked.user.nickname}님의 단어</div>
+          {clicked.word}
+          <div className="words_nickname_detail"> {clicked.user.nickname}님의 단어</div>
         </div>
         <div className="words_clickedtitle_detail">
-          <div>요약:</div>
-          {clicked.summary}
+          <span>요약</span>
+          <div className="words_summary_detail"> {clicked.summary}</div>
         </div>
+        </div>
+        <img className="words_clickedimage_detail"  src={clicked.image} />
         <div className="words_clickedcontent_detail">
-          <div>내용:</div>
-          {clicked.content}
+          <span>내용</span>
+          <div className="words_content_detail">{clicked.content}</div>
         </div>
       </div>
-      <img className="words_clickedimage_detail" style={{ width: "300px", height: "300px" }} src={clicked.image} />
     </div>
   );
 }
