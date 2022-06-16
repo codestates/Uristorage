@@ -24,7 +24,8 @@ a:visited{
 }
 
 .navigation_left {
-  font-size: 20px;
+  font-size: 30px;
+  font-weight: bold;
   color: #3E2723;
 }
 

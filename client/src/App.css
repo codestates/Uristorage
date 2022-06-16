@@ -105,6 +105,7 @@
   top: -10px;
   width: 90%;
   height: 350px;
+  z-index: 0;
 }
 
 .Map-info {
@@ -122,16 +123,16 @@
 .word-map {
   position: relative;
   right: 100px;
-  top: 0px;
-  width: 350px;
+  top: 10px;
+  width: 90%;
   height: 350px;
-  left: 40px;
+  left: 50px;
 }
 
 .Word_form {
   position: relative;
-  width: 400px;
-  left: 30px;
+  width: 600px;
+  left: -40px;
 }
 
 .word-desc2l {
@@ -146,6 +147,7 @@
   font-size: 20px;
   color: #3E2723;
   right: 65px;
+  top: 10px;
 }
 
 .word-desc5l {
@@ -177,12 +179,13 @@
 
 .word-date {
   position: relative;
-  left: 50px;
+  left: 70px;
+  top: 10px;
 }
 
 .Content_Create {
   position: relative;
-  top: 60px;
+  top: 10px;
 }
 
 .word-btn {
@@ -193,8 +196,8 @@
   background-color: #bcaaa4;
   border-radius: 10px;
   border: none;
-  top: 60px;
-  left: 80px;
+  top: 70px;
+  left: 220px;
 }
 
 .word-btn:hover {
@@ -210,4 +213,5 @@
 .word-pub {
   position: relative;
   right: 30px;
+  top: 10px;
 }

@@ -92,9 +92,17 @@ function Search({ searchHandler, searchedWord }) {
                 <Link key={index} to="/Words" state={{ data: word }}>
                   <div className="word_box" id={word.id} key={word.id}>
                     <div className="word_inbox"> {word.word}</div>
+                    <div>{word.type}</div>
                     <div className="title_inbox"> {word.summary}</div>
                     <span className="img_inbox">
-                     <img src={word.image} width="100" height="80" />
+                      <img
+                        src={word.image}
+                        width="100"
+                        height="80"
+                        onError={(e) => {
+                          e.target.style.display = "none";
+                        }}
+                      />
                     </span>
                   </div>
                 </Link>

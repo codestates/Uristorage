@@ -331,15 +331,16 @@
 
 .group-button3 {
   position: absolute;
-  width: 35px;
-  height: 20px;
-  font-size: 10px;
-  background-color: rgb(211, 211, 211);;
-  left: 232px
+  width: 40px;
+  height: 28px;
+  font-size: 13px;
+  background-color: #BCAAA4;
+  left: 230px
 }
 
 .group-button3:hover{
-  background-color: red;
+  background-color: #3E2723;
+  color: white;
 }
 
 .modifygroup-buttonall {

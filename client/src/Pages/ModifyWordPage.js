@@ -157,6 +157,7 @@ function ModifyWord() {
     setWordcreate({ ...Wordcreate, pub: false });
   };
 
+  console.log(Wordcreate);
   return (
     <div>
       <Nav />
@@ -169,6 +170,10 @@ function ModifyWord() {
           <div className="Summary_Create">
             <span className="word-desc2l">요약</span>&emsp;
             <input className="input_summary" type="text" value={Wordcreate.summary} onChange={handleInputValue("summary")} />
+          </div>
+          <div className="Content_Create">
+            <span className="word-desc2lc">내용</span>&emsp;
+            <textarea className="input_content" value={Wordcreate.content} onChange={handleInputValue("content")} />
           </div>
           <div>
             <span className="word-desc4l">그룹 선택</span>&emsp;
@@ -224,10 +229,7 @@ function ModifyWord() {
               <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />{" "}
             </div>
           </div>
-          <div className="Content_Create">
-            <span className="word-desc2lc">내용</span>&emsp;
-            <textarea className="input_content" value={Wordcreate.content} onChange={handleInputValue("content")} />
-          </div>
+
           <div className="Create_Button">
             <button className="word-btn" type="button" onClick={handleCreateword}>
               단어 수정하기

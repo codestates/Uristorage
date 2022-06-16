@@ -9,6 +9,7 @@
   background-color: #ffffff;
   width: 100%;
   height: 70px;
+  z-index: 1;
 }
 
 .My_Profile {
@@ -69,29 +70,47 @@
   min-width: 75px;
 }
 
-.My_WordGrid{
+.My_WordGrid {
+  float: left;
+  width: 70%;
+  margin-left: 20px;
+  height: 990px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+@media (max-width: 1200px) {
+  .searchbar {
+    width: 450px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .My_Profile {
     float: left;
-    width: 70%;
-    margin-left: 20px;
-    height: 990px;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    width: 20%;
+  }
+  .searchbar {
+    width: 450px;
+  }
 }
 
-@media (max-width: 1200px){
-  .searchbar {width: 450px;}
-}
-
-@media (max-width: 1000px){
-  .My_Profile {float: left; width: 20%;}
-  .searchbar {width: 450px;}
-}
-
-@media (max-width: 768px){
-    .My_Filter {width: 100%;}
-    .My_search_createword {width: 100%;}
-    .My_WordGrid {width: 100%;}
-    .My_Profile {clear: both; float: none; width: 100%; border-right: none;}
+@media (max-width: 768px) {
+  .My_Filter {
+    width: 100%;
+  }
+  .My_search_createword {
+    width: 100%;
+  }
+  .My_WordGrid {
+    width: 100%;
+  }
+  .My_Profile {
+    clear: both;
+    float: none;
+    width: 100%;
+    border-right: none;
+  }
 }
 
 /* CreateWord 페이지 */
@@ -124,11 +143,10 @@
   height: 500px;
 }
 
-
 /*Filter*/
 
 .word_btn {
-  width: 50px;
+  width: auto;
   height: 30px;
   margin: 0 10px;
 
@@ -144,13 +162,19 @@
   border-radius: 5px;
 
   background: #bcaaa4;
+  box-shadow: -1px 6px 10px 0 rgba(54, 54, 54, 0.424);
   transition: all 0.3s ease;
+  box-shadow: -1px 6px 10px 0 rgba(54, 54, 54, 0.424);
 
   line-height: 10px;
+  padding: 10px;
+  /* text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap; */
 }
 
 .wordActive_btn {
-  width: 50px;
+  width: auto;
   height: 30px;
   margin: 0 10px;
 
