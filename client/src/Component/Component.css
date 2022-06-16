@@ -74,6 +74,11 @@
   background-color: transparent;
 }
 
+.gridbutton:hover {
+  color: rgb(100, 185, 255);
+  cursor: pointer;
+}
+
 .gridimage{
   width: 290px;
   height: 180px;
@@ -84,23 +89,24 @@
   width: 80px;
 }
 
-/*
+
 .input_word{
-  width:250px;
+  width:400px;
   height:30px;
 }
 
 .input_summary{
-    width:250px;
+    width:400px;
     height:30px;
 }
 
 .input_content{
-    width:350px;
-    height: 200px;
+    width: 550px;
+    height: 250px;
     font-size: 15px;
+    line-height: 17px;
 }
-*/
+
 @media (max-width: 1230px){
   .gridword {width: 80px;}
   .gridsummary {width: 220px;}
