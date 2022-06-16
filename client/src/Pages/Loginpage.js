@@ -67,7 +67,7 @@ function LoginPage() {
           </button>
         </form>
       </div>
-      <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=iwK_gnCquLTp4ZUNXTFs&redirect_uri=https://localhost:4000/users/callback&state=RANDOM_STATE">
+      <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=iwK_gnCquLTp4ZUNXTFs&redirect_uri=https://localhost:4000/users/callback&state=code">
         <img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG" />
       </a>
       <div className="login-tosignup">
