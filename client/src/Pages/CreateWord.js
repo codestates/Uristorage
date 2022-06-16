@@ -178,6 +178,10 @@ function CreateWord() {
             <span className="word-desc2l">요약</span>&emsp;
             <input className="input_summary" type="text" onChange={handleInputValue("summary")} />
           </div>
+          <div className="Content_Create">
+            <span className="word-desc2lc">내용</span>&emsp;
+            <textarea className="input_content" onChange={handleInputValue("content")} />
+          </div>
           <div>
             <span className="word-desc4l">그룹 선택</span>&emsp;
             <span className="word-type">
@@ -232,10 +236,6 @@ function CreateWord() {
             <div className="word-image">
               <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
             </div>
-          </div>
-          <div className="Content_Create">
-            <span className="word-desc2lc">내용</span>&emsp;
-            <textarea className="input_content" onChange={handleInputValue("content")} />
           </div>
           <div className="Create_Button">
             <button className="word-btn" type="button" onClick={handleCreateword}>

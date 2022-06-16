@@ -71,6 +71,10 @@
   margin: 20px 55px;
   border-radius: 10px;
   background-color: #BCAAA4;
+  
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .randombutton:hover {
