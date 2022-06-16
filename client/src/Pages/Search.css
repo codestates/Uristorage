@@ -2,6 +2,10 @@ a:link {
     text-decoration: none;
   }
 
+.search_catfilter {
+  margin: 20px 250px;
+}
+
 .searchedword_containter {
   width: 70%;
   margin: auto

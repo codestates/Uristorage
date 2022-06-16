@@ -78,7 +78,9 @@ function Search({ searchHandler, searchedWord }) {
             </button>
           </Link>
         </div>
+        <div className="search_catfilter">
         <CatFilter setType={setType} />
+        </div>
       </div>
       <div className="searchedword_containter">
         <div className="searched_word">

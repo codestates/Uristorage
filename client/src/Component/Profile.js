@@ -105,7 +105,7 @@ function Profile() {
         <div>
           {members.map((el, index) => (
             <div key={index}>
-              <img style={{ width: "50px", height: "50px" }} src={el.image} />
+              <img style={{ width: "50px", height: "50px", display: "inline-block", content: "" }} src={el.image} />
               <label>&nbsp;{el.nickname}</label>
             </div>
           ))}
