@@ -43,7 +43,9 @@
 }
 
 .searchbutton:hover {
-  background-color: #f5e5e0;
+  background-color: #3E2723;
+  color: white;
+  cursor: pointer;
 }
 
 .searchicon {
@@ -72,5 +74,7 @@
 }
 
 .randombutton:hover {
-  background-color: #f5e5e0;
+  background-color: #3E2723;
+  color: white;
+  cursor: pointer;
 }

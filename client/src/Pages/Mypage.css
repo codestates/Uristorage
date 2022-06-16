@@ -134,7 +134,7 @@
 
 .word_btn {
   width: 50px;
-  height: 20px;
+  height: 30px;
   margin: 0 10px;
 
   color: white;
@@ -153,11 +153,13 @@
 
   background: #bcaaa4;
   transition: all 0.3s ease;
+
+  line-height: 10px;
 }
 
 .wordActive_btn {
   width: 50px;
-  height: 20px;
+  height: 30px;
   margin: 0 10px;
 
   color: white;
@@ -175,4 +177,6 @@
 
   background: #3e2723;
   box-shadow: -1px 6px 10px 0 rgba(54, 54, 54, 0.424);
+
+  line-height: 10px;
 }

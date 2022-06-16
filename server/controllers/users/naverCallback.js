@@ -1,5 +1,5 @@
 const { generateAccessToken, sendAccessToken, removeAccessToken, isAuthorized } = require("../tokenFuntions");
-const axios = require("axios");
+// const axios = require("axios");
 const bcrypt = require("bcrypt");
 const { user } = require("../../models");
 
