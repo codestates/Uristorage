@@ -91,8 +91,10 @@ function Search({ searchHandler, searchedWord }) {
               return (
                 <Link key={index} to="/Words" state={{ data: word }}>
                   <div className="word_box" id={word.id} key={word.id}>
+                    <div className="word_inbox_type">
                     <div className="word_inbox"> {word.word}</div>
-                    <div>{word.type}</div>
+                    <div className="word_type"><p>{word.type}</p></div>
+                    </div>
                     <div className="title_inbox"> {word.summary}</div>
                     <span className="img_inbox">
                       <img

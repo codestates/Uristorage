@@ -40,24 +40,19 @@ function Detail() {
           <div className="words_summary_detail"> {clicked.summary}</div>
         </div>
         </div>
-        <img className="words_clickedimage_detail"  src={clicked.image} />
+        <img
+        className="words_clickedimage_detail"
+        src={clicked.image}
+        onError={(e) => {
+          e.target.style.display = "none";
+        }} />
         <div className="words_clickedcontent_detail">
           <span>내용</span>
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{clicked.content}</ReactMarkdown>
         </div>
       </div>
-      <img
-        className="words_clickedimage_detail"
-        style={{ width: "300px", height: "300px" }}
-        src={clicked.image}
-        onError={(e) => {
-          e.target.style.display = "none";
-        }}
-      />
           <div className="words_content_detail">{clicked.content}</div>
         </div>
-      </div>
-    </div>
   );
 }
 

@@ -73,7 +73,7 @@
 .My_WordGrid {
   float: left;
   width: 70%;
-  margin-left: 20px;
+  margin-left: auto;
   height: 990px;
   overflow-x: hidden;
   overflow-y: scroll;
