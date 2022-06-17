@@ -7,8 +7,8 @@
 }
 
 .profile-image {
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
 }
 
 .profile-image > img {
@@ -34,7 +34,7 @@
 }
 
 .gridword {
-  width: 160px;
+  width: 140px;
   margin-left: 10px;
   display: flex;
   align-items: center;
@@ -44,11 +44,16 @@
 .gridword_box {
   font-size: 20px;
   font-weight: bold;
-  width: 160px;
+  width: 140px;
+}
+
+.gridsummary_change {
+  width: 300px;
+  height: 150px;
 }
 
 .gridsummary {
-  width: 500px;
+  width: 300px;
   padding: 0px 0px 0px 10px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -60,14 +65,14 @@
 
 .gridsummary_box {
   font-size: 18px;
-  width: 500px;
+  width: 300px;
 }
 
 .gridchange {
-  padding: 0px 0px 0px 400px;
-  width: 100px;
+  padding: 0px 0px 0px 220px;
+  width: 300px;
   min-width: 65px;
-  height: 20px;
+  height: 30px;
 }
 
 .gridbutton {
