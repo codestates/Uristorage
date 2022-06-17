@@ -171,12 +171,19 @@ function ModifyWord() {
             <span className="word-desc2l">요약</span>&emsp;
             <input className="input_summary" type="text" value={Wordcreate.summary} onChange={handleInputValue("summary")} />
           </div>
-          <div className="Content_Create">
-            <span className="word-desc2lc">내용</span>&emsp;
-            <textarea className="input_content" value={Wordcreate.content} onChange={handleInputValue("content")} />
+          <div className="Pub_Create">
+            <span className="word-desc4lp"> 공개 여부 </span>
+            <span className="word-pub">
+              <button className={activePub === true ? "wordActive_btn" : "word_btn"} onClick={pubHandleClick}>
+                공개
+              </button>
+              <button className={activePub === false ? "wordActive_btn" : "word_btn"} onClick={unPubHandleClick}>
+                비공개
+              </button>
+            </span>
           </div>
           <div>
-            <span className="word-desc4l">그룹 선택</span>&emsp;
+            <span className="word-desc4lg">그룹 선택</span>&emsp;
             <span className="word-type">
               {userGroups.length === 0
                 ? "생성된 그룹이 없습니다."
@@ -186,6 +193,10 @@ function ModifyWord() {
                     </button>
                   ))}
             </span>
+          </div>
+          <div className="Content_Create">
+            <span className="word-desc2lc">내용</span>&emsp;
+            <textarea className="input_content" value={Wordcreate.content} onChange={handleInputValue("content")} />
           </div>
           <div className="Type_Create">
             <span className="word-desc2l">구분</span>&emsp;
@@ -211,25 +222,13 @@ function ModifyWord() {
               </RenderAfterNavermapsLoaded>
             ) : null}
           </div>
-          {Wordcreate.type === "date" ? <DatePicker className="word-date" dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}
-          <div className="Pub_Create">
-            <span className="word-desc4l"> 공개 여부 </span>
-            <span className="word-pub">
-              <button className={activePub === true ? "wordActive_btn" : "word_btn"} onClick={pubHandleClick}>
-                공개
-              </button>
-              <button className={activePub === false ? "wordActive_btn" : "word_btn"} onClick={unPubHandleClick}>
-                비공개
-              </button>
-            </span>
-          </div>
+          {Wordcreate.type === "date" ? <DatePicker className="word-date" dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null} 
           <div className="Content_Image">
             <span className="word-desc5l">단어 이미지</span>
             <div className="word-image">
               <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />{" "}
             </div>
           </div>
-
           <div className="Create_Button">
             <button className="word-btn" type="button" onClick={handleCreateword}>
               단어 수정하기
