@@ -15,6 +15,11 @@
 * 홈페이지에서 공개된 다른 회원들이 등록한 단어를 랜덤으로 소개해 줍니다.
 * 검색창과 필터를 통해서 원하는 단어를 검색할 수 있습니다.
 
+## 
+
+<img width="1017" alt="UriStorage_Schema_1" src="https://user-images.githubusercontent.com/91889890/170417586-86e332b6-a5a4-4411-9a49-3eac18e66fd6.png">
+
+
 ## 팀원 소개
 <details>
     <summary>김준환</summary>
