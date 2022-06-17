@@ -62,6 +62,7 @@ function Mypage() {
       <div className="My_Nav">
         <Nav />
       </div>
+      <div className="Mypage_width">
       <div className="My_Profile">
         <Profile />
       </div>
@@ -76,13 +77,18 @@ function Mypage() {
           </button>
         </div>
         <div className="My_createword">
-          <Link to="/CreateWord">단어등록</Link>{" "}
+          <Link to="/CreateWord">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span className="createword_kor">단어등록</span>
+          </Link>
         </div>
       </div>
       <div className="My_WordGrid">
         {type === "place" ? <Locationmap /> : <></>}
         {type === "date" ? <Calendar /> : <></>}
         <Wordsgrid searchWord={searchWord} worddata={worddata} deleteWord={deleteWord} />
+      </div>
       </div>
     </div>
   );

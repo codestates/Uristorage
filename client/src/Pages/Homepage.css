@@ -6,10 +6,22 @@
   color: #BCAAA4;
 }
 
-.home_uristorageeng {
+.logo_container {
+  position: relative;
+  top: 40px;
   text-align: center;
-  font-size: 100px;
-  margin: 70px 0px -15px 0px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 75%;
+  width: 55%;
+  z-index: -1;
+}
+
+.home_logo {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  margin: 0px 0px 0px -30px;
 }
 
 .home_uristoragekr {

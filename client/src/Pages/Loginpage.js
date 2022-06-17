@@ -62,17 +62,21 @@ function LoginPage() {
           <input type="userId" className="login-input" value={userId} onChange={onUserIdHandler} placeholder="아이디" />
           <input type="password" className="login-input" value={password} onChange={onPasswordHandler} placeholder="비밀번호" />
           <br />
-          <button type="submit" className="login-button">
-            로그인
-          </button>
+          <span>
+            <button type="submit" className="login-button">
+              로그인
+            </button>
+            <div className="login-tosingup-container">
+              <div className="login-tosignup">
+                <Link to="/Signup">회원가입</Link>
+              </div>
+            </div>
+          </span>
         </form>
       </div>
       {/* <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=iwK_gnCquLTp4ZUNXTFs&redirect_uri=https://localhost:4000/users/callback&state=code">
         <img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG" />
       </a> */}
-      <div className="login-tosignup">
-        <Link to="/Signup">회원가입</Link>
-      </div>
     </div>
   );
 }

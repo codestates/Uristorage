@@ -39,7 +39,7 @@ function Nav() {
   return (
     <div className="navigation">
       <div className="navigation_left">
-        <Link to="/">Uri<span className="navigation_othercolor">Storage</span></Link>
+        <Link to="/"><span className='navigation_thiscolor'>Uri</span><span className="navigation_othercolor">Storage</span></Link>
       </div>
       <div className="navigation_right">
         {token === null ? (

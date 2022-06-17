@@ -40,7 +40,7 @@ function ImageUpload({ uploadImage, handleFileInput }) {
   return (
     <div className="Content_Image">
       <input className="image-upload" type="file" accept="image/*" onChange={handleFileInput} />
-      {uploadImage ? <img width="250" height="150" className="fileView" src={uploadImage} alt="preview-img" /> : null}
+      {uploadImage ? <img className="fileView" width="250" height="150" src={uploadImage} alt="preview-img" /> : null}
     </div>
   );
 }

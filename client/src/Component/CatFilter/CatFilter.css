@@ -17,7 +17,7 @@ main > section {
   flex-wrap: wrap;
 }
 .cat_btn {
-  width: 178px;
+  width: 140px;
   height: 60px;
   color: white;
   cursor: pointer;
@@ -38,7 +38,7 @@ main > section {
 }
 
 .active_btn {
-  width: 178px;
+  width: 140px;
   height: 60px;
   color: white;
   cursor: pointer;

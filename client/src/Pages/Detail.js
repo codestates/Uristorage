@@ -55,6 +55,7 @@ function Detail() {
           {/* <ReactMarkdown remarkPlugins={[remarkGfm]}>{clicked.content}</ReactMarkdown> */}
         </div>
       </div>
+      <div className="words_content_detail">{clicked.content}</div>
     </div>
   );
 }
