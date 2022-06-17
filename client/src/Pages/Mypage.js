@@ -62,6 +62,7 @@ function Mypage() {
       <div className="My_Nav">
         <Nav />
       </div>
+      <div className="Mypage_width">
       <div className="My_Profile">
         <Profile />
       </div>
@@ -83,6 +84,7 @@ function Mypage() {
         {type === "place" ? <Locationmap /> : <></>}
         {type === "date" ? <Calendar /> : <></>}
         <Wordsgrid searchWord={searchWord} worddata={worddata} deleteWord={deleteWord} />
+      </div>
       </div>
     </div>
   );
