@@ -79,7 +79,7 @@ function Search({ searchHandler, searchedWord }) {
           </Link>
         </div>
         <div className="search_catfilter">
-        <CatFilter setType={setType} />
+          <CatFilter setType={setType} />
         </div>
       </div>
       <div className="searchedword_containter">
@@ -92,8 +92,10 @@ function Search({ searchHandler, searchedWord }) {
                 <Link key={index} to="/Words" state={{ data: word }}>
                   <div className="word_box" id={word.id} key={word.id}>
                     <div className="word_inbox_type">
-                    <div className="word_inbox"> {word.word}</div>
-                    <div className="word_type"><p>{word.type}</p></div>
+                      <div className="word_inbox"> {word.word}</div>
+                      <div className="word_type">
+                        <p>{word.type}</p>
+                      </div>
                     </div>
                     <div className="title_inbox"> {word.summary}</div>
                     <span className="img_inbox">
