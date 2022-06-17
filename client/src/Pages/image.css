@@ -3,7 +3,7 @@
   height: 60px !important;
   font-size: 15px;
   text-align: right;
-  min-width: 0 !important;
+  min-width: 20 !important;
   outline: none;
   /* background: rgb(0, 0, 0); */
   cursor: inherit;
@@ -13,7 +13,6 @@
   position: relative;
   margin: 0 !important;
   /* z-index: -1; */
-
 }
 
 .image-upload-wrapper {
