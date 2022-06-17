@@ -33,10 +33,17 @@ a:link {
   cursor: pointer;
 }
 
-.word_inbox {
+.word_inbox_type {
   padding: 30px 5px; 
   font-weight: bold;
   flex-grow: 1
+}
+
+.word_type {
+  text-align: center;
+  font-weight: normal;
+  border: 1px solid #3E2723;
+  border-radius: 10px;
 }
 
 .title_inbox {
