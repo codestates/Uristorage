@@ -56,8 +56,6 @@ function Detail() {
       />
           <div className="words_content_detail">{clicked.content}</div>
         </div>
-      </div>
-    </div>
   );
 }
 

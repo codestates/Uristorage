@@ -112,6 +112,7 @@
   .gridimage{width: 33%;}
   .profile-image{height: 150px;}
   .porile_select{width:150px}
+}
 
 @media (max-width: 1000px) {
   .gridword {
@@ -140,6 +141,7 @@
     height: 300px;
   }
 }
+
 
 /* Pagenation 
 
