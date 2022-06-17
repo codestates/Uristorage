@@ -7,6 +7,10 @@ a:visited{
   color: #3E2723;
 }
 
+a:hover {
+  color: #BCAAA4;
+}
+
 .navigation {
   display: flex;
   justify-content: space-between;
@@ -48,6 +52,6 @@ a:visited{
 }
 
 .navigation_logout:hover {
-  color: rgb(100, 185, 255);
+  color: #BCAAA4;
   cursor: pointer;
 }
