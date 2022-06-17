@@ -67,3 +67,29 @@
 
 
 </details>
+
+##  스택
+
+<img width="544" alt="UriStorage_TechStack_1" src="https://user-images.githubusercontent.com/91889890/170283459-f08b8815-50be-4207-accc-4eb0b463f814.png">
+
+
+***
+## Frontend
+* HTML
+* CSS
+* Javascript
+* React
+* Redux
+
+***
+## Backend
+* MongoDB
+* Nodejs
+* Expressjs
+* JWT
+
+***
+## Deploy
+* S3
+* EC2
+* RDS
