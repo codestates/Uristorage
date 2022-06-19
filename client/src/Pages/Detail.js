@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useParams } from "react-router";
 import Nav from "../Component/Nav";
 import Profile from "../Component/Profile";
 import ReactMarkdown from "react-markdown";
@@ -20,8 +20,7 @@ function Detail() {
 
   const location = useLocation();
   const clicked = location.state.data;
-
-  console.log("clicked", clicked);
+  useParams().wordId = clicked.id;
 
   return (
     <div id="Detail">
@@ -55,7 +54,7 @@ function Detail() {
           {/* <ReactMarkdown remarkPlugins={[remarkGfm]}>{clicked.content}</ReactMarkdown> */}
         </div>
       </div>
-      <div className="words_content_detail">{clicked.content}</div>
+      {/* <div className="words_content_detail">{clicked.content}</div> */}
     </div>
   );
 }
