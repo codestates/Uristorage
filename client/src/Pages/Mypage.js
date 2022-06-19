@@ -9,7 +9,7 @@ import Wordsgrid from "../Component/Wordsgrid";
 import { useSelector } from "react-redux";
 import "./Mypage.css";
 import Locationmap from "../Component/Locationmap";
-import Calendar from "react-calendar";
+import Calendarcomponent from "../Component/Calendar";
 
 function Mypage() {
   const userInfo = useSelector((state) => state.userInfo);
@@ -86,7 +86,7 @@ function Mypage() {
       </div>
       <div className="My_WordGrid">
         {type === "place" ? <Locationmap /> : <></>}
-        {type === "date" ? <Calendar /> : <></>}
+        {type === "date" ? <Calendarcomponent /> : <></>}
         <Wordsgrid searchWord={searchWord} worddata={worddata} deleteWord={deleteWord} />
       </div>
       </div>
