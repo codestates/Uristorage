@@ -4,7 +4,7 @@ const { isAuthorized } = require("../tokenFuntions");
 module.exports = async (req, res) => {
   // const userInfo = isAuthorized(req);
   const id = req.params.id;
-  console.log(id); //groups.id로 그룹정보와 구성원 닉네임 조회
+  //groups.id로 그룹정보와 구성원 닉네임 조회
   const getGroup = await group.findAll({
     where: { id: id },
     include: [

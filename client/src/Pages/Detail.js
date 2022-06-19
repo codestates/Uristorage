@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useParams } from "react-router";
 import Nav from "../Component/Nav";
 import Profile from "../Component/Profile";
 import ReactMarkdown from "react-markdown";
@@ -20,8 +20,7 @@ function Detail() {
 
   const location = useLocation();
   const clicked = location.state.data;
-
-  console.log("clicked", clicked);
+  useParams().wordId = clicked.id;
 
   return (
     <div id="Detail">
@@ -30,29 +29,33 @@ function Detail() {
         <Profile />
       </div>
       <div className="words_information_detail">
-      <div className="words_words_title_detail">
-        <div className="words_clickedwords_detail">
-          {clicked.word}
-          <div className="words_nickname_detail"> {clicked.user.nickname}님의 단어</div>
-        </div>
-        <div className="words_clickedtitle_detail">
-          <span>요약</span>
-          <div className="words_summary_detail"> {clicked.summary}</div>
-        </div>
+        <div className="words_words_title_detail">
+          <div className="words_clickedwords_detail">
+            {clicked.word}
+            <div className="words_nickname_detail"> {clicked.user.nickname}님의 단어</div>
+          </div>
+          <div className="words_clickedtitle_detail">
+            <span>요약</span>
+            <div className="words_summary_detail"> {clicked.summary}</div>
+          </div>
         </div>
         <img
-        className="words_clickedimage_detail"
-        src={clicked.image}
-        onError={(e) => {
-          e.target.style.display = "none";
-        }} />
+          className="words_clickedimage_detail"
+          src={clicked.image}
+          onError={(e) => {
+            e.target.style.display = "none";
+          }}
+        />
         <div className="words_clickedcontent_detail">
           <span>내용</span>
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{clicked.content}</ReactMarkdown>
+          <ReactMarkdown className="words_content_detail" remarkPlugins={[remarkGfm]}>
+            {clicked.content}
+          </ReactMarkdown>
+          {/* <ReactMarkdown remarkPlugins={[remarkGfm]}>{clicked.content}</ReactMarkdown> */}
         </div>
       </div>
-          <div className="words_content_detail">{clicked.content}</div>
-        </div>
+      {/* <div className="words_content_detail">{clicked.content}</div> */}
+    </div>
   );
 }
 

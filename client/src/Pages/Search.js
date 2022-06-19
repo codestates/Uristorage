@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Nav from "../Component/Nav";
 import Searchbar from "../Component/Searchbar";
@@ -8,6 +8,8 @@ import axios from "axios";
 import CatFilter from "../Component/CatFilter/CatFilter";
 
 function Search({ searchHandler, searchedWord }) {
+  const navigate = useNavigate();
+
   const [allWorddata, setAllworddata] = useState([]);
   const [publicWords, setPublicWords] = useState([]);
   const [type, setType] = useState("All");
@@ -79,21 +81,21 @@ function Search({ searchHandler, searchedWord }) {
           </Link>
         </div>
         <div className="search_catfilter">
-        <CatFilter setType={setType} />
+          <CatFilter setType={setType} />
         </div>
       </div>
       <div className="searchedword_containter">
         <div className="searched_word">
-          {filteredWordData.length === publicWords.length || filteredWordData.length === 0 ? (
+          {filteredWordData.length === 0 ? (
             <div className="searched_none">일치하는 단어가 없습니다</div>
           ) : (
             filteredWordData.map((word, index) => {
               return (
-                <Link key={index} to="/Words" state={{ data: word }}>
+                <Link key={index} to={`/Words/${word.id}`} state={{ data: word }}>
                   <div className="word_box" id={word.id} key={word.id}>
                     <div className="word_inbox_type">
-                    <div className="word_inbox"> {word.word}</div>
-                    <div className="word_type"><p>{word.type}</p></div>
+                      <div className="word_inbox"> {word.word}</div>
+                      <div className="word_type">{word.type}</div>
                     </div>
                     <div className="title_inbox"> {word.summary}</div>
                     <span className="img_inbox">

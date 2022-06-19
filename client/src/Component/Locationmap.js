@@ -16,7 +16,6 @@ function Locationmap() {
         await axios.get(`${process.env.REACT_APP_URL}/words/user/${users_id}`).then((res) => setLocationWord(res.data));
       } else {
         axios.get(`${process.env.REACT_APP_URL}/words/group/${groupFilter}`).then((res) => {
-          console.log(res.data);
           setLocationWord(res.data.groupWords);
         });
       }
@@ -48,7 +47,6 @@ function Locationmap() {
       popUpInfo.push([locationWord[i].word, locationWord[i].summary]);
     }
   }
-  console.log(popUpInfo);
 
   const [infoBelowMap, SetInfoBelowMap] = useState("");
   const clickMarkerHandler = (index) => {
@@ -58,7 +56,6 @@ function Locationmap() {
     // console.log(infoBelowMap)
   };
 
-  console.log(infoBelowMap);
   // const navermap = window.naver.maps;
 
   return (
@@ -83,7 +80,7 @@ function Locationmap() {
             );
           })}
         </NaverMap>
-          <div className="Map-info">{infoBelowMap}</div>
+        <div className="Map-info">{infoBelowMap}</div>
       </RenderAfterNavermapsLoaded>
     </div>
   );

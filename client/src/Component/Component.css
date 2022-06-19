@@ -1,9 +1,9 @@
-.information{
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    line-height: 70px;
-    font-size: 20px;
+.information {
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 70px;
+  font-size: 20px;
 }
 
 .profile-image {
@@ -82,13 +82,12 @@
   background-color: transparent;
 }
 
-
 .gridbutton:hover {
   color: rgb(100, 185, 255);
   cursor: pointer;
 }
 
-.gridimage{
+.gridimage {
   width: 200px;
   height: 120px;
   margin-right: 5px;
@@ -103,22 +102,23 @@
   text-align: right;
 }
 
-.input_word{
-  width:400px;
-  height:30px;
+.input_word {
+  width: 400px;
+  height: 30px;
 }
 
-.input_summary{
-    width:400px;
-    height:30px;
+.input_summary {
+  width: 400px;
+  height: 30px;
 }
 
-.input_content{
-    width: 550px;
-    height: 250px;
-    font-size: 15px;
-    line-height: 17px;
+.input_content {
+  width: 550px;
+  height: 250px;
+  font-size: 15px;
+  line-height: 17px;
 }
+
 
 @media (max-width: 1350px){
   .gridimage{width: 25%;}
@@ -152,7 +152,6 @@
     margin: auto;
   }
 }
-
 
 .wordgrid {
   margin-top: 50px;
