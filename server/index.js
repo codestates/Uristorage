@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 app.use("/", indexRouter);
 app.get("/", (req, res) => {
-  res.send("Hello world!");
+  res.send("Hello local");
 });
 // const port = 4000;
 // app.listen(port, () => {

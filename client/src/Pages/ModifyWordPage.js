@@ -79,7 +79,6 @@ function ModifyWord() {
     const { id, word, summary, content, image, pub, type, map, calendar } = Wordcreate;
     const groups_id = checkedGroups;
     axios.put(`${process.env.REACT_APP_URL}/words`, { id, word, summary, content, image, pub, type, groups_id, map, calendar }, { withCredentials: true }).then((res) => {
-      console.log(res);
       if (res.data.success) {
         alert(res.data.message);
         navigate("/Mypage");
@@ -89,7 +88,9 @@ function ModifyWord() {
     });
   };
 
-  const [mark, setMark] = useState({});
+  const splitMap = location.state.data.map.split(",");
+
+  const [mark, setMark] = useState({ lat: splitMap[0], lng: splitMap[1] });
 
   const ClickLocationHandler = (e) => {
     const { _lat, _lng } = e.latlng;
@@ -117,9 +118,7 @@ function ModifyWord() {
     return e.getFullYear() + "-" + (e.getMonth() + 1).toString().padStart(2, "0") + "-" + e.getDate().toString().padStart(2, "0");
   };
   const handledate = (e) => {
-    console.log("e는", e);
     const worddate = dateToString(e);
-    console.log("worddate는", worddate);
     setWordDate(e);
     setWordcreate({
       id: location.state.data.id,
@@ -157,7 +156,6 @@ function ModifyWord() {
     setWordcreate({ ...Wordcreate, pub: false });
   };
 
-  console.log(Wordcreate);
   return (
     <div>
       <Nav />
@@ -216,13 +214,13 @@ function ModifyWord() {
           <div>
             {Wordcreate.type === "place" ? (
               <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
-                <NaverMap className="word-map" mapDivId={"naver-map"} defaultCenter={{ lat: 37.3595704, lng: 127.105399 }} defaultZoom={16} zoomControl={true} draggable={true} onClick={ClickLocationHandler}>
+                <NaverMap className="word-map" mapDivId={"naver-map"} defaultCenter={{ lat: splitMap[0], lng: splitMap[1] }} defaultZoom={16} zoomControl={true} draggable={true} onClick={ClickLocationHandler}>
                   <Marker position={mark} />
                 </NaverMap>
               </RenderAfterNavermapsLoaded>
             ) : null}
           </div>
-          {Wordcreate.type === "date" ? <DatePicker className="word-date" dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null} 
+          {Wordcreate.type === "date" ? <DatePicker className="word-date" dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}
           <div className="Content_Image">
             <span className="word-desc5l">단어 이미지</span>
             <div className="word-image">

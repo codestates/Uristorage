@@ -29,7 +29,6 @@ function LocationGrid() {
   }
 
   function deleteWord(id) {
-    console.log("delete");
     setWorddata(worddata.filter((el) => el.id !== id));
   }
 

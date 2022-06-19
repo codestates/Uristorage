@@ -16,18 +16,18 @@ import ModifyUserPage from "./Pages/ModifyUserPage";
 import ModifyGroupPage from "./Pages/ModifyGroupPage";
 import Calendar from "./Pages/Calendarpage";
 import ModifyWord from "./Pages/ModifyWordPage";
+import KakaoLogin from "./Component/KakaoLogin";
+import NaverLogin from "./Component/NaverLogin";
 
 import axios from "axios";
 
 import "./App.css";
-import ButtonGroup from "antd/lib/button/button-group";
 
 export default function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
   const userInfo = useSelector((state) => state.userInfo);
-  const id = userInfo.id;
 
   const [searchedWord, setSearchedWord] = useState("");
 
@@ -72,8 +72,8 @@ export default function App() {
         <Route exact path="/" element={<Homepage searchHandler={searchHandler} />} />
         <Route path="/Mypage" element={<Mypage />} />
         <Route path="/Location" element={<Location />} />
-        <Route path="/Detail" element={<Detail />} />
-        <Route path="/Words" element={<Words searchHandler={searchHandler} />} />
+        <Route path="/Detail/:wordId" element={<Detail />} />
+        <Route path="/Words/:wordId" element={<Words searchHandler={searchHandler} />} />
         <Route path="/ModifyWord" element={<ModifyWord />} />
         <Route path="/Login" element={<Loginpage />} />
         <Route path="/Signup" element={<Signuppage />} />
@@ -83,6 +83,8 @@ export default function App() {
         <Route path="/AddGroup" element={<AddGroupPage />} />
         <Route path="/ModifyGroup" element={<ModifyGroupPage />} />
         <Route path="/Search" element={<Search searchHandler={searchHandler} searchedWord={searchedWord} />} />
+        <Route path="/oauth/kakao/callback" element={<KakaoLogin />} />
+        <Route path="/oauth/naver/callback" element={<NaverLogin />} />
       </Routes>
     </div>
   );

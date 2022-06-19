@@ -39,15 +39,15 @@ function LoginPage() {
           alert(res.data.message);
         }
       });
-    // .catch((error) => alert(error.response.data.message));
+  };
+  const kakaoLoginHandler = (e) => {
+    e.preventDefault();
+    window.location.assign(`https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}`);
+  };
 
-    // dispatch(loginUser(body)).then((res) => {
-    //   if (res.payload) {
-    //     navigate("/");
-    //   } else {
-    //     alert("Error");
-    //   }
-    // });
+  const naverLoginHandler = (e) => {
+    e.preventDefault();
+    window.location.assign(`https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_NAVER_REDIRECT_URI}&state=code`);
   };
 
   return (
@@ -62,21 +62,25 @@ function LoginPage() {
           <input type="userId" className="login-input" value={userId} onChange={onUserIdHandler} placeholder="아이디" />
           <input type="password" className="login-input" value={password} onChange={onPasswordHandler} placeholder="비밀번호" />
           <br />
-          <div>
-            <button type="submit" className="login-button">
-              로그인
+          <button type="submit" className="login-button">
+            로그인
+          </button>
+          <div className="oauth-login-btn">
+            <button type="submit" className="kakao-login-btn" onClick={kakaoLoginHandler}>
+              <img src={process.env.PUBLIC_URL + "/kakao_login.png"} />
             </button>
-            <div className="login-tosingup-container">
-              <div className="login-tosignup">
-                <Link to="/Signup">회원가입</Link>
-              </div>
+            <button type="submit" className="naver-login-btn" onClick={naverLoginHandler}>
+              <img height="43" src={process.env.PUBLIC_URL + "/naver_login.png"} />
+            </button>
+          </div>
+          <div className="login-tosingup-container">
+            <div className="login-tosignup">
+              Uristorage가 처음이신가요?&emsp;
+              <Link to="/Signup">회원가입</Link>
             </div>
           </div>
         </form>
       </div>
-      {/* <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=iwK_gnCquLTp4ZUNXTFs&redirect_uri=https://localhost:4000/users/callback&state=code">
-        <img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG" />
-      </a> */}
     </div>
   );
 }

@@ -4,7 +4,6 @@ import userInfo from "./userInfoSlice";
 import userGroups from "./userGoupsSlice";
 import groupfilter from "./groupIdFilterSlice";
 
-
 export const store = configureStore({
   reducer: {
     auth,
