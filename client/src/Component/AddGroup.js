@@ -105,29 +105,25 @@ function AddGroup() {
           <div className="group-desceach1">그룹 이름</div>
           <input className="group-addinput" type="text" value={name} onChange={onNameHandler} />
         </div>
-
         <div>
-          <div className="group-desceach2">그룹원 목록</div>
-          <div>
-            <input className="group-addinput" type="text" value={member} onChange={handleInputValue} />
-            <button className="group-button1" onClick={onMemberAdd}>
-              추가
-            </button>
-            <div className="group-container2">
-              {members.map((el, index) => (
-                <div key={index}>
-                  {index === 0 ? (
-                    <div>{el}</div>
-                  ) : (
-                    <div>
-                      <div className="group-memberlist">
-                        {el}
-                        <button className="group-button3" value={el} onClick={onMemberDelete}>
-                          삭제
-                        </button>
-                      </div>
-                    </div>
-                  )}
+          <div className='group-desceach2'>그룹원 목록</div>
+        <div>
+        <input className='group-addinput' type="text" value={member} onChange={handleInputValue} />
+        <button className='group-button1' onClick={onMemberAdd}>추가</button>
+          <div className='group-container2'>
+          {members.map((el, index) => (
+            <div key={index}>
+            {index === 0 ? (
+              <div>
+                {el}
+              </div>
+            ) : (
+            <div>
+                <div className='group-memberlist'>
+                  <span className='group-member'>{el}</span>
+                  <button className='group-button3' value={el} onClick={onMemberDelete}>
+                  삭제
+                  </button>
                 </div>
               ))}
             </div>

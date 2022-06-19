@@ -52,6 +52,6 @@ a:hover {
 }
 
 .navigation_logout:hover {
-  color: #BCAAA4;
+  color: hsl(207, 100%, 71%);
   cursor: pointer;
 }

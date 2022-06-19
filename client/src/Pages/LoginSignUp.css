@@ -45,6 +45,7 @@
 .login-button:hover {
   background-color: #3e2723;
   color: white;
+  cursor: pointer
 }
 
 .login-tosingup-container {
@@ -134,6 +135,7 @@
 .signup-button:hover {
   background-color: #3e2723;
   color: white;
+  cursor: pointer
 }
 
 .ModifyUser {
@@ -333,7 +335,7 @@
 .group-button3 {
   position: absolute;
   width: 40px;
-  height: 28px;
+  height: 25px;
   font-size: 13px;
   background-color: #bcaaa4;
   left: 230px;
@@ -396,4 +398,12 @@
   border: none;
   cursor: pointer;
   background-color: #03c75a;
+}
+
+.group-memberlist {
+  height: 27px;
+}
+
+.group-member {
+  line-height: 2;
 }
