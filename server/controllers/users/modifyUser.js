@@ -45,7 +45,6 @@ module.exports = async (req, res) => {
         attributes: ["id", "userId", "email", "nickname", "image"],
         where: { id: userInfo.id },
       });
-      console.log("ffffffff", modifyUser);
 
       return (
         res

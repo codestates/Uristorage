@@ -38,8 +38,6 @@ function CreateWord() {
     setWordcreate({ ...Wordcreate, users_id: id });
   }, [id]);
 
-  console.log(Wordcreate);
-
   const handleInputValue = (key) => (e) => {
     setWordcreate({ ...Wordcreate, [key]: e.target.value });
   };
@@ -85,9 +83,7 @@ function CreateWord() {
     return e.getFullYear() + "-" + (e.getMonth() + 1).toString().padStart(2, "0") + "-" + e.getDate().toString().padStart(2, "0");
   };
   const handledate = (e) => {
-    console.log("e는", e);
     const worddate = dateToString(e);
-    console.log("worddate는", worddate);
     setWordDate(e);
     setWordcreate({
       users_id: Wordcreate.users_id,
@@ -147,8 +143,6 @@ function CreateWord() {
       setCheckedGroups([...checkedGroups, value]);
     }
   };
-
-  console.log(checkedGroups);
 
   const typeHandleClick = (e) => {
     setActiveCat(e.target.value);
@@ -231,7 +225,7 @@ function CreateWord() {
             ) : null}
           </div>
           <div>{Wordcreate.type === "date" ? <DatePicker className="word-date" dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}</div>
-          
+
           <div className="Content_Image">
             <span className="word-desc5l">단어 이미지</span>
             <div className="word-image">

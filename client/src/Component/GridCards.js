@@ -18,25 +18,25 @@ export default function GridCars({ wordData, deleteWord }) {
         <div className="gridcards">
           <div className="gridword">
             <div className="gridword_box">
-              <Link to="/Detail" state={{ data: wordData }}>
+              <Link to={`/Detail/${wordData.id}`} state={{ data: wordData }}>
                 {wordData.word}
               </Link>
             </div>
           </div>
           {/* <div className="gridnickname">작성자:[{wordData.user.nickname}]</div> */}
           <div className="gridsummary_change">
-          <div className="gridsummary">
-            <div className="gridsummary_box">{wordData.summary}</div>
-          </div>
-          <div className="gridchange">
-            <Link to="/ModifyWord" state={{ data: wordData }}>
-              수정
-            </Link>
-            <button className="gridbutton" onClick={() => setModalOn(true)}>
-              삭제
-            </button>
-            <Modal open={modalOn} close={() => setModalOn(false)} wordId={wordData.id} deleteWord={deleteWord} />
-          </div>
+            <div className="gridsummary">
+              <div className="gridsummary_box">{wordData.summary}</div>
+            </div>
+            <div className="gridchange">
+              <Link to="/ModifyWord" state={{ data: wordData }}>
+                수정
+              </Link>
+              <button className="gridbutton" onClick={() => setModalOn(true)}>
+                삭제
+              </button>
+              <Modal open={modalOn} close={() => setModalOn(false)} wordId={wordData.id} deleteWord={deleteWord} />
+            </div>
           </div>
           <img
             className="gridimage"
@@ -50,7 +50,7 @@ export default function GridCars({ wordData, deleteWord }) {
         <div className="gridcards">
           <div className="gridword">
             <div className="gridword_box">
-              <Link to="/Detail" state={{ data: wordData }}>
+              <Link to={`/Detail/${wordData.id}`} state={{ data: wordData }}>
                 {wordData.word}
               </Link>
             </div>
