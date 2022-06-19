@@ -158,19 +158,17 @@ function ModifyGroup() {
                     <div>{el}</div>
                   ) : (
                     <div>
-                      {el}
-                      <button className="group-button3" value={el} onClick={onMemberDelete}>
-                        삭제
-                      </button>
+                    <div className='group-memberlist'>
+                      <span className='group-member'>{el}</span>
+                      <button className='group-button3' value={el} onClick={onMemberDelete}>삭제</button>
                     </div>
+                  </div>
                   )}
                 </div>
               ))}
             </div>
           </div>
-
           <br />
-
           <div className="groupadd-image">
             <div className="group-desceach3">그룹 이미지</div>
             <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
