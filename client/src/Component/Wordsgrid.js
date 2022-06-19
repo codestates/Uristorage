@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import GridCars from "./GridCards";
 import { Row } from "antd";
-import axios from "axios";
-import { useSelector } from "react-redux";
-import Pagination from "./Pagenation";
+import "./Component.css";
 
 function Wordsgrid({ searchWord, worddata, deleteWord }) {
   // const [worddata, setWorddata] = useState([]);

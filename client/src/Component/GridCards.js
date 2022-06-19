@@ -57,6 +57,7 @@ export default function GridCars({ wordData, deleteWord }) {
               <div className="word_type">{wordData.type}</div>
             </div>
           </div>
+          <div className="gridsummary_change">
           <div className="gridsummary">
             <div className="gridsummary_box">{wordData.summary}</div>
           </div>
@@ -64,6 +65,7 @@ export default function GridCars({ wordData, deleteWord }) {
             <div className="gridnickname">
               작성자:<p>[{wordData.user.nickname}]</p>
             </div>
+          </div>
           </div>
           <img
             className="gridimage"
