@@ -114,16 +114,15 @@ function AddGroup() {
           {members.map((el, index) => (
             <div key={index}>
             {index === 0 ? (
+              <div> {el} </div>
+              ) : (
               <div>
-                {el}
-              </div>
-            ) : (
-            <div>
                 <div className='group-memberlist'>
                   <span className='group-member'>{el}</span>
-                  <button className='group-button3' value={el} onClick={onMemberDelete}>
-                  삭제
-                  </button>
+                  <button className='group-button3' value={el} onClick={onMemberDelete}>삭제</button>
+                </div>
+              </div>
+                )}
                 </div>
               ))}
             </div>
