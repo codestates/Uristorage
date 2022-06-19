@@ -62,7 +62,7 @@ function LoginPage() {
           <input type="userId" className="login-input" value={userId} onChange={onUserIdHandler} placeholder="아이디" />
           <input type="password" className="login-input" value={password} onChange={onPasswordHandler} placeholder="비밀번호" />
           <br />
-          <span>
+          <div>
             <button type="submit" className="login-button">
               로그인
             </button>
@@ -71,7 +71,7 @@ function LoginPage() {
                 <Link to="/Signup">회원가입</Link>
               </div>
             </div>
-          </span>
+          </div>
         </form>
       </div>
       {/* <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=iwK_gnCquLTp4ZUNXTFs&redirect_uri=https://localhost:4000/users/callback&state=code">

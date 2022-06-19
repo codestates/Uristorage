@@ -124,7 +124,7 @@ function AddGroup() {
             ) : (
             <div>
                 <div className='group-memberlist'>
-                  {el}
+                  <span className='group-member'>{el}</span>
                   <button className='group-button3' value={el} onClick={onMemberDelete}>
                   삭제
                   </button>

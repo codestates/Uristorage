@@ -93,9 +93,7 @@ function Search({ searchHandler, searchedWord }) {
                   <div className="word_box" id={word.id} key={word.id}>
                     <div className="word_inbox_type">
                       <div className="word_inbox"> {word.word}</div>
-                      <div className="word_type">
-                        <p>{word.type}</p>
-                      </div>
+                      <div className="word_type">{word.type}</div>
                     </div>
                     <div className="title_inbox"> {word.summary}</div>
                     <span className="img_inbox">
