@@ -25,7 +25,7 @@ function Detail() {
   return (
     <div id="Detail">
       <Nav />
-      <div className="My_Profile">
+      <div className="My_Profile_detail">
         <Profile />
       </div>
       <div className="words_information_detail">

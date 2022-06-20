@@ -95,20 +95,26 @@
     margin: 0px 0px;
   }
   .My_Filter {
-    width: 100%;
+    width: 95%;
+    margin: 20px 50px 20px 50px;
   }
   .My_search_createword {
     width: 100%;
   }
   .My_WordGrid {
-    width: 100%;
+    width: 95%;
+    margin: 20px 50px 20px 50px;
+  }
+  .searchbar {
+    width: 500px
   }
   .My_Profile {
     clear: both;
     float: none;
-    width: 100%;
+    width: 95%;
     border-right: none;
     height: auto;
+    margin: 20px 50px 20px 50px;
   }
 }
 

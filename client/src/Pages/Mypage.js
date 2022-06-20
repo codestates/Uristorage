@@ -50,10 +50,6 @@ function Mypage() {
   }, [users_id, groupFilter]);
 
   useEffect(() => {
-    fetchData();
-  }, [users_id, groupFilter]);
-
-  useEffect(() => {
     filterHandler(type);
   }, [allWorddata, type]);
 
@@ -85,8 +81,8 @@ function Mypage() {
         </div>
       </div>
       <div className="My_WordGrid">
-        {type === "place" ? <Locationmap /> : <></>}
-        {type === "date" ? <Calendarcomponent /> : <></>}
+        {type === "place" ? <Locationmap worddata={worddata}/> : <></>}
+        {type === "date" ? <Calendarcomponent worddata={worddata}/> : <></>}
         <Wordsgrid searchWord={searchWord} worddata={worddata} deleteWord={deleteWord} />
       </div>
       </div>
