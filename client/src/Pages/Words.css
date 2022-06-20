@@ -44,7 +44,7 @@
   font-size: 30px;
   font-weight: bold;
   color: #3e2723;
-  height: 350px;
+  height: 250px;
   border-bottom: 1px solid #efebe9;
   margin-left: 100px;
   padding: 10px 5px 10px 5px;
@@ -77,7 +77,7 @@
 .words_clickedimage {
   float: left;
   width: 50%;
-  height: 500px;
+  height: 400px;
   padding: 0px 50px;
 }
 

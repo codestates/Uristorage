@@ -11,6 +11,21 @@
   width: 100%;
 }
 
+.Mypage_width {
+  margin: 0px 150px;
+}
+
+.My_Profile_detail {
+  float: left;
+  width: 25%;
+  border-right: solid 2px #d7ccc8;
+  height: 900px;
+  text-align: center;
+  padding: 80px 0px 50px 0px;
+  line-height: 30px;
+  background-color: hsl(20, 16%, 93%);
+}
+
 .words_information_detail {
   float: left;
   width: 70%;
@@ -20,7 +35,7 @@
 .words_words_title_detail {
   float: left;
   width: 50%;
-  height: 500px;
+  height: 350px;
 }
 
 .words_clickedwords_detail {
@@ -58,6 +73,7 @@
   display: flex;
   margin-top: 5px;
   font-size: 24px;
+  word-break: break-all;
 }
 
 .words_clickedcontent_detail {
@@ -73,6 +89,8 @@
 .words_content_detail {
   float: left;
   width: 100%;
+  height: auto;
+  word-break: break-all;
   color: black;
   font-weight: normal;
   margin-top: 5px;
@@ -82,20 +100,40 @@
 .words_clickedimage_detail {
   float: left;
   width: 50%;
+  min-width: 50%;
   height: 350px;
-  padding: 0px 50px;
+  padding-left: 20px;
 }
 
 .words_clickedimage_detail > img {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  min-width: 100%;
+  height: auto;
   object-fit: cover;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1000px) {
+  .Mypage_width {
+    margin: 0px 50px;
+  }
+  .My_Profile_detail {
+    float: left;
+    width: 100%;
+  }
+  .words_information_detail {
+    float: left;
+    width: 100%;
+    margin: auto;
+  }
+  .words_clickedwords_detail {
+    margin: 0px;
+  }
+  .words_clickedtitle_detail {
+    margin: 0px;
+  }
   .words_clickedcontent_detail {
-    width: 75%;
+    width: 85%;
+    margin: 0px;
   }
 }
 
