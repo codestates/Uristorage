@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import { RenderAfterNavermapsLoaded, NaverMap, Marker } from "react-naver-maps";
 
 function Locationmap({ worddata }) {
-
-  console.log(worddata)
-
   const markerInfo = [];
   for (let i = 0; i < worddata.length; i++) {
     if (worddata[i].type === "place" && worddata[i].map !== "") {

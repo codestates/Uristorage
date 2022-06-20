@@ -12,7 +12,7 @@
   z-index: 1;
 }
 
-.Mypage_width{
+.Mypage_width {
   margin: 0px 150px;
 }
 
@@ -91,7 +91,7 @@
 }
 
 @media (max-width: 1000px) {
-  .Mypage_width{
+  .Mypage_width {
     margin: 0px 0px;
   }
   .My_Filter {
@@ -138,6 +138,7 @@
 .My_Calendar {
   float: left;
   width: 70%;
+  justify-content: center;
 }
 
 .CreateWord_Map {
@@ -171,7 +172,6 @@
   transition: all 0.3s ease;
 
   line-height: 10px;
-  
 }
 
 .wordActive_btn {
@@ -195,7 +195,7 @@
   transition: all 0.3s ease;
 
   line-height: 10px;
-  padding: 10px
+  padding: 10px;
 }
 
 .w-6 {
@@ -204,7 +204,7 @@
   right: 29px;
 }
 
-.createword_kor{
+.createword_kor {
   position: relative;
   bottom: 42px;
   left: 20px;

@@ -120,17 +120,29 @@
   line-height: 17px;
 }
 
-
-@media (max-width: 1350px){
-  .gridimage{width: 25%;}
+@media (max-width: 1350px) {
+  .gridimage {
+    width: 25%;
+  }
 }
 
-@media (max-width: 1230px){
-  .gridword {width: 80px;}
-  .gridsummary {width: 220px;}
-  .gridimage{width: 30%;}
-  .profile-image{width: 180px; height: 180px;}
-  .porile_select{width:150px}
+@media (max-width: 1230px) {
+  .gridword {
+    width: 80px;
+  }
+  .gridsummary {
+    width: 220px;
+  }
+  .gridimage {
+    width: 30%;
+  }
+  .profile-image {
+    width: 180px;
+    height: 180px;
+  }
+  .porile_select {
+    width: 150px;
+  }
 }
 
 @media (max-width: 1180px){
@@ -139,7 +151,6 @@
   .gridchange {padding: 0px 0px 0px 100px; width: 180px;}
   .gridsummary_change {width: 200px;}
 }
-
 
 @media (max-width: 1000px) {
   .profile-image {
@@ -254,7 +265,7 @@
   padding: 10px 6.6667px;
   background: none;
   text-align: center;
-  line-height: 70px;
+  line-height: 50px;
 }
 .react-calendar__tile:disabled {
   background-color: #f0f0f0;

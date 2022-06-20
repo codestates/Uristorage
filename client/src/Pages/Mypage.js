@@ -59,32 +59,33 @@ function Mypage() {
         <Nav />
       </div>
       <div className="Mypage_width">
-      <div className="My_Profile">
-        <Profile />
-      </div>
-      <div className="My_Filter">
-        <CatFilter setType={setType} />
-      </div>
-      <div className="My_search_createword">
-        <div className="home_searchbar">
-          <input className="searchbar" type="text" placeholder="단어를 입력해주세요" onChange={handleInputValue("searchWord")} />
-          <button type="submit" className="searchbutton">
-            <img className="searchicon" src="https://cdn-icons-png.flaticon.com/512/149/149852.png" />
-          </button>
+        <div className="My_Profile">
+          <Profile />
         </div>
-        <div className="My_createword">
-          <Link to="/CreateWord">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <span className="createword_kor">단어등록</span>
-          </Link>
+        <div className="My_Filter">
+          <CatFilter setType={setType} />
         </div>
-      </div>
-      <div className="My_WordGrid">
-        {type === "place" ? <Locationmap worddata={worddata}/> : <></>}
-        {type === "date" ? <Calendarcomponent worddata={worddata}/> : <></>}
-        <Wordsgrid searchWord={searchWord} worddata={worddata} deleteWord={deleteWord} />
-      </div>
+        <div className="My_search_createword">
+          <div className="home_searchbar">
+            <input className="searchbar" type="text" placeholder="단어를 입력해주세요" onChange={handleInputValue("searchWord")} />
+            <button type="submit" className="searchbutton">
+              <img className="searchicon" src="https://cdn-icons-png.flaticon.com/512/149/149852.png" />
+            </button>
+          </div>
+          <div className="My_createword">
+            <Link to="/CreateWord">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span className="createword_kor">단어등록</span>
+            </Link>
+          </div>
+        </div>
+        <div className="My_WordGrid">
+          {type === "place" ? <Locationmap worddata={worddata} /> : <></>}
+          {type === "date" ? <Calendarcomponent worddata={worddata} /> : <></>}
+          <Wordsgrid searchWord={searchWord} worddata={worddata} deleteWord={deleteWord} />
+        </div>
       </div>
     </div>
   );
