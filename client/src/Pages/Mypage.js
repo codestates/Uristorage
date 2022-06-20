@@ -50,10 +50,6 @@ function Mypage() {
   }, [users_id, groupFilter]);
 
   useEffect(() => {
-    fetchData();
-  }, [users_id, groupFilter]);
-
-  useEffect(() => {
     filterHandler(type);
   }, [allWorddata, type]);
 

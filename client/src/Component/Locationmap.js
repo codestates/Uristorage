@@ -43,7 +43,13 @@ function Locationmap({ worddata }) {
           draggable={true}
         >
           {decodeMarkerInfo.map((address, index) => {
-            return <Marker key={index} position={address} onClick={() => clickMarkerHandler(index)} />;
+            return (
+              <Marker
+                key={index}
+                position={address}
+                onClick={() => clickMarkerHandler(index)}
+              />
+            );
           })}
         </NaverMap>
         <div className="Map-info">{infoBelowMap}</div>

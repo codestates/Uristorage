@@ -39,6 +39,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 .gridword_box {
@@ -144,6 +145,13 @@
   }
 }
 
+@media (max-width: 1180px){
+  .gridimage{width: 20%;}
+  .gridsummary {width: 180px;}
+  .gridchange {padding: 0px 0px 0px 100px; width: 180px;}
+  .gridsummary_change {width: 200px;}
+}
+
 @media (max-width: 1000px) {
   .profile-image {
     width: 400px;
@@ -153,7 +161,7 @@
     width: 250px;
   }
   .gridimage {
-    width: 33%;
+    width: 25%;
   }
   .profile-image {
     height: 300px;
@@ -171,14 +179,16 @@
   justify-content: center;
 }
 
+/*calendar*/
+
 .react-calendar {
+  margin: auto;
   width: 800px;
   max-width: 100%;
   background: white;
   border: 1px solid #a0a096;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.125em;
-  margin: auto;
 }
 .react-calendar--doubleView {
   width: 800px;
@@ -188,7 +198,7 @@
   margin: -0.5em;
 }
 .react-calendar--doubleView .react-calendar__viewContainer > * {
-  width: 50%;
+  width: 200%;
   margin: 0.5em;
 }
 .react-calendar,
@@ -213,7 +223,7 @@
   margin-bottom: 1em;
 }
 .react-calendar__navigation button {
-  min-width: 44px;
+  min-width: 100px;
   background: none;
 }
 .react-calendar__navigation button:disabled {
@@ -255,7 +265,7 @@
   padding: 10px 6.6667px;
   background: none;
   text-align: center;
-  line-height: 16px;
+  line-height: 50px;
 }
 .react-calendar__tile:disabled {
   background-color: #f0f0f0;
@@ -289,6 +299,11 @@
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #e6e6e6;
 }
-.highlight {
-  background: #f3a95f;
+
+.highlight{
+  background-color: #d7ccc8;
+}
+
+.markword{
+  background-color: white;
 }
