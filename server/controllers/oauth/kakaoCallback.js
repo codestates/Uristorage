@@ -21,12 +21,14 @@ module.exports = async (req, res) => {
     const userInfo = await user.findOne({ where: { userId } });
     // 유저 정보가 있는지 확인
     if (!userInfo) {
+      console.log(email, profile.nickname, profile.profile_image_url);
       const newUserInfo = await user.create({
         email: email,
-        userId: id,
+        userId: userId,
         nickname: profile.nickname + "_kakao",
         image: profile.profile_image_url,
       });
+      console.log(newUserInfo);
       delete newUserInfo.dataValues.password; //비밀번호는 토큰에 담지않는다.
       const accessToken = generateAccessToken(newUserInfo.dataValues);
       sendAccessToken(res, accessToken);
