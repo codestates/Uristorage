@@ -68,8 +68,8 @@ function Homepage ({ searchHandler }) {
     <div>
       <Nav />
       <div className="home">
-        <div className="home_uristorageeng">
-          Uri<span className="home_othercolor">Storage</span>
+        <div className="logo_container">
+            <img className="home_logo" src={process.env.PUBLIC_URL + '/Uristorage_Logo_2.png'} />
         </div>
         <div className="home_uristoragekr">
           우리<span className="home_othercolor">스토리</span>지

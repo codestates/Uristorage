@@ -38,7 +38,6 @@ function ModifyGroup() {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data);
         if (res.data.success) {
           setMembers([...members, member]);
         } else {
@@ -53,7 +52,7 @@ function ModifyGroup() {
 
   const getGroupInfo = async () => {
     await axios
-      .get(`${process.env.REACT_APP_URL}/groups/${groupId}`, {
+      .get(`${process.env.REACT_APP_URL}/groups/members/${groupId}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -64,7 +63,6 @@ function ModifyGroup() {
           });
         setMembers([...members, ...groupMembers]);
         setName(res.data.name);
-        console.log(groupMembers);
       });
   };
 
@@ -77,14 +75,23 @@ function ModifyGroup() {
       members: members,
     };
 
-    axios.put(`${process.env.REACT_APP_URL}/groups/${groupId}`, body, { headers: { authorization: `Bearer ${token}` } }, { withCredentials: true }).then((res) => {
-      if (res.data.success) {
-        alert(res.data.message);
-        navigate("/Mypage");
-      } else {
-        alert(res.data.message);
-      }
-    });
+    axios
+      .put(
+        `${process.env.REACT_APP_URL}/groups/${groupId}`,
+        body,
+        {
+          headers: { authorization: `Bearer ${token}` },
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        if (res.data.success) {
+          alert(res.data.message);
+          navigate("/Mypage");
+        } else {
+          alert(res.data.message);
+        }
+      });
   };
 
   useEffect(() => {
@@ -97,7 +104,6 @@ function ModifyGroup() {
 
   const [uploadImage, setUploadImage] = useState(userGroups.filter((el) => el.group_id === groupId)[0]?.image || "");
 
-  console.log(uploadImage);
   function uuidv4() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
       let r = (Math.random() * 16) | 0,
@@ -133,40 +139,51 @@ function ModifyGroup() {
   return (
     <div>
       <div>
-        <div className='group-form'>
-          <div className='group-desc'>
-          <div className='group-desceach1'>그룹 이름</div>
-          <div className='group-desceach2'>그룹원 목록</div>
-          <div className='group-desceach3'>그룹 이미지</div>
+        <div className="group-form">
+          <div>
+            <div className="group-desceach1">그룹 이름</div>
+            <input className="group-nameinput" type="text" value={name} onChange={onNameHandler} />
           </div>
-          
-          <input type="text" value={name} onChange={onNameHandler} />
-          <div className='group-memberlist'>
-            {members.map((el, index) => (
-              <div key={index}>
-                {index === 0 ? (
-                  <div className='group-membernick'>{el}</div>
-                ) : (
-                  <div>
-                    {el}
-                    <button className='group-button3' value={el} onClick={onMemberDelete}>
-                      삭제
-                    </button>
+
+          <div>
+            <div className="group-desceach2">그룹원 목록</div>
+            <input className="group-addinput" type="text" value={member} onChange={handleInputValue} />
+            <button className="group-button1" onClick={onMemberAdd}>
+              추가
+            </button>
+            <div className="group-container2">
+              {members.map((el, index) => (
+                <div key={index}>
+                  {index === 0 ? (
+                    <div>{el}</div>
+                  ) : (
+                    <div>
+                    <div className='group-memberlist'>
+                      <span className='group-member'>{el}</span>
+                      <button className='group-button3' value={el} onClick={onMemberDelete}>삭제</button>
+                    </div>
                   </div>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-          <input type="text" value={member} onChange={handleInputValue} />
-          <button className='group-button1' onClick={onMemberAdd}>추가</button>
-
           <br />
-          <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
+          <div className="groupadd-image">
+            <div className="group-desceach3">그룹 이미지</div>
+            <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
+          </div>
 
-          <button className='group-button2' onClick={onSubmitHandler}>그룹 정보 변경</button>
-
-          <br />
-          <button className='group-button2' onClick={() => setModalOn(true)}>그룹 삭제</button>
+          <div className="modifygroup-buttonall">
+            <button className="modifygroup-button" onClick={onSubmitHandler}>
+              {" "}
+              그룹 정보 변경{" "}
+            </button>
+            <button className="modifygroup-button" onClick={() => setModalOn(true)}>
+              {" "}
+              그룹 삭제{" "}
+            </button>
+          </div>
         </div>
         <Modal open={modalOn} close={() => setModalOn(false)} groupId={groupId} />
       </div>

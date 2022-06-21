@@ -30,7 +30,6 @@ function AddGroup() {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data);
         if (res.data.success) {
           setMembers([...members, member]);
         } else {
@@ -101,39 +100,52 @@ function AddGroup() {
 
   return (
     <div>
-      <div className='group-desc'>
-        <div className='group-desceach1'>그룹 이름</div>
-        <div className='group-desceach2'>그룹원 목록</div>
-        <div className='group-desceach3'>그룹 이미지</div>
-      </div>
-      <div className='group-form'>
-        <input type="text" value={name} onChange={onNameHandler} />
-        <div className='group-memberlist'>
+      <div className="group-form">
+        <div>
+          <div className="group-desceach1">그룹 이름</div>
+          <input className="group-addinput" type="text" value={name} onChange={onNameHandler} />
+        </div>
+        <div>
+          <div className='group-desceach2'>그룹원 목록</div>
+        <div>
+        <input className='group-addinput' type="text" value={member} onChange={handleInputValue} />
+        <button className='group-button1' onClick={onMemberAdd}>추가</button>
+          <div className='group-container2'>
           {members.map((el, index) => (
             <div key={index}>
-              {index === 0 ? (
-                <div class='group-memberlist'>{el}</div>
+            {index === 0 ? (
+              <div> {el} </div>
               ) : (
-                <div>
-                  {el}
-                  <button className='group-button3' value={el} onClick={onMemberDelete}>
-                    삭제
-                  </button>
+              <div>
+                <div className='group-memberlist'>
+                  <span className='group-member'>{el}</span>
+                  <button className='group-button3' value={el} onClick={onMemberDelete}>삭제</button>
                 </div>
-              )}
+              </div>
+                )}
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-        <input type="text" value={member} onChange={handleInputValue} />
-        <button className='group-button1' onClick={onMemberAdd}>추가</button>
         <br />
-        <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
+
+        <div className="groupadd-image">
+          <div className="group-desceach3">그룹 이미지</div>
+          <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
+        </div>
 
         <br />
-        <button className='group-button2' onClick={onSubmitHandler}>그룹 추가</button>
+        <button className="group-button2" onClick={onSubmitHandler}>
+          그룹 추가
+        </button>
       </div>
     </div>
   );
 }
 
 export default AddGroup;
+
+// className='group-container1'
+// className='group-container2'
+// className='group-container3'

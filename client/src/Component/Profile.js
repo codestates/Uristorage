@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./Component.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -15,10 +14,9 @@ function Profile() {
   const { token } = useSelector((state) => state.auth);
 
   const id = userInfo.id;
-  const [Content, setContent] = useState(groupfilter); //select버튼 value값을 받아 단어그리드로 넘겨줘야함profile=>wordgrid(redux이용해야할듯)
+  const [Content, setContent] = useState(String(groupfilter)); //select버튼 value값을 받아 단어그리드로 넘겨줘야함profile=>wordgrid(redux이용해야할듯)
   const groupList = [{ name: "내 단어", image: userInfo.image, group_id: 0 }, ...userGroups];
 
-  console.log(groupfilter);
   const onChangeHandler = (e) => {
     setContent(e.target.value);
     getGroupMembers();
@@ -43,11 +41,11 @@ function Profile() {
   };
   const [members, setMembers] = useState(null);
 
-  const getGroupMembers = () => {
-    if (groupfilter !== 0) {
+  const getGroupMembers = (e) => {
+    if (e !== undefined && e !== "0") {
       try {
         axios
-          .get(`${process.env.REACT_APP_URL}/groups/${groupfilter}`, {
+          .get(`${process.env.REACT_APP_URL}/groups/members/${e}`, {
             withCredentials: true,
           })
           .then((res) => {
@@ -72,42 +70,27 @@ function Profile() {
       type: "groupfilter/setgroupIdFilter",
       payload: Content,
     });
+    getGroupMembers(Content);
   }, [Content]);
 
-  useEffect(() => {
-    if (groupfilter === 0) {
-      setMembers(null);
-    } else {
-      getGroupMembers();
-    }
-  }, [groupfilter]);
+  // useEffect(() => {
+  //   if (groupfilter == 0) {
+  //     setMembers(null);
+  //   } else {
+  //     getGroupMembers();
+  //   }
+  // }, [Content]);
 
   return (
     <div className="information">
       {groupfilter === 0 ? ( //setmembs.length로 한다??
-        <img
-          className="profile-image"
-          style={{ width: "250px", height: "250px" }}
-          src={userInfo.image}
-          onError={(event) => {
-            event.target.src = "https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2";
-            event.onerror = null;
-          }}
-        />
+        <img className="profile-image" src={userInfo.image} />
       ) : (
-        <img
-          className="profile-image"
-          style={{ width: "250px", height: "250px" }}
-          src={userGroups.filter((el) => el.group_id === groupfilter)[0].image}
-          onError={(event) => {
-            event.target.src = "https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2";
-            event.onerror = null;
-          }}
-        />
+        <img className="profile-image" src={userGroups.filter((el) => el.group_id === groupfilter)[0].image} />
       )}
       <div>
-        <span> {userInfo.nickname} </span>
-        <select onChange={onChangeHandler} value={Content}>
+        <div className="pofile_nickname"> {userInfo.nickname} </div>
+        <select className='porile_select' onChange={onChangeHandler} value={Content}>
           {/* <option key={groupfilter} value={groupfilter} selected>
             {groupfilter}
           </option> */}
@@ -122,8 +105,8 @@ function Profile() {
         <div>
           {members.map((el, index) => (
             <div key={index}>
-              <img style={{ width: "50px", height: "50px" }} src={el.image} />
-              <label>{el.nickname}</label>
+              <img style={{ width: "50px", height: "50px", display: "inline-block", content: "" }} src={el.image} />
+              <label>&nbsp;{el.nickname}</label>
             </div>
           ))}
         </div>

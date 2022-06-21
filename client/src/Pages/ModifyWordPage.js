@@ -15,11 +15,15 @@ import ImageUpload from "../Component/ImageUpload";
 function ModifyWord() {
   const location = useLocation();
   const userGroups = useSelector((state) => state.userGroups);
-
-  // console.log("@@@@", location.state.data);
+  const groupsId = location.state.data.groups.map((el) => {
+    return el.id;
+  });
+  const [activeCat, setActiveCat] = useState(location.state.data.type);
+  const [activePub, setActivePub] = useState(location.state.data.public);
 
   const navigate = useNavigate();
-  const [checkedGroups, setCheckedGroups] = useState([]);
+
+  const [checkedGroups, setCheckedGroups] = useState(groupsId);
   const [Wordcreate, setWordcreate] = useState({
     id: location.state.data.id,
     word: location.state.data.word,
@@ -67,16 +71,6 @@ function ModifyWord() {
     );
   };
 
-  // console.log(checkedGroups);
-
-  const checkHandle = (checked, id) => {
-    if (checked) {
-      setCheckedGroups([...checkedGroups, id]);
-    } else {
-      setCheckedGroups(checkedGroups.filter((el) => el !== id));
-    }
-  };
-
   const handleInputValue = (key) => (e) => {
     setWordcreate({ ...Wordcreate, [key]: e.target.value });
   };
@@ -85,7 +79,6 @@ function ModifyWord() {
     const { id, word, summary, content, image, pub, type, map, calendar } = Wordcreate;
     const groups_id = checkedGroups;
     axios.put(`${process.env.REACT_APP_URL}/words`, { id, word, summary, content, image, pub, type, groups_id, map, calendar }, { withCredentials: true }).then((res) => {
-      console.log(res);
       if (res.data.success) {
         alert(res.data.message);
         navigate("/Mypage");
@@ -95,7 +88,9 @@ function ModifyWord() {
     });
   };
 
-  const [mark, setMark] = useState({});
+  const splitMap = location.state.data.map.split(",");
+
+  const [mark, setMark] = useState({ lat: splitMap[0], lng: splitMap[1] });
 
   const ClickLocationHandler = (e) => {
     const { _lat, _lng } = e.latlng;
@@ -123,9 +118,7 @@ function ModifyWord() {
     return e.getFullYear() + "-" + (e.getMonth() + 1).toString().padStart(2, "0") + "-" + e.getDate().toString().padStart(2, "0");
   };
   const handledate = (e) => {
-    console.log("e는", e);
     const worddate = dateToString(e);
-    console.log("worddate는", worddate);
     setWordDate(e);
     setWordcreate({
       id: location.state.data.id,
@@ -139,88 +132,103 @@ function ModifyWord() {
     });
   };
 
-  // console.log("날짜", wordDate);
-  console.log(Wordcreate);
+  const groupHandleClick = (e) => {
+    const value = Number(e.target.value);
+    if (checkedGroups.includes(value)) {
+      setCheckedGroups(checkedGroups.filter((el) => el !== value));
+    } else {
+      setCheckedGroups([...checkedGroups, value]);
+    }
+  };
+
+  const typeHandleClick = (e) => {
+    setActiveCat(e.target.value);
+    setWordcreate({ ...Wordcreate, type: e.target.value });
+  };
+
+  const pubHandleClick = () => {
+    setActivePub(true);
+    setWordcreate({ ...Wordcreate, pub: true });
+  };
+
+  const unPubHandleClick = () => {
+    setActivePub(false);
+    setWordcreate({ ...Wordcreate, pub: false });
+  };
+
   return (
     <div>
       <Nav />
       <div className="CreateWord">
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form className="Word_form" onSubmit={(e) => e.preventDefault()}>
           <div className="Word_Create">
-            <span>단어</span>&emsp;
+            <span className="word-desc2l">단어</span>&emsp;
             <input className="input_word" type="text" value={Wordcreate.word} onChange={handleInputValue("word")} />
           </div>
           <div className="Summary_Create">
-            <span>요약</span>&emsp;
+            <span className="word-desc2l">요약</span>&emsp;
             <input className="input_summary" type="text" value={Wordcreate.summary} onChange={handleInputValue("summary")} />
           </div>
-          <div>
-            <span>그룹 선택</span>&emsp;
-            {userGroups.length === 0
-              ? "생성된 그룹이 없습니다."
-              : userGroups.map((el) => (
-                  <label key={el.group_id}>
-                    <input
-                      id={el.group_id}
-                      type="checkbox"
-                      onChange={(e) => {
-                        checkHandle(e.currentTarget.checked, el.group_id);
-                      }}
-                      checked={checkedGroups.includes(el.group_id) ? true : false}
-                    />
-                    {el.name}
-                  </label>
-                ))}
-          </div>
-          <div className="Type_Create">
-            <span>구분</span>&emsp;
-            <input type="radio" name="type" value={"All"} onChange={handleInputValue("type")} />
-            일반
-            <input type="radio" name="type" value={"person"} onChange={handleInputValue("type")} />
-            인물
-            <input type="radio" name="type" value={"place"} onChange={handleInputValue("type")} />
-            장소
-            <input type="radio" name="type" value={"date"} onChange={handleInputValue("type")} />
-            날짜
-          </div>
-          {Wordcreate.type === "date" ? <DatePicker dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}
           <div className="Pub_Create">
-            <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
-            공개
-            <input type="radio" name="open" value={false} onChange={handleInputValue("pub")} />
-            비공개
-            {/* {Wordcreate.pub ? (
-              <>
-                <input type="radio" name="open" value={true}  onChange={handleInputValue("pub")} />
+            <span className="word-desc4lp"> 공개 여부 </span>
+            <span className="word-pub">
+              <button className={activePub === true ? "wordActive_btn" : "word_btn"} onClick={pubHandleClick}>
                 공개
-                <input type="radio" name="open" value={false} onChange={handleInputValue("pub")} />
+              </button>
+              <button className={activePub === false ? "wordActive_btn" : "word_btn"} onClick={unPubHandleClick}>
                 비공개
-              </>
-            ) : (
-              <>
-                <input type="radio" name="open" value={true} onChange={handleInputValue("pub")} />
-                공개
-                <input type="radio" name="open" value={false}  onChange={handleInputValue("pub")} />
-                비공개
-              </>
-            )} */}
+              </button>
+            </span>
           </div>
-          <div className="Content_Image">
-            <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />
+          <div>
+            <span className="word-desc4lg">그룹 선택</span>&emsp;
+            <span className="word-type">
+              {userGroups.length === 0
+                ? "생성된 그룹이 없습니다."
+                : userGroups.map((el, index) => (
+                    <button key={index} value={el.group_id} className={checkedGroups.includes(el.group_id) ? "wordActive_btn" : "word_btn"} onClick={groupHandleClick}>
+                      {el.name}
+                    </button>
+                  ))}
+            </span>
           </div>
           <div className="Content_Create">
-            <span>내용</span>&emsp;
-            <input className="input_content" type="text" value={Wordcreate.content} onChange={handleInputValue("content")} />
+            <span className="word-desc2lc">내용</span>&emsp;
+            <textarea className="input_content" value={Wordcreate.content} onChange={handleInputValue("content")} />
           </div>
-          {Wordcreate.type === "place" ? (
-            <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
-              <NaverMap className="CreateWord_Map" mapDivId={"naver-map"} defaultCenter={{ lat: 37.3595704, lng: 127.105399 }} defaultZoom={16} zoomControl={true} draggable={true} onClick={ClickLocationHandler}>
-                <Marker position={mark} />
-              </NaverMap>
-            </RenderAfterNavermapsLoaded>
-          ) : null}
+          <div className="Type_Create">
+            <span className="word-desc2l">구분</span>&emsp;
+            <button value={"All"} className={activeCat === "All" ? "wordActive_btn" : "word_btn"} onClick={typeHandleClick}>
+              일반
+            </button>
+            <button value={"person"} className={activeCat === "person" ? "wordActive_btn" : "word_btn"} onClick={typeHandleClick}>
+              인물
+            </button>
+            <button value={"place"} className={activeCat === "place" ? "wordActive_btn" : "word_btn"} onClick={typeHandleClick}>
+              장소
+            </button>
+            <button value={"date"} className={activeCat === "date" ? "wordActive_btn" : "word_btn"} onClick={typeHandleClick}>
+              날짜
+            </button>
+          </div>
+          <div>
+            {Wordcreate.type === "place" ? (
+              <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}>
+                <NaverMap className="word-map" mapDivId={"naver-map"} defaultCenter={{ lat: splitMap[0], lng: splitMap[1] }} defaultZoom={16} zoomControl={true} draggable={true} onClick={ClickLocationHandler}>
+                  <Marker position={mark} />
+                </NaverMap>
+              </RenderAfterNavermapsLoaded>
+            ) : null}
+          </div>
+          {Wordcreate.type === "date" ? <DatePicker className="word-date" dateFormat="yyyy-MM-dd" selected={wordDate} placeholderText="단어 날짜 선택" onChange={handledate} locale={ko} /> : null}
+          <div className="Content_Image">
+            <span className="word-desc5l">단어 이미지</span>
+            <div className="word-image">
+              <ImageUpload uploadImage={uploadImage} handleFileInput={handleFileInput} />{" "}
+            </div>
+          </div>
           <div className="Create_Button">
-            <button className="btn" type="button" onClick={handleCreateword}>
+            <button className="word-btn" type="button" onClick={handleCreateword}>
               단어 수정하기
             </button>
           </div>

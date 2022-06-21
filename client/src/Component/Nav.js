@@ -39,10 +39,7 @@ function Nav() {
   return (
     <div className="navigation">
       <div className="navigation_left">
-        <Link to="/">Home</Link>
-      </div>
-      <div className="navigation_center">
-        Uri<span className="navigation_othercolor">Storage</span>
+        <Link to="/"><span className='navigation_thiscolor'>Uri</span><span className="navigation_othercolor">Storage</span></Link>
       </div>
       <div className="navigation_right">
         {token === null ? (
@@ -62,7 +59,7 @@ function Nav() {
             </span>
             <span> / </span>
             <span>
-              <button onClick={handleLogout}> 로그아웃 </button>
+              <button className='navigation_logout' onClick={handleLogout}> 로그아웃 </button>
             </span>
           </div>
         )}

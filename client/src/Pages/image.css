@@ -1,19 +1,18 @@
 .image-upload {
   width: 230px !important;
-  height: 100px !important;
+  height: 60px !important;
   font-size: 15px;
   text-align: right;
-  min-width: 0 !important;
+  min-width: 20 !important;
   outline: none;
   /* background: rgb(0, 0, 0); */
   cursor: inherit;
   display: block !important;
   /* border-radius: 50% !important; */
   cursor: pointer;
-  position: absolute;
+  position: relative;
   margin: 0 !important;
   /* z-index: -1; */
-  bottom: 60px;
 }
 
 .image-upload-wrapper {

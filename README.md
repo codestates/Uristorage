@@ -7,8 +7,7 @@
 ## 로고
 ![Uristorage_Logo_downsizing](https://user-images.githubusercontent.com/96017521/174240197-72b8603c-e557-40be-9a47-5942ced4a75c.png)
 
-
-## 
+## main
 * 특정한 단어에 의미를 부여하여 단어를 등록하고 수정 및 삭제할 수 있습니다.
 * 단어 등록시 추억의 장소 혹은 날짜를 함께 저장할 수 있습니다.
 * 지인들과 그룹을 생성하여 나의 단어와 지인들의 단어를 서로 공유할 수 있습니다.
@@ -72,7 +71,6 @@
 ##  스택
 
 <img width="544" alt="UriStorage_TechStack_1" src="https://user-images.githubusercontent.com/91889890/170283459-f08b8815-50be-4207-accc-4eb0b463f814.png">
-
 
 ***
 ## Frontend

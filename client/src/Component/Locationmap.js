@@ -1,24 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { RenderAfterNavermapsLoaded, NaverMap, Marker } from "react-naver-maps";
-import axios from "axios";
-import { useSelector } from "react-redux";
 
-function Locationmap() {
-  const userInfo = useSelector((state) => state.userInfo);
-  const users_id = userInfo.id;
-
-  const [locationWord, setLocationWord] = useState([]);
-  useEffect(() => {
-    async function getLocationWords() {
-      await axios.get(`${process.env.REACT_APP_URL}/words/user/${users_id}`).then((res) => setLocationWord(res.data));
-    }
-    getLocationWords();
-  }, []);
+function Locationmap({ worddata }) {
   const markerInfo = [];
-  for (let i = 0; i < locationWord.length; i++) {
-    if (locationWord[i].type === "place" && locationWord[i].map !== "") {
+  for (let i = 0; i < worddata.length; i++) {
+    if (worddata[i].type === "place" && worddata[i].map !== "") {
       // 두번째 조건은 차후에 삭제
-      markerInfo.push(locationWord[i].map);
+      markerInfo.push(worddata[i].map);
     }
   }
 
@@ -29,39 +17,27 @@ function Locationmap() {
       decodeMarkerInfo.push({ lat: el[0], lng: el[1] });
     }
   }
-  // console.log(decodeMarkerInfo);
 
-  const popUpInfo = []
-  for (let i = 0; i < locationWord.length; i++) {
-    if (locationWord[i].type === 'place' && locationWord[i].map !== "") { // 두번째 조건은 차후에 삭제
-      popUpInfo.push([locationWord[i].word, locationWord[i].summary])
+  const popUpInfo = [];
+  for (let i = 0; i < worddata.length; i++) {
+    if (worddata[i].type === "place" && worddata[i].map !== "") {
+      // 두번째 조건은 차후에 삭제
+      popUpInfo.push([worddata[i].word, worddata[i].summary]);
     }
   }
-  console.log(popUpInfo)
 
-  
-  const [infoBelowMap, SetInfoBelowMap] = useState('')
+  const [infoBelowMap, SetInfoBelowMap] = useState("");
   const clickMarkerHandler = (index) => {
-    // let thisPop = []
-    // thisPop.push(popUpInfo[index][0] + ' - ' + popUpInfo[index][1])
-    SetInfoBelowMap(popUpInfo[index][0] + ' - ' + popUpInfo[index][1])
-    // console.log(infoBelowMap)
-  }
-
-  console.log(infoBelowMap)
-  // const navermap = window.naver.maps;
+    SetInfoBelowMap(popUpInfo[index][0] + " - " + popUpInfo[index][1]);
+  };
 
   return (
     <div>
-      <RenderAfterNavermapsLoaded
-        ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}
-        error={<p>Maps Load Error</p>}
-        loading={<p>Maps Loading...</p>
-      }>
+      <RenderAfterNavermapsLoaded ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID} error={<p>Maps Load Error</p>} loading={<p>Maps Loading...</p>}>
         <NaverMap
           className="Location_map"
           mapDivId={"naver-map"}
-          defaultCenter={{ lat: 37.3595704, lng: 127.105399 }}
+          defaultCenter={decodeMarkerInfo[0]}
           defaultZoom={16}
           zoomControl={true} // 지도 zoom 허용
           draggable={true}
@@ -72,12 +48,11 @@ function Locationmap() {
                 key={index}
                 position={address}
                 onClick={() => clickMarkerHandler(index)}
-                //animation={navermaps.Animation. DROP}
               />
             );
           })}
         </NaverMap>
-        <div className='Map-info'>{infoBelowMap}</div>
+        <div className="Map-info">{infoBelowMap}</div>
       </RenderAfterNavermapsLoaded>
     </div>
   );

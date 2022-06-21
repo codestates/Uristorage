@@ -6,10 +6,22 @@
   color: #BCAAA4;
 }
 
-.home_uristorageeng {
+.logo_container {
+  position: relative;
+  top: 40px;
   text-align: center;
-  font-size: 100px;
-  margin: 70px 0px -15px 0px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 75%;
+  width: 55%;
+  z-index: -1;
+}
+
+.home_logo {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  margin: 0px 0px 0px -30px;
 }
 
 .home_uristoragekr {
@@ -42,6 +54,12 @@
   background-color: #BCAAA4;
 }
 
+.searchbutton:hover {
+  background-color: #3E2723;
+  color: white;
+  cursor: pointer;
+}
+
 .searchicon {
   max-width: 30px;
   max-height: 30px;
@@ -65,4 +83,19 @@
   margin: 20px 55px;
   border-radius: 10px;
   background-color: #BCAAA4;
+  
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.randombutton:hover {
+  background-color: #3E2723;
+  color: white;
+  cursor: pointer;
+}
+
+.Pub_Create {
+  position: relative;
+  bottom: 10px;
 }

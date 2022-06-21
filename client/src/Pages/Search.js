@@ -1,20 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Nav from "../Component/Nav";
 import Searchbar from "../Component/Searchbar";
-import Filter from "../Component/Filter";
 import "./Search.css";
 import axios from "axios";
+import CatFilter from "../Component/CatFilter/CatFilter";
 
 function Search({ searchHandler, searchedWord }) {
+  const navigate = useNavigate();
+
+  const [allWorddata, setAllworddata] = useState([]);
   const [publicWords, setPublicWords] = useState([]);
+  const [type, setType] = useState("All");
+
+  const filterHandler = (type) => {
+    type === "All" ? setPublicWords(allWorddata) : setPublicWords(allWorddata.filter((el) => el.type === type));
+  };
+
   useEffect(() => {
     async function getRandomWords() {
-      await axios.get(`${process.env.REACT_APP_URL}/words/public`).then((res) => setPublicWords(res.data));
+      await axios.get(`${process.env.REACT_APP_URL}/words/public`).then((res) => setAllworddata(res.data));
     }
     getRandomWords();
   }, []);
+
+  useEffect(() => {
+    filterHandler(type);
+  }, [allWorddata, type]);
 
   let wordsArray = [];
   for (let i = 0; i < publicWords.length; i++) {
@@ -55,46 +68,6 @@ function Search({ searchHandler, searchedWord }) {
     }
   };
 
-  const [Filters, setFilter] = useState();
-  const types = [
-    { contents: "All", id: 1},
-    { contents: "person", id: 2},
-    { contents: "place", id: 3},
-    { contents: "date", id: 4},
-  ];
-
-  // const showFilter = (filters) => {
-  //   const newcreateword = [...publicWords]
-  //   newcreateword.push(filters)
-  //   setPublicWords(newcreateword)
-  //}
-
-  const handletypeValue = (value) => {
-    const data = types;
-    let contents = "";
-
-    for (let key in data){
-      if(data[key].id === parseInt(value, 10)){
-        contents = data[key].contents
-      }
-    }
-    console.log("contents", contents)
-    return contents;
-  }
-
-  const handleSearchFilters = (filters) => {
-    let newFilters = {...Filters}
-    newFilters = filters
-    console.log("filters", newFilters)
-
-    if(newFilters !== null){
-    let typeValue = handletypeValue(filters)
-    newFilters = typeValue
-    }
-
-   // showFilter(newFilters)
-  }
-
   return (
     <div>
       <Nav />
@@ -107,24 +80,40 @@ function Search({ searchHandler, searchedWord }) {
             </button>
           </Link>
         </div>
-        <Filter handleSearchFilters={filters => handleSearchFilters(filters)}/>
+        <div className="search_catfilter">
+          <CatFilter setType={setType} />
+        </div>
       </div>
-      <div className="searched_word">
-        {filteredWordData.length === publicWords.length || filteredWordData.length === 0 ? (
-          <div className="searched_none">일치하는 단어가 없습니다</div>
-        ) : (
-          filteredWordData.map((word, index) => {
-            return (
-              <Link key={index} to="/Words" state={{ data: word }}>
-                <div className="word_box" id={word.id} key={word.id}>
-                  <div className="word_inbox"> {word.word}</div>
-                  <div className="title_inbox"> {word.summary}</div>
-                  <img src={word.image} width="100" height="80" />
-                </div>
-              </Link>
-            );
-          })
-        )}
+      <div className="searchedword_containter">
+        <div className="searched_word">
+          {filteredWordData.length === 0 ? (
+            <div className="searched_none">일치하는 단어가 없습니다</div>
+          ) : (
+            filteredWordData.map((word, index) => {
+              return (
+                <Link key={index} to={`/Words/${word.id}`} state={{ data: word }}>
+                  <div className="word_box" id={word.id} key={word.id}>
+                    <div className="word_inbox_type">
+                      <div className="word_inbox"> {word.word}</div>
+                      <div className="word_type">{word.type}</div>
+                    </div>
+                    <div className="title_inbox"> {word.summary}</div>
+                    <span className="img_inbox">
+                      <img
+                        src={word.image}
+                        width="100"
+                        height="80"
+                        onError={(e) => {
+                          e.target.style.display = "none";
+                        }}
+                      />
+                    </span>
+                  </div>
+                </Link>
+              );
+            })
+          )}
+        </div>
       </div>
     </div>
   );
