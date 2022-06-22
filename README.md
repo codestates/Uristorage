@@ -51,19 +51,22 @@
 <details>
     <summary>김용진</summary>
 
-* position : Backend→Frontend
-* stack : Javascript, node.js, MySQL, sequelize
-* Contributions
-  + Basic
-    + 아이디어 기획
-    + API Documents 작성
-  + Front
-    + 로그인 인증
-    + 컴포넌트 간 props설정
-  + Back
-    + MYSql-Sequelize-CLI 구성
-    + 서버-컨트롤러-DB 구성
-    + API 요청 응답 처리
+- Position :  Full Stack
+- Stack :  Javascript, node.js, MySQL, jwt, sequelize, Redux, 
+              AWS (EC2, S3, RDS, Route 53, CloudFront)
+- Works :
+    - Front
+        - USER CRUD (로그인, 회원가입, 정보변경 페이지 구현)
+        - GROUP CRUD (그룹 추가, 변경 페이지 구현)
+        - Image 파일 업로드
+        - 소셜로그인
+    - Back
+        - MYSql-Sequelize-CLI 구성
+        - 서버-컨트롤러-DB 구성
+        - API 요청 응답 처리
+        - jwt 인증
+    - DEV
+        - EC2-RDS 연동 및 https 배포
 
 
 </details>
