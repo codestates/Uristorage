@@ -2,7 +2,8 @@
 <img width="963" alt="uristorage_home" src="https://user-images.githubusercontent.com/91889890/174235219-a6a1108c-f4ac-49bc-b184-8d75e62766c8.png">
 
 ### 나의 스토리를 단어로 표현하여 저장하고 공유하는 우리들의 사전, UriStorage(우리 스토리지)
-[배포링크](https://uristorage.com)
+[임시배포링크](http://uristorage.com.s3-website.ap-northeast-2.amazonaws.com)
+[배포링크](https://uristorage.com):현재 https://uristorage.tk 서버 tk도메인 오류 수정 중
 
 ## 로고
 ![Uristorage_Logo_downsizing](https://user-images.githubusercontent.com/96017521/174240197-72b8603c-e557-40be-9a47-5942ced4a75c.png)
