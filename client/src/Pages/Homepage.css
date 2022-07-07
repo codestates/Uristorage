@@ -13,7 +13,7 @@
   margin-left: auto;
   margin-right: auto;
   height: 75%;
-  width: 55%;
+  width: 700px;
   z-index: -1;
 }
 
@@ -25,10 +25,11 @@
 }
 
 .home_uristoragekr {
+  font-size: 35px;
   text-align: center;
-  font-size: 30px;
-  margin: 0px 0px 0px 520px;
+  margin: -20px 0 0 300px;
 }
+/* margin: 0px 0px 0px 520px; */
 
 .home_searchbar {
   display: flex;
@@ -40,7 +41,7 @@
 .searchbar {
   border: 2px solid #3E2723;
   height: 50px;
-  width: 610px;
+  width: 600px;
   padding: 5px;
   border-radius: 5px 0px 0px 5px;
   font-size: 20px;
@@ -54,6 +55,113 @@
   background-color: #BCAAA4;
 }
 
+.home_randomwords_firstline {
+  display: flex;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;
+}
+
+.home_randomwords_secondline {
+  display: flex;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;
+}
+
+.randombutton {
+    font-size: 3vh;
+    height: 50px;
+    width: 140px;
+    margin: 20px 0px;
+    border-radius: 10px;
+    background-color: #BCAAA4;
+    
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .searchbar {
+    width: 70%;
+    height: 45px;
+  }
+
+  .searchbutton {
+    height: 45px;
+    width: 50px;
+  }
+
+  .logo_container {
+    width: 70%;
+  }
+
+  .home_randomwords_firstline {
+    width: 80%;
+  }
+  
+  .home_randomwords_secondline {
+    width: 80%;
+  }
+
+  .randombutton {
+    height: 50px;
+    width: 110px;
+    margin: 20px 0px;
+    font-size: 3vh;
+  }
+
+  .home_uristoragekr {
+    position: relative;
+    top: 10px;
+    font-size: 4vw;
+    text-align: center;
+    margin: 0 0 0 22vw;
+  }
+}
+
+@media (max-width: 360px) {
+  .searchbar {
+    width: 70%;
+    height: 40px;
+  }
+
+  .searchbutton {
+    height: 40px;
+    width: 50px;
+  }
+
+  .logo_container {
+    width: 70%;
+  }
+
+  .home_randomwords_firstline {
+    width: 90%;
+  }
+  
+  .home_randomwords_secondline {
+    width: 90%;
+  }
+
+  .randombutton {
+    height: 40px;
+    width: 70px;
+    margin: 10px 0px;
+    font-size: 2vh;
+  }
+
+  .home_uristoragekr {
+    position: relative;
+    top: 20px;
+    font-size: 2vw;
+    text-align: center;
+    margin: 0 0 0 25vw;
+  }
+}
+
 .searchbutton:hover {
   background-color: #3E2723;
   color: white;
@@ -64,29 +172,6 @@
   max-width: 30px;
   max-height: 30px;
   color: white;
-}
-
-.home_randomwords_firstline{
-  display: flex;
-  justify-content: center;
-}
-
-.home_randomwords_secondline{
-  display: flex;
-  justify-content: center;
-  }
-
-.randombutton {
-  font-size: 3vh;
-  height: 50px;
-  width: 140px;
-  margin: 20px 55px;
-  border-radius: 10px;
-  background-color: #BCAAA4;
-  
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
 }
 
 .randombutton:hover {

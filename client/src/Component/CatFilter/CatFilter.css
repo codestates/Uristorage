@@ -16,6 +16,7 @@ main > section {
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
 .cat_btn {
   width: 140px;
   height: 60px;
@@ -68,7 +69,26 @@ main > section {
   box-shadow: -1px 6px 10px 0 rgba(54, 54, 54, 0.424);
 } */
 
-@media (max-width: 1100px){
-  .cat_btn {width: 120px;}
-  .active_btn {width: 120px;}
+@media (max-width: 768px){
+  .cat_btn {
+    font-size: 5vw;
+    width: 14vw;
+  }
+  .active_btn {
+    font-size: 5vw;
+    width: 14vw;
+  }
+}
+
+@media (max-width: 360px){
+  .cat_btn {
+    font-size: 5vw;
+    width: 20%;
+    height: 50%;
+  }
+  .active_btn {
+    font-size: 5vw;
+    width: 20%;
+    height: 50%;
+  }
 }
