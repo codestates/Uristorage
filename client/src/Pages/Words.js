@@ -26,7 +26,7 @@ function Words({ searchHandler }) {
     return (
       <div id="Words">
         <Nav />
-        <div>
+        
           <div className="words_searchbar">
             <Searchbar searchHandler={searchHandler} />
           </div>
@@ -54,7 +54,7 @@ function Words({ searchHandler }) {
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{pubWord.content}</ReactMarkdown>
               </div>
             </div>
-          </div>
+          
         </div>
       </div>
     );
@@ -63,7 +63,7 @@ function Words({ searchHandler }) {
     return (
       <div id="Words">
         <Nav />
-        <div>
+        
           <div className="words_searchbar">
             <Searchbar searchHandler={searchHandler} />
           </div>
@@ -91,7 +91,7 @@ function Words({ searchHandler }) {
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{clicked.content}</ReactMarkdown>
               </div>
             </div>
-          </div>
+          
         </div>
       </div>
     );

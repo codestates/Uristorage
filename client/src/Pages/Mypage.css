@@ -61,15 +61,6 @@
   font-size: 20px;
 }
 
-.searchbar {
-  border: 2px solid #3e2723;
-  height: 50px;
-  width: 520px;
-  padding: 5px;
-  border-radius: 5px 0px 0px 5px;
-  font-size: 20px;
-}
-
 .My_createword {
   margin: 0px 0px 0px 50px;
   min-width: 75px;
@@ -82,12 +73,6 @@
   height: 990px;
   overflow-x: hidden;
   overflow-y: scroll;
-}
-
-@media (max-width: 1200px) {
-  .searchbar {
-    width: 300px;
-  }
 }
 
 @media (max-width: 1000px) {
@@ -104,9 +89,6 @@
   .My_WordGrid {
     width: 95%;
     margin: 20px 50px 20px 50px;
-  }
-  .searchbar {
-    width: 500px
   }
   .My_Profile {
     clear: both;
