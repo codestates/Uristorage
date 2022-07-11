@@ -67,7 +67,7 @@ function Mypage() {
         </div>
         <div className="My_search_createword">
           <div className="home_searchbar">
-            <input className="searchbar" type="text" placeholder="단어를 입력해주세요" onChange={handleInputValue("searchWord")} />
+            <input className="mypage_searchbar" type="text" placeholder="단어를 입력해주세요" onChange={handleInputValue("searchWord")} />
             <button type="submit" className="searchbutton">
               <img className="searchicon" src="https://cdn-icons-png.flaticon.com/512/149/149852.png" />
             </button>
